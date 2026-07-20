@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Video Downloader — Save Videos from Any Site</title>
+<meta name="description" content="Video Downloader for Android: browse any website and save videos & MP3 with one tap. Works with TikTok, Instagram, Facebook, X, Pinterest, Vimeo, Reddit and more. Built-in HD player, download manager and private folder.">
+<meta property="og:title" content="Video Downloader — Save Videos from Any Site">
+<meta property="og:description" content="Browse any website and save videos & MP3 with one tap. Built-in player, download manager and PIN-locked private folder. Free on Android.">
+<meta property="og:image" content="https://videodownloader.fighttech.vn/assets/icon.png?v=1">
+<link rel="canonical" href="https://videodownloader.fighttech.vn/">
+<style>
+:root{
+  --bg:#ffffff; --ink:#1b2130; --muted:#5b6472; --line:#ececf2;
+  --brand:#ff5a3c; --brand-ink:#d63e22; --brand-soft:#fff0ec; --blob:#f5f2fb;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.65 -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+a{color:var(--brand-ink);text-decoration:none}
+
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.nav .logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink)}
+.nav .logo img{width:30px;height:30px;border-radius:8px}
+.nav .links{margin-left:auto;display:flex;gap:20px;font-size:15px}
+.nav .links a{color:var(--muted)}
+.nav .links a:hover{color:var(--brand-ink)}
+
+.hero{position:relative;overflow:hidden;padding:56px 0 40px}
+.hero::before{content:"";position:absolute;top:-160px;right:-140px;width:520px;height:520px;
+  background:var(--blob);border-radius:46% 54% 60% 40%/50% 42% 58% 50%;z-index:0}
+.hero .wrap{position:relative;z-index:1}
+.hero-grid{display:grid;grid-template-columns:220px 1fr;gap:44px;align-items:center}
+.appicon{width:200px;height:200px;border-radius:44px;box-shadow:0 24px 60px rgba(20,30,50,.18);display:block}
+h1{font-size:52px;line-height:1.05;letter-spacing:-.02em;margin:0 0 14px;font-weight:800}
+.lead{font-size:19px;color:var(--muted);margin:0 0 26px;max-width:560px}
+.btns{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:16px;
+  padding:14px 26px;border-radius:999px;transition:transform .12s ease,box-shadow .12s ease}
+.btn svg{display:block}
+.btn-play{background:var(--ink);color:#fff;box-shadow:0 10px 24px rgba(20,30,50,.28)}
+.btn-play:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(20,30,50,.38)}
+.btn-dl2{background:var(--brand-soft);color:var(--brand-ink);border:1px solid #ffd7cd}
+.btn-dl2:hover{transform:translateY(-2px)}
+.hint{color:#9aa2b1;font-size:13px;margin:14px 0 0}
+
+section{padding:56px 0}
+.sec-title{font-size:15px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-ink);margin:0 0 26px}
+.shots{display:flex;gap:22px;overflow-x:auto;padding:6px 2px 18px;scroll-snap-type:x mandatory}
+.shots::-webkit-scrollbar{height:8px}.shots::-webkit-scrollbar-thumb{background:#dfe3ea;border-radius:8px}
+.shot{flex:0 0 auto;width:224px;scroll-snap-align:start}
+.shot img{width:100%;border-radius:22px;border:1px solid var(--line);box-shadow:0 16px 38px rgba(20,30,50,.12);display:block}
+.shot span{display:block;text-align:center;color:var(--muted);font-size:13px;margin-top:12px}
+
+.desc{background:#fafbfd;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.desc p{font-size:17px;color:var(--muted);max-width:720px;margin:0 0 18px}
+.feats{list-style:none;padding:0;margin:8px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px 30px;max-width:820px}
+.feats li{position:relative;padding-left:30px;color:var(--ink);font-size:15.5px}
+.feats li::before{content:"";position:absolute;left:0;top:3px;width:19px;height:19px;border-radius:50%;
+  background:var(--brand-soft) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none'><path d='M20 6L9 17l-5-5' stroke='%23d63e22' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/12px no-repeat}
+
+footer{border-top:1px solid var(--line);padding:34px 0}
+.foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;color:#9aa2b1;font-size:14px}
+.foot nav a{color:var(--muted);margin-left:22px}
+.foot nav a:first-child{margin-left:0}
+
+@media(max-width:720px){
+  .nav .links{gap:16px;font-size:14px}
+  .nav .links a:nth-last-child(-n+2){display:none}
+  .hero{padding-top:34px}
+  .hero-grid{grid-template-columns:1fr;gap:26px;text-align:center;justify-items:center}
+  .appicon{width:150px;height:150px;border-radius:34px}
+  h1{font-size:38px}.lead{font-size:17px}
+  .btns{justify-content:center}
+  .foot{justify-content:center;text-align:center}
+  .foot nav a:first-child{margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="./"><img src="assets/icon.png?v=1" alt="Video Downloader">Video Downloader</a>
+    <div class="links">
+      <a href="index.html">Features</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videodownloader">Get the app</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <img class="appicon" src="assets/icon.png?v=1" alt="Video Downloader icon" width="200" height="200">
+      <div>
+        <h1>Video Downloader</h1>
+        <p class="lead">Browse any website and save videos &amp; music with <strong>one tap</strong>. The built-in browser detects the video on the page — then downloads it in HD or as MP3. Works with TikTok, Instagram, Facebook, X, Pinterest, Vimeo, Reddit&nbsp;and&nbsp;more.</p>
+        <div class="btns">
+          <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=vn.fighttech.videodownloader">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 3.5v17c0 .6.7 1 1.2.7l14.6-8.5c.5-.3.5-1 0-1.3L5.2 2.8C4.7 2.5 4 2.9 4 3.5z" fill="#fff"/></svg>
+            Get it on Google Play
+          </a>
+          <a class="btn btn-dl2" href="https://storage.fighttech.vn/videodownloader/VideoDownloader.apk" download>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16" stroke="#d63e22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Direct APK
+          </a>
+        </div>
+        <p class="hint">Free on Google Play · Android 6.0+ · vn.fighttech.videodownloader</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-title">Screenshots</h2>
+    <div class="shots">
+      <div class="shot"><img src="assets/shots/browser.png?v=1" alt="Detect video on any site" loading="lazy"><span>Detect video on any site</span></div>
+      <div class="shot"><img src="assets/shots/home.png?v=1" alt="Paste a link to download" loading="lazy"><span>Paste a link to download</span></div>
+      <div class="shot"><img src="assets/shots/library.png?v=1" alt="Your media library" loading="lazy"><span>Video &amp; music library</span></div>
+      <div class="shot"><img src="assets/shots/manager.png?v=1" alt="Download manager" loading="lazy"><span>Pause &amp; resume downloads</span></div>
+      <div class="shot"><img src="assets/shots/vault.png?v=1" alt="Private folder" loading="lazy"><span>PIN-locked private folder</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="desc">
+  <div class="wrap">
+    <h2 class="sec-title">Description</h2>
+    <p>Video Downloader is the simplest way to save videos and music on Android. Open the built-in browser, go to any page with a video, and a Download button appears the moment a video is detected — one tap and it&#39;s saved to your gallery. Or just paste a link. No account, no watermark, no fuss.</p>
+    <p style="color:var(--ink);font-weight:600;margin-bottom:10px">Everything you need in one app:</p>
+    <ul class="feats">
+      <li>Built-in browser that auto-detects video on any page</li>
+      <li>One-tap download — or paste a link / use Share</li>
+      <li>Save HD video or extract audio as MP3</li>
+      <li>Works with TikTok, Instagram, Facebook, X, Pinterest, Vimeo, Reddit &amp; more</li>
+      <li>Download manager — pause, resume &amp; multiple at once</li>
+      <li>Built-in player with background &amp; pop-up play</li>
+      <li>Video &amp; music library, organized automatically</li>
+      <li>Private folder locked with a PIN</li>
+      <li>Fast, lightweight &amp; free</li>
+      <li>No login, no watermark</li>
+    </ul>
+    <p style="font-size:14px;color:#9aa2b1;margin-top:24px">Video Downloader is a general-purpose browser and downloader. Please only download content you have the right to save, and respect the terms of the sites you visit. The app does not host or provide any content.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 FightTech — Video Downloader for Android</span>
+    <nav>
+      <a href="index.html">Features</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videodownloader">Google Play</a>
+      <a href="mailto:fighttech.vn@gmail.com">Support</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
