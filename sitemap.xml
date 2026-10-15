@@ -1,7 +1,433 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://videodownloader.fighttech.vn/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://videodownloader.fighttech.vn/intro</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://videodownloader.fighttech.vn/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://videodownloader.fighttech.vn/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/cat-nhac-chuong-tu-video.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/cat-nhac-chuong-tu-video.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/cat-nhac-chuong-tu-video.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/batch-convert-videos-to-mp3.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-nhac-hang-loat-tu-nhieu-video.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/batch-convert-videos-to-mp3.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/batch-convert-videos-to-mp3.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/chon-bitrate-128-192-320-kbps.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/music-player-sleep-timer-speed.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/trinh-phat-nhac-hen-gio-ngu.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/music-player-sleep-timer-speed.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/music-player-sleep-timer-speed.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/chon-bitrate-128-192-320-kbps.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/chon-bitrate-128-192-320-kbps.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/tach-nhac-hang-loat-tu-nhieu-video.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-nhac-hang-loat-tu-nhieu-video.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/batch-convert-videos-to-mp3.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/batch-convert-videos-to-mp3.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/trinh-phat-nhac-hen-gio-ngu.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/trinh-phat-nhac-hen-gio-ngu.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/music-player-sleep-timer-speed.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/music-player-sleep-timer-speed.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/privacy.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/terms.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/nghe-bai-giang-tu-video-khi-tat-man-hinh.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/danh-sach-video.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-player.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/nghe-bai-giang-tu-video-khi-tat-man-hinh.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/separate-the-lecture-audio-to-listen-when-the-screen-is-turned-off.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/nghe-bai-giang-tu-video-khi-tat-man-hinh.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/kiem-tra-video-truoc-khi-tach-tieng.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/danh-sach-video.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/tuy-chon-chuyen-doi.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/kiem-tra-video-truoc-khi-tach-tieng.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/preview-the-video-before-separating-the-sound-on-android.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/kiem-tra-video-truoc-khi-tach-tieng.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/tach-mot-doan-phong-van-thanh-mp3.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/tuy-chon-chuyen-doi.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-result.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-mot-doan-phong-van-thanh-mp3.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/split-an-interview-into-mp3-on-your-phone.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/tach-mot-doan-phong-van-thanh-mp3.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/doi-ten-file-mp3-truoc-khi-luu.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/tuy-chon-chuyen-doi.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-music.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/doi-ten-file-mp3-truoc-khi-luu.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/name-the-mp3-file-before-converting-the-video.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/doi-ten-file-mp3-truoc-khi-luu.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/tim-file-am-thanh-sau-khi-chuyen-doi.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-music.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-result.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tim-file-am-thanh-sau-khi-chuyen-doi.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/find-audio-files-after-converting-video-to-mp3.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/tim-file-am-thanh-sau-khi-chuyen-doi.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/chia-se-am-thanh-tu-video-sau-khi-tach.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-result.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-music.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/chia-se-am-thanh-tu-video-sau-khi-tach.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/share-audio-just-extracted-from-video-on-android.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/chia-se-am-thanh-tu-video-sau-khi-tach.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/widget-dieu-khien-nhac-tren-man-hinh-chinh.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-player.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-music.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/widget-dieu-khien-nhac-tren-man-hinh-chinh.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/control-music-with-widgets-on-the-android-screen.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/widget-dieu-khien-nhac-tren-man-hinh-chinh.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/sap-xep-hang-doi-nghe-audio.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-music.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-player.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/sap-xep-hang-doi-nghe-audio.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/listen-to-multiple-audio-files-using-the-music-queue.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/sap-xep-hang-doi-nghe-audio.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/kiem-tra-quyen-doc-video-va-am-thanh.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/danh-sach-video.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-music.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/kiem-tra-quyen-doc-video-va-am-thanh.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/grant-permission-for-the-app-to-find-video-and-audio.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/kiem-tra-quyen-doc-video-va-am-thanh.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/tach-audio-video-khong-co-tieng.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/danh-sach-video.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/tuy-chon-chuyen-doi.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-audio-video-khong-co-tieng.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/why-is-there-no-sound-when-separating-audio-from-video.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/tach-audio-video-khong-co-tieng.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/tach-am-thanh-khi-khong-co-internet.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/danh-sach-video.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-result.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-am-thanh-khi-khong-co-internet.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/extract-sound-without-internet-what-to-prepare.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/tach-am-thanh-khi-khong-co-internet.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/tach-audio-cho-video-dai-it-bo-nho.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/tuy-chon-chuyen-doi.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-result.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-audio-cho-video-dai-it-bo-nho.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/extract-audio-from-long-videos-when-your-phone-is-low-on-memory.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/tach-audio-cho-video-dai-it-bo-nho.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/</loc>
+    <lastmod>2026-09-20</lastmod>
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/separate-the-lecture-audio-to-listen-when-the-screen-is-turned-off.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/danh-sach-video.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-player.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/nghe-bai-giang-tu-video-khi-tat-man-hinh.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/separate-the-lecture-audio-to-listen-when-the-screen-is-turned-off.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/nghe-bai-giang-tu-video-khi-tat-man-hinh.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/preview-the-video-before-separating-the-sound-on-android.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/danh-sach-video.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/tuy-chon-chuyen-doi.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/kiem-tra-video-truoc-khi-tach-tieng.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/preview-the-video-before-separating-the-sound-on-android.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/kiem-tra-video-truoc-khi-tach-tieng.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/split-an-interview-into-mp3-on-your-phone.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/tuy-chon-chuyen-doi.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-result.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-mot-doan-phong-van-thanh-mp3.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/split-an-interview-into-mp3-on-your-phone.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/tach-mot-doan-phong-van-thanh-mp3.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/name-the-mp3-file-before-converting-the-video.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/tuy-chon-chuyen-doi.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-music.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/doi-ten-file-mp3-truoc-khi-luu.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/name-the-mp3-file-before-converting-the-video.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/doi-ten-file-mp3-truoc-khi-luu.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/find-audio-files-after-converting-video-to-mp3.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-music.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-result.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tim-file-am-thanh-sau-khi-chuyen-doi.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/find-audio-files-after-converting-video-to-mp3.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/tim-file-am-thanh-sau-khi-chuyen-doi.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/share-audio-just-extracted-from-video-on-android.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-result.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-music.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/chia-se-am-thanh-tu-video-sau-khi-tach.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/share-audio-just-extracted-from-video-on-android.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/chia-se-am-thanh-tu-video-sau-khi-tach.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/control-music-with-widgets-on-the-android-screen.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-player.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-music.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/widget-dieu-khien-nhac-tren-man-hinh-chinh.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/control-music-with-widgets-on-the-android-screen.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/widget-dieu-khien-nhac-tren-man-hinh-chinh.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/listen-to-multiple-audio-files-using-the-music-queue.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-music.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-player.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/sap-xep-hang-doi-nghe-audio.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/listen-to-multiple-audio-files-using-the-music-queue.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/sap-xep-hang-doi-nghe-audio.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/grant-permission-for-the-app-to-find-video-and-audio.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/danh-sach-video.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-music.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/kiem-tra-quyen-doc-video-va-am-thanh.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/grant-permission-for-the-app-to-find-video-and-audio.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/kiem-tra-quyen-doc-video-va-am-thanh.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/why-is-there-no-sound-when-separating-audio-from-video.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/danh-sach-video.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/tuy-chon-chuyen-doi.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-audio-video-khong-co-tieng.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/why-is-there-no-sound-when-separating-audio-from-video.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/tach-audio-video-khong-co-tieng.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/extract-sound-without-internet-what-to-prepare.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/danh-sach-video.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-result.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-am-thanh-khi-khong-co-internet.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/extract-sound-without-internet-what-to-prepare.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/tach-am-thanh-khi-khong-co-internet.html" />
+  </url>
+  <url>
+    <loc>https://videotoaudio.fighttech.vn/blog/en/extract-audio-from-long-videos-when-your-phone-is-low-on-memory.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/tuy-chon-chuyen-doi.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://videotoaudio.fighttech.vn/blog/img/vt-result.webp</image:loc>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-audio-cho-video-dai-it-bo-nho.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/extract-audio-from-long-videos-when-your-phone-is-low-on-memory.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/tach-audio-cho-video-dai-it-bo-nho.html" />
+  </url>
 </urlset>

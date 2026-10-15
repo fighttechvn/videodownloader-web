@@ -2,18 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Video Downloader — Save Videos from Any Site</title>
-<meta name="description" content="Video Downloader for Android: browse any website and save videos & MP3 with one tap. Works with TikTok, Instagram, Facebook, X, Pinterest, Vimeo, Reddit and more. Built-in HD player, download manager and private folder.">
-<meta property="og:title" content="Video Downloader — Save Videos from Any Site">
-<meta property="og:description" content="Browse any website and save videos & MP3 with one tap. Built-in player, download manager and PIN-locked private folder. Free on Android.">
-<meta property="og:image" content="https://videodownloader.fighttech.vn/assets/icon.png?v=1">
+<title>Video to MP3: Extract Audio from Video on Android</title>
+<meta name="description" content="Extract audio from videos on your Android phone and save it as MP3, M4A, OPUS or WAV at 64–320 kbps. Trim, make ringtones, edit song tags. Conversion runs on your device.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#7c4dff">
+<link rel="alternate" type="text/plain" href="https://videotoaudio.fighttech.vn/llms.txt" title="LLM summary">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Video to MP3">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="vi_VN">
+<meta property="og:title" content="Video to MP3: Extract Audio from Video on Android">
+<meta property="og:description" content="Convert MP4 to MP3 on your phone: MP3, M4A, OPUS or WAV at 64–320 kbps, trim a clip, set it as a ringtone. Your videos are never uploaded.">
+<meta property="og:url" content="https://videotoaudio.fighttech.vn/">
+<meta property="og:image" content="https://videotoaudio.fighttech.vn/assets/icon.png?v=1">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Video to MP3: Extract Audio from Video on Android">
+<meta name="twitter:description" content="Convert MP4 to MP3 on your phone: MP3, M4A, OPUS or WAV at 64–320 kbps, trim a clip, set it as a ringtone.">
+<meta name="twitter:image" content="https://videotoaudio.fighttech.vn/assets/icon.png?v=1">
 <link rel="icon" type="image/png" href="assets/icon.png?v=1">
 <link rel="apple-touch-icon" href="assets/icon.png?v=1">
-<link rel="canonical" href="https://videodownloader.fighttech.vn/">
+<link rel="canonical" href="https://videotoaudio.fighttech.vn/">
 <style>
 :root{
   --bg:#ffffff; --ink:#1b2130; --muted:#5b6472; --line:#ececf2;
-  --brand:#ff5a3c; --brand-ink:#d63e22; --brand-soft:#fff0ec; --blob:#f5f2fb;
+  --brand:#7c4dff; --brand-ink:#5b2ee6; --brand-soft:#f1ecff; --blob:#f4f1fd;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -45,7 +57,7 @@ h1{font-size:52px;line-height:1.05;letter-spacing:-.02em;margin:0 0 14px;font-we
 .btn svg{display:block}
 .btn-play{background:var(--ink);color:#fff;box-shadow:0 10px 24px rgba(20,30,50,.28)}
 .btn-play:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(20,30,50,.38)}
-.btn-dl2{background:var(--brand-soft);color:var(--brand-ink);border:1px solid #ffd7cd}
+.btn-dl2{background:var(--brand-soft);color:var(--brand-ink);border:1px solid #ddd2ff}
 .btn-dl2:hover{transform:translateY(-2px)}
 .hint{color:#9aa2b1;font-size:13px;margin:14px 0 0}
 
@@ -57,12 +69,62 @@ section{padding:56px 0}
 .shot img{width:100%;border-radius:22px;border:1px solid var(--line);box-shadow:0 16px 38px rgba(20,30,50,.12);display:block}
 .shot span{display:block;text-align:center;color:var(--muted);font-size:13px;margin-top:12px}
 
+
+/* Screenshot lightbox */
+.shot-trigger{display:block;width:100%;margin:0;padding:0;border:0;background:none;font:inherit;color:inherit;
+  cursor:zoom-in;border-radius:22px;-webkit-tap-highlight-color:transparent}
+.shot-trigger img{transition:transform .2s ease}
+.shot-trigger:hover img{transform:translateY(-3px)}
+.shot-trigger:focus-visible{outline:2px solid var(--brand);outline-offset:4px}
+.lightbox{width:100%;height:100%;max-width:100vw;max-height:100vh;padding:0;border:0;background:transparent;color:#fff;overflow:hidden}
+.lightbox::backdrop{background:rgba(16,18,28,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.lightbox[open]{display:flex;align-items:center;justify-content:center}
+.lightbox.is-fallback[open]{position:fixed;inset:0;z-index:999;background:rgba(16,18,28,.94)}
+.lightbox-inner{display:flex;flex-direction:column;align-items:center;gap:14px;padding:64px 20px 28px;max-width:100%;max-height:100%}
+.lightbox-img{display:block;width:auto;height:auto;max-width:min(92vw,520px);max-height:calc(100vh - 150px);
+  object-fit:contain;border-radius:22px;background:#1b2130;box-shadow:0 30px 70px -30px rgba(0,0,0,.9)}
+.lightbox-cap{display:flex;align-items:baseline;gap:10px;margin:0;font-size:14px;text-align:center}
+.lightbox-count{font-size:13px;font-variant-numeric:tabular-nums;color:rgba(255,255,255,.6)}
+.lightbox button{position:absolute;display:grid;place-items:center;border:1px solid rgba(255,255,255,.18);border-radius:999px;
+  background:rgba(20,22,32,.72);color:#fff;cursor:pointer;line-height:1;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.lightbox button:hover{background:var(--brand);border-color:transparent}
+.lightbox button:focus-visible{outline:2px solid var(--brand-soft);outline-offset:3px}
+.lightbox-close{top:18px;right:18px;width:44px;height:44px;font-size:22px}
+.lightbox-nav{top:50%;transform:translateY(-50%);width:48px;height:48px;font-size:26px;padding-bottom:4px}
+.lightbox-nav:hover{transform:translateY(-50%) scale(1.06)}
+.lightbox-prev{left:16px}.lightbox-next{right:16px}
+@media (max-width:560px){
+  .lightbox-inner{padding:58px 12px 22px}
+  .lightbox-img{max-height:calc(100vh - 140px)}
+  .lightbox-nav{width:42px;height:42px;font-size:22px}
+  .lightbox-prev{left:8px}.lightbox-next{right:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  .shot-trigger img,.lightbox button{transition:none}
+  .shot-trigger:hover img{transform:none}
+  .lightbox-nav:hover{transform:translateY(-50%)}
+}
+
 .desc{background:#fafbfd;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .desc p{font-size:17px;color:var(--muted);max-width:720px;margin:0 0 18px}
 .feats{list-style:none;padding:0;margin:8px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px 30px;max-width:820px}
 .feats li{position:relative;padding-left:30px;color:var(--ink);font-size:15.5px}
 .feats li::before{content:"";position:absolute;left:0;top:3px;width:19px;height:19px;border-radius:50%;
-  background:var(--brand-soft) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none'><path d='M20 6L9 17l-5-5' stroke='%23d63e22' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/12px no-repeat}
+  background:var(--brand-soft) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none'><path d='M20 6L9 17l-5-5' stroke='%235b2ee6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/12px no-repeat}
+
+code{background:#f4f6fa;padding:1px 6px;border-radius:6px;font-size:14px;color:var(--ink)}
+.faq{max-width:760px}
+.faq h3{font-size:17px;margin:26px 0 6px}
+.faq p{color:var(--muted);margin:0}
+
+.blog-sec{background:#fafbfd;border-top:1px solid var(--line)}
+.posts{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;max-width:900px}
+.post-card{display:block;height:100%;padding:22px 24px;border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--ink);transition:border-color .15s}
+.post-card:hover,.post-card:focus-visible{border-color:var(--brand)}
+.post-card h3{margin:0 0 6px;font-size:19px;line-height:1.3}
+.post-card p{margin:0;color:var(--muted);font-size:15px}
+.post-card .meta{margin-top:10px;font-size:13.5px;color:#9aa2b1}
+.blog-more{margin:22px 0 0;font-size:15px;color:var(--muted)}
 
 footer{border-top:1px solid var(--line);padding:34px 0}
 .foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;color:#9aa2b1;font-size:14px}
@@ -86,12 +148,14 @@ footer{border-top:1px solid var(--line);padding:34px 0}
 
 <nav class="nav">
   <div class="wrap">
-    <a class="logo" href="./"><img src="assets/icon.png?v=1" alt="Video Downloader">Video Downloader</a>
+    <a class="logo" href="./"><img src="assets/icon.png?v=1" alt="Video to MP3">Video to MP3</a>
     <div class="links">
-      <a href="index.html">Features</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+      <a href="blog/">Blog</a>
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms</a>
-      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videodownloader">Get the app</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Get the app</a>
     </div>
   </div>
 </nav>
@@ -99,21 +163,21 @@ footer{border-top:1px solid var(--line);padding:34px 0}
 <header class="hero">
   <div class="wrap">
     <div class="hero-grid">
-      <img class="appicon" src="assets/icon.png?v=1" alt="Video Downloader icon" width="200" height="200">
+      <img class="appicon" src="assets/icon.png?v=1" alt="Video to MP3 icon" width="200" height="200">
       <div>
-        <h1>Video Downloader</h1>
-        <p class="lead">Browse any website and save videos &amp; music with <strong>one tap</strong>. The built-in browser detects the video on the page — then downloads it in HD or as MP3. Works with TikTok, Instagram, Facebook, X, Pinterest, Vimeo, Reddit&nbsp;and&nbsp;more.</p>
+        <h1>Video to MP3</h1>
+        <p class="lead">Extract the audio from a video on your phone and save it as an MP3 — tap <strong>MP3</strong> next to the video, trim the part you want, and the file lands in your Music library. The conversion runs on your device: your videos are never uploaded, there is no sign-up and no&nbsp;watermark.</p>
         <div class="btns">
-          <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=vn.fighttech.videodownloader">
+          <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 3.5v17c0 .6.7 1 1.2.7l14.6-8.5c.5-.3.5-1 0-1.3L5.2 2.8C4.7 2.5 4 2.9 4 3.5z" fill="#fff"/></svg>
             Get it on Google Play
           </a>
-          <a class="btn btn-dl2" href="https://storage.fighttech.vn/videodownloader/VideoDownloader.apk" download>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16" stroke="#d63e22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <a class="btn btn-dl2" href="https://storage.fighttech.vn/videotoaudio/VideoToAudio.apk" download>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16" stroke="#5b2ee6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Direct APK
           </a>
         </div>
-        <p class="hint">Free on Google Play · Android 6.0+ · vn.fighttech.videodownloader</p>
+        <p class="hint">Free on Google Play · Android 8.0+ · vn.fighttech.videotoaudio</p>
       </div>
     </div>
   </div>
@@ -123,48 +187,357 @@ footer{border-top:1px solid var(--line);padding:34px 0}
   <div class="wrap">
     <h2 class="sec-title">Screenshots</h2>
     <div class="shots">
-      <div class="shot"><img src="assets/shots/browser.png?v=1" alt="Detect video on any site" loading="lazy"><span>Detect video on any site</span></div>
-      <div class="shot"><img src="assets/shots/home.png?v=1" alt="Paste a link to download" loading="lazy"><span>Paste a link to download</span></div>
-      <div class="shot"><img src="assets/shots/library.png?v=1" alt="Your media library" loading="lazy"><span>Video &amp; music library</span></div>
-      <div class="shot"><img src="assets/shots/manager.png?v=1" alt="Download manager" loading="lazy"><span>Pause &amp; resume downloads</span></div>
-      <div class="shot"><img src="assets/shots/vault.png?v=1" alt="Private folder" loading="lazy"><span>PIN-locked private folder</span></div>
+      <div class="shot"><img src="assets/shots/home.png?v=1" alt="Pick a video to convert to MP3" loading="lazy"><span>Pick any video on your phone</span></div>
+      <div class="shot"><img src="assets/shots/quality.png?v=1" alt="Choose MP3 bitrate" loading="lazy">
+        <span>Pick your quality</span></div>
+      <div class="shot"><img src="assets/shots/result.png?v=1" alt="MP3 saved to the Music library" loading="lazy"><span>Saved to your Music library</span></div>
+      <div class="shot"><img src="assets/shots/music.png?v=1" alt="Library of converted MP3 files" loading="lazy"><span>All your converted MP3s</span></div>
+      <div class="shot"><img src="assets/shots/player.png?v=1" alt="Built-in music player" loading="lazy"><span>Built-in music player</span></div>
     </div>
   </div>
 </section>
 
-<section class="desc">
+<section class="desc" id="features">
   <div class="wrap">
     <h2 class="sec-title">Description</h2>
-    <p>Video Downloader is the simplest way to save videos and music on Android. Open the built-in browser, go to any page with a video, and a Download button appears the moment a video is detected — one tap and it&#39;s saved to your gallery. Or just paste a link. No account, no watermark, no fuss.</p>
+    <p>Video to MP3 turns the videos already sitting in your gallery into clean audio files. Open the app, tap <strong>MP3</strong> next to any video, drag the two handles to keep the part you want, choose a format and bitrate, and tap <strong>Start</strong>. The file goes straight into <code>Music/Video to Audio</code>, where your file manager and every other music app can find it. The conversion runs on your device with a built-in MP3 encoder, so there is no upload queue and no account to create.</p>
     <p style="color:var(--ink);font-weight:600;margin-bottom:10px">Everything you need in one app:</p>
     <ul class="feats">
-      <li>Built-in browser that auto-detects video on any page</li>
-      <li>One-tap download — or paste a link / use Share</li>
-      <li>Save HD video or extract audio as MP3</li>
-      <li>Works with TikTok, Instagram, Facebook, X, Pinterest, Vimeo, Reddit &amp; more</li>
-      <li>Download manager — pause, resume &amp; multiple at once</li>
-      <li>Built-in player with background &amp; pop-up play</li>
-      <li>Video &amp; music library, organized automatically</li>
-      <li>Private folder locked with a PIN</li>
-      <li>Fast, lightweight &amp; free</li>
-      <li>No login, no watermark</li>
+      <li>Extract audio from video in a tap, or several videos in one batch</li>
+      <li>Convert MP4, MOV, 3GP, MKV and WEBM videos to MP3</li>
+      <li>MP3, M4A (AAC), OPUS, WAV and M4R output</li>
+      <li>64 to 320 kbps — 192 kbps is the free default</li>
+      <li>Trim with a waveform, fade in/out, normalize loudness</li>
+      <li>Set a clip as ringtone, notification or alarm sound</li>
+      <li>Edit title, artist, album and cover art on MP3s</li>
+      <li>Use a video frame as the MP3's cover art</li>
+      <li>Your original video is never changed or deleted</li>
+      <li>Audio tools: cut, join, mix, split, volume boost, recorder</li>
+      <li>Built-in player: queue, shuffle, repeat, speed, equalizer</li>
+      <li>Sleep timer &amp; background play with notification controls</li>
     </ul>
-    <p style="font-size:14px;color:#9aa2b1;margin-top:24px">Video Downloader is a general-purpose browser and downloader. Please only download content you have the right to save, and respect the terms of the sites you visit. The app does not host or provide any content.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq">
+    <h2 class="sec-title">Frequently asked</h2>
+
+    <h3>Does it need an internet connection?</h3>
+    <p>Converting does not. The audio is extracted and encoded on your phone, and your videos are never uploaded. The app does use the internet for ads, purchases, anonymous analytics and crash reports, and for the online song-info lookup if you use it.</p>
+
+    <h3>Which video formats can I convert?</h3>
+    <p>Most videos saved on your phone, including MP4, MOV, 3GP, MKV and WEBM. The app uses Android's own decoders, so a file your phone cannot open will not convert either.</p>
+
+    <h3>What audio formats and quality do I get?</h3>
+    <p>MP3, M4A (AAC), OPUS (Android 10 and newer), WAV and M4R, plus FLAC with Premium. MP3 runs from 64 to 320 kbps: up to 192 kbps is free, while 256 and 320 kbps cost 1 credit per file or come with Premium.</p>
+
+    <h3>Is the app free?</h3>
+    <p>Yes, to download and for the core features: extracting audio, trimming, 64–192 kbps, ringtones, the tag editor and the player. Credits pay for 256/320 kbps, effects such as fades or noise reduction, and every file beyond 3 in one batch. You start with 5 credits and can earn 1 per rewarded ad, up to 5 a day. Premium removes ads and credit costs.</p>
+
+    <h3>How do I make a ringtone from a video?</h3>
+    <p>Tap <strong>MP3</strong> on the video, drag the handles around a 20–30 second clip and tap <strong>Start</strong>. On the result screen tap <strong>Ringtone</strong> and choose Phone ringtone, Notification sound or Alarm sound. Android asks once to let the app modify system settings. <a href="blog/en/make-ringtone-from-video-android.html">Step-by-step guide</a>.</p>
+
+    <h3>Where do my files go?</h3>
+    <p>Into the <code>Music/Video to Audio</code> folder on your internal storage, added to your Music library so other apps see it. The Music tab and Recent files list everything the app has made.</p>
+
+    <h3>Does converting change or delete my video?</h3>
+    <p>No. The video stays exactly where it was, untouched.</p>
+
+    <h3>Is there a limit on video length or size?</h3>
+    <p>The app sets no length or size cap and adds no watermark. Long videos simply take longer and need room for the output: one hour of MP3 at 192 kbps is about 86 MB.</p>
+  </div>
+</section>
+
+<section class="blog-sec" id="blog">
+  <div class="wrap">
+    <h2 class="sec-title">From the blog</h2>
+    <ul class="posts">
+      <li><a class="post-card" href="blog/en/make-ringtone-from-video-android.html">
+        <h3>How to make a ringtone from a video on Android</h3>
+        <p>Trim a 20–30 second clip, pick MP3 or M4A at 128–192 kbps, and set it as your ringtone, notification or alarm sound.</p>
+        <p class="meta">12 Sep 2026 · 7 min read</p>
+      </a></li>
+      <li><a class="post-card" href="blog/en/extract-mp3-with-cover-art.html">
+        <h3>Extract MP3 from video with cover art and song tags</h3>
+        <p>Embed a video frame as cover art, fix the title and artist, and copy the original audio without re-encoding.</p>
+        <p class="meta">2 Sep 2026 · 6 min read</p>
+      </a></li>
+    </ul>
+    <p class="blog-more"><a href="blog/">All guides</a> · <a href="blog/#tieng-viet" lang="vi" hreflang="vi">Bài viết tiếng Việt</a></p>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot">
-    <span>© 2026 FightTech — Video Downloader for Android</span>
+    <span>© 2026 FightTech — Video to MP3 for Android</span>
     <nav>
-      <a href="index.html">Features</a>
+      <a href="#features">Features</a>
+      <a href="blog/">Blog</a>
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms</a>
-      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videodownloader">Google Play</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Google Play</a>
       <a href="mailto:fighttech.vn@gmail.com">Support</a>
     </nav>
   </div>
 </footer>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://fighttech.vn/#org",
+      "name": "FightTech",
+      "url": "https://fighttech.vn/",
+      "email": "fighttech.vn@gmail.com",
+      "logo": "https://videotoaudio.fighttech.vn/assets/icon.png"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://videotoaudio.fighttech.vn/#website",
+      "url": "https://videotoaudio.fighttech.vn/",
+      "name": "Video to MP3",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://fighttech.vn/#org"
+      }
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://videotoaudio.fighttech.vn/#app",
+      "name": "Video to MP3: Audio Converter",
+      "alternateName": [
+        "Video to MP3",
+        "Đổi Video sang MP3: Tách nhạc"
+      ],
+      "description": "Android app that extracts the audio from videos on your phone and saves it as MP3, M4A (AAC), OPUS, WAV or M4R. The conversion runs on the device; videos are not uploaded. Includes an audio cutter, ringtone setter, MP3 tag editor, audio and video tools and a music player.",
+      "operatingSystem": "Android 8.0+",
+      "applicationCategory": "MultimediaApplication",
+      "url": "https://videotoaudio.fighttech.vn/",
+      "installUrl": "https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio",
+      "image": "https://videotoaudio.fighttech.vn/assets/icon.png",
+      "screenshot": [
+        "https://videotoaudio.fighttech.vn/assets/shots/home.png",
+        "https://videotoaudio.fighttech.vn/assets/shots/quality.png",
+        "https://videotoaudio.fighttech.vn/assets/shots/result.png",
+        "https://videotoaudio.fighttech.vn/assets/shots/music.png",
+        "https://videotoaudio.fighttech.vn/assets/shots/player.png"
+      ],
+      "inLanguage": [
+        "en",
+        "vi"
+      ],
+      "publisher": {
+        "@id": "https://fighttech.vn/#org"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Extract audio from MP4, MOV, 3GP, MKV and WEBM videos",
+        "MP3, M4A (AAC), OPUS, WAV and M4R output; FLAC with Premium",
+        "MP3 bitrate 64 to 320 kbps (256 and 320 kbps use a credit or Premium)",
+        "Trim with a waveform, trim silence and volume control",
+        "Fade in/out, normalize loudness, reduce noise, speed and pitch effects",
+        "Use a video frame as MP3 or M4A cover art",
+        "Batch conversion of several videos",
+        "Set a clip as phone ringtone, notification sound or alarm sound",
+        "MP3 tag editor for title, artist, album and cover",
+        "Audio tools: cut, convert, join, mix, split, karaoke, voice changer, volume boost, voice recorder",
+        "Video tools: trim, convert, compress, mute, speed, merge, video to GIF",
+        "Music player with queue, shuffle, repeat, speed, sleep timer and equalizer"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://videotoaudio.fighttech.vn/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does it need an internet connection?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Converting does not. The audio is extracted and encoded on your phone, and your videos are never uploaded. The app does use the internet for ads, purchases, anonymous analytics and crash reports, and for the online song-info lookup if you use it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which video formats can I convert?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most videos saved on your phone, including MP4, MOV, 3GP, MKV and WEBM. The app uses Android's own decoders, so a file your phone cannot open will not convert either."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What audio formats and quality do I get?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP3, M4A (AAC), OPUS (Android 10 and newer), WAV and M4R, plus FLAC with Premium. MP3 runs from 64 to 320 kbps: up to 192 kbps is free, while 256 and 320 kbps cost 1 credit per file or come with Premium."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the app free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, to download and for the core features: extracting audio, trimming, 64–192 kbps, ringtones, the tag editor and the player. Credits pay for 256/320 kbps, effects such as fades or noise reduction, and every file beyond 3 in one batch. You start with 5 credits and can earn 1 per rewarded ad, up to 5 a day. Premium removes ads and credit costs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I make a ringtone from a video?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tap MP3 on the video, drag the handles around a 20–30 second clip and tap Start. On the result screen tap Ringtone and choose Phone ringtone, Notification sound or Alarm sound. Android asks once to let the app modify system settings. Step-by-step guide."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where do my files go?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Into the Music/Video to Audio folder on your internal storage, added to your Music library so other apps see it. The Music tab and Recent files list everything the app has made."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does converting change or delete my video?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The video stays exactly where it was, untouched."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a limit on video length or size?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The app sets no length or size cap and adds no watermark. Long videos simply take longer and need room for the output: one hour of MP3 at 192 kbps is about 86 MB."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+/* Screenshot lightbox — tap a shot to see it full screen. */
+(function () {
+  'use strict';
+  var shots = [];
+  var dlg, img, capText, count, closeBtn, prevBtn, nextBtn, index = 0, lastFocus = null;
+
+  function build() {
+    dlg = document.createElement('dialog');
+    dlg.className = 'lightbox';
+    if (!dlg.showModal) dlg.classList.add('is-fallback');
+    dlg.innerHTML =
+      '<div class="lightbox-inner">' +
+        '<img class="lightbox-img" alt="">' +
+        '<p class="lightbox-cap"><span class="lightbox-cap-text"></span><span class="lightbox-count"></span></p>' +
+      '</div>' +
+      '<button type="button" class="lightbox-close" aria-label="Close">&times;</button>' +
+      '<button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous screenshot">&#8249;</button>' +
+      '<button type="button" class="lightbox-nav lightbox-next" aria-label="Next screenshot">&#8250;</button>';
+    document.body.appendChild(dlg);
+
+    img = dlg.querySelector('.lightbox-img');
+    capText = dlg.querySelector('.lightbox-cap-text');
+    count = dlg.querySelector('.lightbox-count');
+    closeBtn = dlg.querySelector('.lightbox-close');
+    prevBtn = dlg.querySelector('.lightbox-prev');
+    nextBtn = dlg.querySelector('.lightbox-next');
+
+    closeBtn.addEventListener('click', hide);
+    prevBtn.addEventListener('click', function () { go(-1); });
+    nextBtn.addEventListener('click', function () { go(1); });
+
+    dlg.addEventListener('click', function (e) {
+      if (e.target === img || (e.target.closest && e.target.closest('button'))) return;
+      hide();
+    });
+    dlg.addEventListener('cancel', function (e) { e.preventDefault(); hide(); });
+    dlg.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+      else if (e.key === 'Escape') { e.preventDefault(); hide(); }
+    });
+
+    var touchX = null, touchY = null;
+    dlg.addEventListener('touchstart', function (e) {
+      touchX = e.changedTouches[0].clientX;
+      touchY = e.changedTouches[0].clientY;
+    }, { passive: true });
+    dlg.addEventListener('touchend', function (e) {
+      if (touchX === null) return;
+      var dx = e.changedTouches[0].clientX - touchX;
+      var dy = e.changedTouches[0].clientY - touchY;
+      touchX = null;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) go(dx < 0 ? 1 : -1);
+    }, { passive: true });
+  }
+
+  function render() {
+    var shot = shots[index];
+    img.src = shot.img.currentSrc || shot.img.src;
+    img.alt = shot.img.alt || '';
+    capText.textContent = shot.caption ? shot.caption.textContent : '';
+    count.textContent = (index + 1) + ' / ' + shots.length;
+    var many = shots.length > 1;
+    prevBtn.hidden = !many;
+    nextBtn.hidden = !many;
+    [index - 1, index + 1].forEach(function (i) {
+      var n = shots[(i + shots.length) % shots.length];
+      if (n) { var pre = new Image(); pre.src = n.img.src; }
+    });
+  }
+
+  function go(step) { index = (index + step + shots.length) % shots.length; render(); }
+
+  function show(i) {
+    index = i;
+    lastFocus = document.activeElement;
+    render();
+    document.body.style.overflow = 'hidden';
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+    closeBtn.focus();
+  }
+
+  function hide() {
+    if (dlg.close) dlg.close(); else dlg.removeAttribute('open');
+    document.body.style.overflow = '';
+    img.removeAttribute('src');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.shot'), function (shot) {
+    var el = shot.querySelector('img');
+    if (!el) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'shot-trigger';
+    btn.setAttribute('aria-label', 'View full screen');
+    shot.insertBefore(btn, el);
+    btn.appendChild(el);
+    var i = shots.length;
+    shots.push({ img: el, caption: shot.querySelector('span') });
+    btn.addEventListener('click', function () {
+      if (!dlg) build();
+      show(i);
+    });
+  });
+})();
+</script>
+
+<!-- feature-guides:start -->
+<section lang="vi" aria-labelledby="feature-guides-heading" style="padding:48px 24px;border-top:1px solid #dce2e9"><div style="max-width:1080px;margin:auto"><p style="font-size:13px;letter-spacing:.08em;text-transform:uppercase">Blog · Hướng dẫn song ngữ</p><h2 id="feature-guides-heading" style="font-size:28px;line-height:1.3;margin:12px 0">Khám phá cách dùng Video to Audio</h2><p>12 bài hướng dẫn tiếng Việt và English kèm ảnh chụp ứng dụng, các bước thực hiện và mẹo sử dụng.</p><ul style="padding-left:20px"><li style="margin:12px 0"><a href="blog/nghe-bai-giang-tu-video-khi-tat-man-hinh.html">Tách tiếng bài giảng để nghe khi tắt màn hình</a></li><li style="margin:12px 0"><a href="blog/kiem-tra-video-truoc-khi-tach-tieng.html">Xem thử video trước khi tách tiếng trên Android</a></li><li style="margin:12px 0"><a href="blog/tach-mot-doan-phong-van-thanh-mp3.html">Tách một đoạn phỏng vấn thành MP3 trên điện thoại</a></li></ul><a href="blog/index.html" style="display:inline-block;margin-top:12px;font-weight:700">Xem hướng dẫn tiếng Việt →</a> <a href="blog/en/index.html" style="display:inline-block;margin-top:12px;margin-left:18px;font-weight:700">Read English guides →</a></div></section>
+<!-- feature-guides:end -->
 </body>
 </html>

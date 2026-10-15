@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleep timer, playback speed and the queue: using the built-in player</title>
+<meta name="description" content="The in-app player has a sleep timer, playback speed, a queue and repeat modes — how to use each of them for podcasts, lectures and music.">
+<link rel="canonical" href="https://videotoaudio.fighttech.vn/blog/en/music-player-sleep-timer-speed.html">
+<link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/trinh-phat-nhac-hen-gio-ngu.html">
+<link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/music-player-sleep-timer-speed.html">
+<link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/music-player-sleep-timer-speed.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#7c4dff">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Video to MP3">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="vi_VN">
+<meta property="og:title" content="Sleep timer, playback speed and the queue: using the built-in player">
+<meta property="og:description" content="Play a podcast at 1.5×, have the music stop itself after half an hour, and line up a queue — all in the built-in player.">
+<meta property="og:url" content="https://videotoaudio.fighttech.vn/blog/en/music-player-sleep-timer-speed.html">
+<meta property="og:image" content="https://videotoaudio.fighttech.vn/blog/img/en/vt-player.webp">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="../../assets/icon.png?v=1">
+<link rel="apple-touch-icon" href="../../assets/icon.png?v=1">
+<style>
+:root{
+  --bg:#ffffff; --ink:#1b2130; --muted:#5b6472; --line:#ececf2;
+  --brand:#7c4dff; --brand-ink:#5b2ee6; --brand-soft:#f1ecff; --soft:#faf9ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.68 -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--brand-ink)}
+img{max-width:100%}
+
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.nav .logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);text-decoration:none}
+.nav .logo img{width:30px;height:30px;border-radius:8px}
+.nav .links{margin-left:auto;display:flex;gap:20px;font-size:15px}
+.nav .links a{color:var(--muted);text-decoration:none}
+.nav .links a:hover{color:var(--brand-ink)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+.post-wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.post{padding-bottom:64px}
+.post [id]{scroll-margin-top:80px}
+.post-head{padding:40px 0 6px}
+.crumbs{font-size:14px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+.crumbs a{color:var(--muted);text-decoration:none}
+.kicker{display:inline-block;margin:18px 0 10px;padding:5px 12px;border-radius:999px;background:var(--brand-soft);
+  color:var(--brand-ink);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.meta{margin-top:14px;font-size:14.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
+.lede{margin-top:22px;font-size:19px;line-height:1.6}
+h2{font-size:clamp(23px,3.4vw,29px);line-height:1.25;letter-spacing:-.015em;margin:46px 0 14px;text-wrap:balance}
+h3{font-size:19px;margin:30px 0 8px}
+p{margin:14px 0}
+ul,ol{margin:14px 0 14px 22px;padding:0}
+li{margin:7px 0}
+li::marker{color:var(--brand)}
+hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+
+.toc{margin:30px 0 8px;padding:20px 22px;border:1px solid var(--line);border-radius:18px;background:var(--soft)}
+.toc h2{font-size:15px;margin:0 0 10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:0 0 0 20px}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+.figure{margin:26px 0}
+.figure img{display:block;width:100%;max-width:280px;height:auto;margin:0 auto;border:1px solid var(--line);
+  border-radius:22px;background:var(--soft);box-shadow:0 16px 38px rgba(20,30,50,.12)}
+.figure figcaption{margin-top:12px;font-size:14px;color:var(--muted);text-align:center}
+@media(min-width:760px){
+  .side{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start}
+  .side .figure{margin:0}
+  .side figcaption{text-align:left}
+  .side .body>:first-child{margin-top:0}
+  .side-right{grid-template-columns:1fr 280px}
+  .side-right .figure{order:2}
+}
+
+.callout{margin:26px 0;padding:18px 20px;border-radius:16px;background:var(--brand-soft);border:1px solid #ddd2ff}
+.callout p{margin:0}
+.callout strong{color:var(--brand-ink)}
+
+.steps{counter-reset:step;list-style:none;margin-left:0}
+.steps li{position:relative;padding-left:42px;margin:14px 0}
+.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:1px;width:28px;height:28px;
+  border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+
+.spec{width:100%;border-collapse:collapse;margin:20px 0;font-size:15.5px}
+.spec th,.spec td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{font-weight:700;width:38%}
+.spec td{color:var(--muted);font-variant-numeric:tabular-nums}
+
+details{border-bottom:1px solid var(--line);padding:14px 0}
+details summary{cursor:pointer;font-weight:600;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";float:right;color:var(--brand);font-weight:700}
+details[open] summary::after{content:"−"}
+details p{margin:10px 0 2px;color:var(--muted)}
+
+.cta{margin:46px 0 0;padding:28px;border-radius:22px;background:var(--soft);border:1px solid var(--line);text-align:center}
+.cta h2{margin:0 0 8px}
+.cta p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:16px;padding:13px 24px;border-radius:999px;
+  text-decoration:none;transition:transform .12s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-play{background:var(--ink);color:#fff}
+.btn-dl2{background:var(--brand-soft);color:var(--brand-ink);border:1px solid #ddd2ff;margin-left:10px}
+
+footer{border-top:1px solid var(--line);padding:34px 0}
+.foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;color:#9aa2b1;font-size:14px}
+.foot nav a{color:var(--muted);margin-left:22px;text-decoration:none}
+.foot nav a:first-child{margin-left:0}
+.langs{display:flex;gap:6px;align-items:center;margin:16px 0 0}
+.lang{font-size:13px;font-weight:600;line-height:1;padding:7px 12px;border-radius:999px;border:1px solid var(--line);
+  color:var(--muted);text-decoration:none;transition:color .15s,border-color .15s}
+.lang.active{background:var(--brand-soft);border-color:transparent;color:var(--brand-ink)}
+a.lang:hover,a.lang:focus-visible{color:var(--brand-ink);border-color:var(--brand)}
+@media(max-width:720px){.nav .links{gap:16px;font-size:14px}}
+
+  .related{margin-top:40px}
+.post-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:16px}
+.post-list li{margin:0}
+.post-card{display:block;padding:22px 24px;border:1px solid var(--line);border-radius:20px;background:var(--soft);
+  color:var(--ink);text-decoration:none;transition:border-color .15s}
+.post-card:hover,.post-card:focus-visible{border-color:var(--brand)}
+.post-card h3{margin:0 0 6px;font-size:20px;line-height:1.3}
+.post-card p{margin:0;color:var(--muted);font-size:15.5px}
+.post-card .meta{margin-top:10px;font-size:13.5px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="../../"><img src="../../assets/icon.png?v=1" alt="Video to MP3">Video to MP3</a>
+    <div class="links">
+      <a href="../../index.html#features">Features</a>
+      <a href="../../index.html#faq">FAQ</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Get the app</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<article class="post">
+  <div class="post-wrap post-head">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="../../">Home</a><span aria-hidden="true">&rsaquo;</span><span>Blog</span>
+    </nav>
+    <nav class="langs" aria-label="Article language">
+      <a class="lang" href="../trinh-phat-nhac-hen-gio-ngu.html" hreflang="vi" lang="vi">Tiếng Việt</a>
+      <span class="lang active" aria-current="true">English</span>
+    </nav>
+    <span class="kicker">Guide · Music player</span>
+    <h1>Sleep timer, playback speed and the queue: using the built-in player</h1>
+    <p class="meta"><span>5 September 2026</span><span>FightTech</span><span>7 min read</span></p>
+    <p class="lede">After extracting audio from a video, most people do something very simple with it: listen. But what they listen to, how fast, and for how long varies a great deal. The built-in player has four controls aimed precisely at those differences — a sleep timer, playback speed, a queue and repeat modes.</p>
+  </div>
+
+  <div class="post-wrap">
+
+    <nav class="toc" aria-label="Table of contents">
+      <h2>In this article</h2>
+      <ol>
+        <li><a href="#timer">The sleep timer</a></li>
+        <li><a href="#speed">Playback speed</a></li>
+        <li><a href="#queue">The queue</a></li>
+        <li><a href="#repeat">Repeat and shuffle</a></li>
+        <li><a href="#library">The library and cover art</a></li>
+        <li><a href="#background">Background playback and lock-screen controls</a></li>
+        <li><a href="#faq">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="timer">1. The sleep timer</h2>
+    <div class="side">
+      <figure class="figure">
+        <img src="../img/en/vt-player.webp" width="540" height="960" loading="lazy" decoding="async"
+             alt="The player screen with cover art, a progress bar and sleep timer, speed, queue and repeat controls">
+        <figcaption>Timer, speed, queue and repeat sit in a row under the progress bar.</figcaption>
+      </figure>
+      <div class="body">
+        <p>The sleep timer answers a familiar problem: you put on music or a lecture to fall asleep to, you drift off, and the phone keeps playing all night — flat battery, warm device, and no idea in the morning where you stopped.</p>
+        <p>Set the timer before you sleep and the player stops itself when it runs out. Fifteen, thirty or sixty minutes are the usual choices — a little longer than you normally take to fall asleep is about right.</p>
+        <p>The timer only stops playback; it doesn't turn off the phone or close the app, so the next morning you can pick up where you left off.</p>
+      </div>
+    </div>
+
+    <h2 id="speed">2. Playback speed</h2>
+    <p>The player lets you change speed, defaulting to 1.0X. This is the control that makes the biggest difference to spoken material.</p>
+    <table class="spec">
+      <tr><th>0.75×</th><td>Lectures in a second language, or fast and unclear recordings</td></tr>
+      <tr><th>1.0×</th><td>Music — any other speed throws off how it feels</td></tr>
+      <tr><th>1.25× – 1.5×</th><td>Podcasts, meetings, lectures on familiar material</td></tr>
+      <tr><th>2.0×</th><td>Skimming a recording to find one specific passage</td></tr>
+    </table>
+    <p>On a ninety-minute lecture, 1.5× brings it down to sixty. After a few days that speed starts to sound normal and you'll usually want to push it further.</p>
+    <p>Music is best left at 1.0×. Speeding it up noticeably distorts the rhythm and the feel of the piece.</p>
+
+    <h2 id="queue">3. The queue</h2>
+    <div class="side side-right">
+      <figure class="figure">
+        <img src="../img/en/vt-music.webp" width="540" height="960" loading="lazy" decoding="async"
+             alt="The in-app music library listing tracks with cover art and durations">
+        <figcaption>Everything you've extracted lives in one place, with artwork and durations.</figcaption>
+      </figure>
+      <div class="body">
+        <p>The queue is what plays next. Line up a few podcast episodes or a run of lectures and you don't have to touch the phone again until they're done.</p>
+        <p>That's particularly useful while driving or exercising — two situations where unlocking the phone to pick the next track is both annoying and a bad idea.</p>
+        <p>The current track and everything behind it appear in one list, so you can see at a glance how much you have left.</p>
+      </div>
+    </div>
+
+    <h2 id="repeat">4. Repeat and shuffle</h2>
+    <p>Three repeat states cover three different habits:</p>
+    <ul>
+      <li><strong>Off</strong> — play the list through and stop. Right for podcasts and lectures.</li>
+      <li><strong>Repeat all</strong> — return to the first track at the end. Right when you want continuous background music.</li>
+      <li><strong>Repeat one</strong> — play a single track over and over. Useful for studying a dialogue, learning a song or transcribing lyrics.</li>
+    </ul>
+    <p>Shuffle randomises the order, which suits a large music library but is worth switching off for anything sequential, like a lecture series.</p>
+
+    <h2 id="library">5. The library and cover art</h2>
+    <p>Every file you extract shows up in the app's library with cover art taken from a frame of the source video. That makes the list scannable, instead of a column of near-identical filenames.</p>
+    <p>The artwork is written into the MP3's own metadata tags, so it still appears correctly if you open the file in another player or copy it to a computer.</p>
+
+    <h2 id="background">6. Background playback and lock-screen controls</h2>
+    <p>Playback continues when you switch to another app or turn off the screen. Play, pause and skip appear in the notification area and on the lock screen, so you can control it without reopening the app.</p>
+
+    <div class="callout">
+      <p><strong>A combination that works:</strong> podcast at 1.5×, three episodes queued, a 45-minute sleep timer, repeat off. Set it once and put the phone down.</p>
+    </div>
+
+    <hr>
+
+    <h2 id="faq">Frequently asked questions</h2>
+    <details>
+      <summary>Does the sleep timer turn off the phone?</summary>
+      <p>No. It only stops playback when the time runs out. The phone carries on as normal and you can resume from where it stopped.</p>
+    </details>
+    <details>
+      <summary>Does changing the speed distort the voice?</summary>
+      <p>Not noticeably between 0.75× and 2.0×. Pitch is preserved, so speech still sounds natural; at very high speeds words start running together.</p>
+    </details>
+    <details>
+      <summary>Does playback continue with the screen off?</summary>
+      <p>Yes. The player runs in the background, with controls in the notification area and on the lock screen.</p>
+    </details>
+    <details>
+      <summary>Does the player open music already on my device?</summary>
+      <p>The library collects the files you've extracted with the app, complete with cover art taken from the source video.</p>
+    </details>
+    <details>
+      <summary>Why keep music at 1.0×?</summary>
+      <p>Because a piece of music's rhythm and feel are tied to its original tempo. Speeding up works beautifully for speech and makes music sound forced.</p>
+    </details>
+    <details>
+      <summary>When is repeat-one useful?</summary>
+      <p>When you're studying a passage in another language, learning along with a song, or transcribing lyrics — anything that needs the same section again and again.</p>
+    </details>
+
+    <section class="related" aria-labelledby="read-next">
+      <h2 id="read-next">Read next</h2>
+      <ul class="post-list">
+        <li><a class="post-card" href="batch-convert-videos-to-mp3.html" hreflang="en">
+          <h3>Convert several videos to MP3 in one go, then tidy the library</h3>
+          <p>How to turn a whole set of videos into MP3 on Android: preparing first, picking one quality setting, and using cover art to keep the library readable.</p>
+          <p class="meta"><span>5 Sep 2026</span><span>5 min read</span></p>
+        </a></li>
+        <li><a class="post-card" href="extract-mp3-with-cover-art.html" hreflang="en">
+          <h3>Extract MP3 from video with cover art and song tags</h3>
+          <p>Pull the audio out of a video as MP3 on Android: a video frame as embedded cover art, song info you can type or look up online, and a lossless copy of the original audio.</p>
+          <p class="meta"><span>2 Sep 2026</span><span>6 min read</span></p>
+        </a></li>
+        <li><a class="post-card" href="mp4-to-mp3-128-192-320-kbps.html" hreflang="en">
+          <h3>MP4 to MP3: should you pick 128, 192 or 320 kbps?</h3>
+          <p>How the three bitrate options differ when you pull MP3 out of a video: file size, audible quality, and which one suits each kind of material.</p>
+          <p class="meta"><span>5 Sep 2026</span><span>5 min read</span></p>
+        </a></li>
+      </ul>
+    </section>
+
+    <div class="cta">
+      <h2>Have a listen</h2>
+      <p>Extract audio from video and play it right there, with a sleep timer and speed control.</p>
+      <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Get it on Google Play</a>
+      <a class="btn btn-dl2" href="../../index.html#features">Features</a>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 FightTech — Video to MP3 for Android</span>
+    <nav>
+      <a href="../../index.html#features">Features</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Google Play</a>
+      <a href="mailto:fighttech.vn@gmail.com">Support</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Sleep timer, playback speed and the queue: using the built-in player",
+      "description": "A guide to the built-in music player: sleep timer, playback speed, queue, repeat modes and background playback.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-09-05",
+      "dateModified": "2026-09-05",
+      "image": "https://videotoaudio.fighttech.vn/blog/img/en/vt-player.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "FightTech",
+        "url": "https://fighttech.vn"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FightTech",
+        "url": "https://fighttech.vn"
+      },
+      "mainEntityOfPage": "https://videotoaudio.fighttech.vn/blog/en/music-player-sleep-timer-speed.html",
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "Video to MP3",
+        "operatingSystem": "Android",
+        "applicationCategory": "MultimediaApplication"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does the sleep timer turn off the phone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It only stops playback when the time runs out. The phone carries on as normal and you can resume from where it stopped."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does changing the speed distort the voice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not noticeably between 0.75× and 2.0×. Pitch is preserved, so speech still sounds natural; at very high speeds words start running together."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does playback continue with the screen off?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The player runs in the background, with controls in the notification area and on the lock screen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the player open music already on my device?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The library collects the files you've extracted with the app, complete with cover art taken from the source video."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why keep music at 1.0×?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because a piece of music's rhythm and feel are tied to its original tempo. Speeding up works beautifully for speech and makes music sound forced."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When is repeat-one useful?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When you're studying a passage in another language, learning along with a song, or transcribing lyrics — anything that needs the same section again and again."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://videotoaudio.fighttech.vn/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "The built-in music player",
+          "item": "https://videotoaudio.fighttech.vn/blog/en/music-player-sleep-timer-speed.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

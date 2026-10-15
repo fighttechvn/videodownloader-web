@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tách nhạc từ video ra MP3 kèm ảnh bìa và thẻ bài hát</title>
+<meta name="description" content="Cách tách nhạc từ video thành MP3 trên Android: lấy khung hình làm ảnh bìa, sửa hoặc tra tên bài và ca sĩ trên mạng, tách tiếng gốc không nén, chạy nền.">
+<link rel="canonical" href="https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html">
+<link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html">
+<link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html">
+<link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html">
+<link rel="alternate" type="text/plain" title="llms.txt" href="https://videotoaudio.fighttech.vn/llms.txt">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#7c4dff">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Video to MP3">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Tách nhạc từ video ra MP3 kèm ảnh bìa và thẻ bài hát">
+<meta property="og:description" content="Lấy khung hình video làm ảnh bìa nhúng thẳng vào MP3, tra tên bài và ca sĩ trên mạng, tách tiếng gốc không nén, hàng đợi chạy nền khi tắt màn hình.">
+<meta property="og:url" content="https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html">
+<meta property="og:image" content="https://videotoaudio.fighttech.vn/assets/icon.png?v=1">
+<meta property="article:published_time" content="2026-09-02">
+<meta property="article:modified_time" content="2026-09-12">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="../assets/icon.png?v=1">
+<link rel="apple-touch-icon" href="../assets/icon.png?v=1">
+<style>
+:root{
+  --bg:#ffffff; --ink:#1b2130; --muted:#5b6472; --line:#ececf2;
+  --brand:#7c4dff; --brand-ink:#5b2ee6; --brand-soft:#f1ecff; --soft:#faf9ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.68 -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--brand-ink)}
+img{max-width:100%}
+
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.nav .logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);text-decoration:none}
+.nav .logo img{width:30px;height:30px;border-radius:8px}
+.nav .links{margin-left:auto;display:flex;gap:20px;font-size:15px}
+.nav .links a{color:var(--muted);text-decoration:none}
+.nav .links a:hover{color:var(--brand-ink)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+.post-wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.post{padding-bottom:64px}
+.post [id]{scroll-margin-top:80px}
+.post-head{padding:40px 0 6px}
+.crumbs{font-size:14px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+.crumbs a{color:var(--muted);text-decoration:none}
+.kicker{display:inline-block;margin:18px 0 10px;padding:5px 12px;border-radius:999px;background:var(--brand-soft);
+  color:var(--brand-ink);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.meta{margin-top:14px;font-size:14.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
+.lede{margin-top:22px;font-size:19px;line-height:1.6}
+h2{font-size:clamp(23px,3.4vw,29px);line-height:1.25;letter-spacing:-.015em;margin:46px 0 14px;text-wrap:balance}
+h3{font-size:19px;margin:30px 0 8px}
+p{margin:14px 0}
+ul,ol{margin:14px 0 14px 22px;padding:0}
+li{margin:7px 0}
+li::marker{color:var(--brand)}
+hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+
+.toc{margin:30px 0 8px;padding:20px 22px;border:1px solid var(--line);border-radius:18px;background:var(--soft)}
+.toc h2{font-size:15px;margin:0 0 10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:0 0 0 20px}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+.figure{margin:26px 0}
+.figure img{display:block;width:100%;max-width:280px;height:auto;margin:0 auto;border:1px solid var(--line);
+  border-radius:22px;background:var(--soft);box-shadow:0 16px 38px rgba(20,30,50,.12)}
+.figure figcaption{margin-top:12px;font-size:14px;color:var(--muted);text-align:center}
+@media(min-width:760px){
+  .side{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start}
+  .side .figure{margin:0}
+  .side figcaption{text-align:left}
+  .side .body>:first-child{margin-top:0}
+  .side-right{grid-template-columns:1fr 280px}
+  .side-right .figure{order:2}
+}
+
+.callout{margin:26px 0;padding:18px 20px;border-radius:16px;background:var(--brand-soft);border:1px solid #ddd2ff}
+.callout p{margin:0}
+.callout strong{color:var(--brand-ink)}
+
+.steps{counter-reset:step;list-style:none;margin-left:0}
+.steps li{position:relative;padding-left:42px;margin:14px 0}
+.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:1px;width:28px;height:28px;
+  border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+
+.spec{width:100%;border-collapse:collapse;margin:20px 0;font-size:15.5px}
+.spec th,.spec td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{font-weight:700;width:38%}
+.spec td{color:var(--muted);font-variant-numeric:tabular-nums}
+
+details{border-bottom:1px solid var(--line);padding:14px 0}
+details summary{cursor:pointer;font-weight:600;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";float:right;color:var(--brand);font-weight:700}
+details[open] summary::after{content:"−"}
+details p{margin:10px 0 2px;color:var(--muted)}
+
+.related{margin-top:40px}
+.post-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:16px}
+.post-list li{margin:0}
+.post-card{display:block;padding:22px 24px;border:1px solid var(--line);border-radius:20px;background:var(--soft);
+  color:var(--ink);text-decoration:none;transition:border-color .15s}
+.post-card:hover,.post-card:focus-visible{border-color:var(--brand)}
+.post-card h3{margin:0 0 6px;font-size:20px;line-height:1.3}
+.post-card p{margin:0;color:var(--muted);font-size:15.5px}
+.post-card .meta{margin-top:10px;font-size:13.5px}
+
+.cta{margin:46px 0 0;padding:28px;border-radius:22px;background:var(--soft);border:1px solid var(--line);text-align:center}
+.cta h2{margin:0 0 8px}
+.cta p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:16px;padding:13px 24px;border-radius:999px;
+  text-decoration:none;transition:transform .12s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-play{background:var(--ink);color:#fff}
+.btn-dl2{background:var(--brand-soft);color:var(--brand-ink);border:1px solid #ddd2ff;margin-left:10px}
+
+footer{border-top:1px solid var(--line);padding:34px 0}
+.foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;color:#9aa2b1;font-size:14px}
+.foot nav a{color:var(--muted);margin-left:22px;text-decoration:none}
+.foot nav a:first-child{margin-left:0}
+.langs{display:flex;gap:6px;align-items:center;margin:16px 0 0}
+.lang{font-size:13px;font-weight:600;line-height:1;padding:7px 12px;border-radius:999px;border:1px solid var(--line);
+  color:var(--muted);text-decoration:none;transition:color .15s,border-color .15s}
+.lang.active{background:var(--brand-soft);border-color:transparent;color:var(--brand-ink)}
+a.lang:hover,a.lang:focus-visible{color:var(--brand-ink);border-color:var(--brand)}
+@media(max-width:720px){.nav .links{gap:16px;font-size:14px}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="../"><img src="../assets/icon.png?v=1" alt="Video to MP3">Video to MP3</a>
+    <div class="links">
+      <a href="../index.html#features">Tính năng</a>
+      <a href="../index.html#faq">Hỏi đáp</a>
+      <a href="index.html">Blog</a>
+      <a href="../privacy.html">Quyền riêng tư</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Tải ứng dụng</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<article class="post">
+  <div class="post-wrap post-head">
+    <nav class="crumbs" aria-label="Đường dẫn">
+      <a href="../">Trang chủ</a><span aria-hidden="true">›</span><a href="index.html">Blog</a><span aria-hidden="true">›</span><span>Ảnh bìa từ video</span>
+    </nav>
+    <nav class="langs" aria-label="Ngôn ngữ bài viết">
+      <span class="lang active" aria-current="true">Tiếng Việt</span>
+      <a class="lang" href="en/extract-mp3-with-cover-art.html" hreflang="en" lang="en">English</a>
+    </nav>
+    <span class="kicker">Hướng dẫn</span>
+    <h1>Tách nhạc từ video ra MP3 kèm ảnh bìa và thẻ bài hát</h1>
+    <p class="meta"><span>02/09/2026</span><span>Cập nhật 12/09/2026</span><span>FightTech</span><span>Đọc khoảng 6 phút</span></p>
+    <p class="lede">File MP3 tách từ video xưa nay đều trống trơn: mở trình nghe nhạc lên chỉ thấy một ô xám và cái tên file dài loằng ngoằng. Từ bản 1.6.0, Video to MP3 sửa đúng chỗ đó. Ứng dụng lấy một khung hình trong video làm ảnh bìa và nhúng thẳng vào file, tra được tên bài cùng ca sĩ trên mạng, và cho phép tách tiếng gốc mà không nén lại lần nữa.</p>
+  </div>
+
+  <div class="post-wrap">
+    <nav class="toc" aria-label="Nội dung bài viết">
+      <h2>Trong bài này</h2>
+      <ol>
+        <li><a href="#anh-bia">Ảnh bìa lấy từ khung hình video</a></li>
+        <li><a href="#tra-ten-bai">Tra tên bài, ca sĩ và bìa album trên mạng</a></li>
+        <li><a href="#khong-nen">Tách tiếng gốc không nén, chọn luồng tiếng</a></li>
+        <li><a href="#hieu-ung">Fade, cân bằng âm lượng, đổi tốc độ và cao độ</a></li>
+        <li><a href="#hang-doi">Hàng đợi chạy nền khi tắt màn hình</a></li>
+        <li><a href="#huong-dan">Tách nhạc từ video trong 5 bước</a></li>
+        <li><a href="#faq">Câu hỏi thường gặp</a></li>
+      </ol>
+    </nav>
+
+    <div class="side">
+      <figure class="figure">
+        <img src="img/anh-bia-va-nang-cao.webp" width="540" height="1200" loading="lazy" decoding="async"
+             alt="Hộp thoại chuyển đổi mở phần Nâng cao, ô Lấy một khung hình làm ảnh bìa đã được tích chọn">
+        <figcaption>Ô ảnh bìa trong hộp thoại của bản 1.6.0. Ở bản hiện tại, ô này nằm trong mục <em>Video</em> của màn Tách nhạc từ video.</figcaption>
+      </figure>
+      <div class="body">
+        <h2 id="anh-bia">1. Ảnh bìa lấy từ khung hình video</h2>
+        <p>Tích ô <strong>Lấy một khung hình làm ảnh bìa</strong>, ứng dụng chụp một khung hình giữa video và ghi nó vào phần thẻ ảnh bìa của file MP3 hoặc M4A.</p>
+        <p>Ảnh nằm bên trong chính file nhạc, nên chép file sang máy khác hay mở bằng ứng dụng nghe nhạc khác thì bìa vẫn còn. Không có file .jpg rời nào đi kèm để bạn phải quản lý.</p>
+        <p>Khung hình giữa video thì miễn phí. Có Premium, bạn bấm <strong>Chọn khung hình</strong> để lấy đúng khoảnh khắc mình muốn. Với video ca nhạc hay bản thu buổi diễn, khung hình lấy được thường là cảnh sân khấu, đủ để nhận ra bài trong danh sách phát.</p>
+      </div>
+    </div>
+
+    <h2 id="tra-ten-bai">2. Tra tên bài, ca sĩ và bìa album trên mạng</h2>
+    <p>Chuyển xong, vào tab <strong>Nhạc</strong>, nhấn giữ file MP3 và chọn <strong>Sửa thông tin</strong>. Bạn có thể tự gõ tên bài, nghệ sĩ và album, hoàn toàn miễn phí. Nếu video vốn là bài hát có phát hành chính thức, <strong>Tìm thông tin trên mạng</strong> (Premium) giúp bạn khỏi gõ: nhập tên bài hoặc tên ca sĩ, chọn kết quả khớp, ứng dụng điền sẵn tên bài, nghệ sĩ, album cùng ảnh bìa 600×600. Bấm Lưu để ghi vào file MP3.</p>
+    <p>Việc tra cứu chỉ chạy khi bạn bấm tìm, và chỉ gửi đi đúng chữ bạn gõ — không gửi âm thanh hay tên file của bạn. Tính năng sửa thông tin áp dụng cho file MP3.</p>
+    <div class="callout">
+      <p><strong>Bìa nào được giữ:</strong> cứ nhúng khung hình video lúc tách nhạc, sau đó thử tra cứu. Tìm ra bài thì bìa album chính thức sẽ thay cho khung hình, và bao giờ cũng nét hơn một khung hình trích từ video nén. Không tìm ra thì khung hình vẫn ở nguyên đó.</p>
+    </div>
+
+    <div class="side side-right">
+      <figure class="figure">
+        <img src="img/tuy-chon-chuyen-doi.webp" width="540" height="1200" loading="lazy" decoding="async"
+             alt="Hộp thoại chuyển đổi với các định dạng MP3, M4A, OPUS, mức chất lượng 192 kbps và thanh cắt một đoạn">
+        <figcaption>Định dạng, chất lượng và cắt đoạn trong hộp thoại của bản 1.6.0. Màn Tách nhạc từ video hiện tại có đủ các lựa chọn này.</figcaption>
+      </figure>
+      <div class="body">
+        <h2 id="khong-nen">3. Tách tiếng gốc không nén, chọn luồng tiếng</h2>
+        <p>Video vốn đã chứa sẵn một luồng âm thanh đã nén. Chuyển nó sang MP3 nghĩa là nén thêm lần nữa, và chất lượng mất đi ở lần nén thứ hai này không lấy lại được.</p>
+        <p>Chế độ <strong>tách tiếng gốc không nén</strong> (Premium) chép thẳng luồng âm thanh ra file, không mã hoá lại. Kết quả giống hệt bản trong video và chạy nhanh hơn nhiều vì máy không phải tính toán gì.</p>
+        <p>Video có nhiều luồng tiếng, ví dụ bản phim hai thứ tiếng, bạn còn được <strong>chọn luồng</strong> muốn tách thay vì mặc định lấy luồng đầu tiên (Premium, ở mục <em>Luồng tiếng</em>).</p>
+      </div>
+    </div>
+
+    <h2 id="hieu-ung">4. Fade, cân bằng âm lượng, đổi tốc độ và cao độ</h2>
+    <table class="spec">
+      <tr><th>Mở dần / tắt dần</th><td>1, 2, 3 hoặc 5 giây, để đoạn nhạc cắt giữa bài không vào đột ngột và không cụt ở cuối</td></tr>
+      <tr><th>Cân bằng âm lượng</th><td>Kéo các file về cùng độ lớn, đỡ phải chỉnh loa mỗi lần đổi bài</td></tr>
+      <tr><th>Đổi tốc độ</th><td>Nghe lại bài giảng hoặc podcast nhanh hơn mà giọng không bị méo</td></tr>
+      <tr><th>Đổi cao độ</th><td>Nâng hoặc hạ tông bài hát, giữ nguyên độ dài</td></tr>
+      <tr><th>Kênh và tần số lấy mẫu</th><td>Giữ như nguồn, ép về mono hoặc stereo tuỳ nhu cầu</td></tr>
+    </table>
+    <p>Kênh, tần số lấy mẫu và âm lượng đều miễn phí. Với gói miễn phí, mỗi hiệu ứng trong mục <em>Hiệu ứng</em> — mở dần, tắt dần, cân bằng âm lượng, giảm ồn, tốc độ, cao độ — tốn 1 lượt cho mỗi file xuất ra; Premium dùng thoải mái.</p>
+
+    <div class="side">
+      <figure class="figure">
+        <img src="img/danh-sach-video.webp" width="540" height="1200" loading="lazy" decoding="async"
+             alt="Màn hình chính Video to Audio liệt kê các video trong máy kèm nút MP3 ở mỗi dòng">
+        <figcaption>Mỗi video có sẵn nút <em>MP3</em> để chuyển ngay (ảnh chụp từ bản trước).</figcaption>
+      </figure>
+      <div class="body">
+        <h2 id="hang-doi">5. Hàng đợi chạy nền khi tắt màn hình</h2>
+        <p>Nhấn giữ để chọn nhiều video cùng lúc, ứng dụng xếp hàng và chuyển lần lượt trong một dịch vụ nền. Bạn <strong>khoá màn hình hay mở app khác thì việc chuyển vẫn chạy tiếp</strong>, tiến độ hiện trên thanh thông báo.</p>
+        <p>Gói miễn phí chuyển được 3 file mỗi lần chọn, từ file thứ tư tốn 1 lượt mỗi file, và chạy nền được một việc mỗi phiên; Premium bỏ cả hai giới hạn này. Premium còn cho lưu bộ tuỳ chọn hay dùng thành cấu hình có tên. Hết lượt thì <strong>xem một quảng cáo có thưởng để nhận 1 lượt</strong>, tối đa 5 lượt mỗi ngày.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2 id="huong-dan">Tách nhạc từ video trong 5 bước</h2>
+    <ol class="steps">
+      <li>Ở tab <strong>Chuyển đổi</strong>, bấm nút <strong>MP3</strong> cạnh một video. Màn <em>Tách nhạc từ video</em> mở ra.</li>
+      <li>Ở mục <strong>Cắt đoạn</strong>, kéo hai tay nắm nếu chỉ cần một đoạn, rồi bấm <em>Nghe thử đoạn đang chọn</em> để kiểm tra.</li>
+      <li>Đặt <strong>Tên file đầu ra</strong>, chọn MP3 hoặc M4A ở <strong>Định dạng</strong> và mức <strong>Bitrate</strong> — 192 kbps miễn phí và thường là đủ.</li>
+      <li>Ở mục <em>Video</em>, tích <strong>Lấy một khung hình làm ảnh bìa</strong>. Trong <strong>Hiệu ứng</strong>, bật thêm mở dần, tắt dần hay <em>Cân bằng âm lượng</em> nếu cần.</li>
+      <li>Bấm <strong>Bắt đầu</strong>. File được lưu vào <code>Music/Video to Audio</code>, các ứng dụng nghe nhạc khác đều thấy.</li>
+    </ol>
+
+    <h2 id="faq">Câu hỏi thường gặp</h2>
+    <details>
+      <summary>Chuyển đổi có cần mạng không?</summary>
+      <p>Không. Việc tách và chuyển âm thanh chạy ngay trên máy, nên video của bạn không bị tải lên mạng. Ứng dụng vẫn dùng mạng cho quảng cáo, mua hàng, thống kê và báo lỗi, và cho Tìm thông tin trên mạng khi bạn dùng tới.</p>
+    </details>
+    <details>
+      <summary>Ảnh bìa nằm trong file hay là một ảnh riêng?</summary>
+      <p>Nằm ngay trong file nhạc, ở phần thẻ ảnh bìa. Chép file sang máy khác thì bìa vẫn đi theo, không có ảnh rời nào cần quản lý.</p>
+    </details>
+    <details>
+      <summary>Tách tiếng gốc không nén khác gì chọn 320 kbps?</summary>
+      <p>Chọn 320 kbps vẫn là nén lại lần nữa từ bản đã nén trong video. Tách không nén thì chép thẳng luồng âm thanh sẵn có, không mã hoá lại nên không mất thêm chất lượng và chạy nhanh hơn.</p>
+    </details>
+    <details>
+      <summary>Video dài mấy tiếng có chuyển được không?</summary>
+      <p>Được. Ứng dụng không giới hạn thời lượng hay dung lượng; bạn chỉ cần đủ chỗ trống cho file xuất ra, khoảng 86 MB cho mỗi giờ MP3 ở 192 kbps. Tích Chạy nền thì không phải mở màn hình chờ.</p>
+    </details>
+    <details>
+      <summary>File tách ra lưu ở đâu?</summary>
+      <p>Trong thư mục <code>Music/Video to Audio</code>, thuộc thư viện Nhạc của máy, nên mọi ứng dụng nghe nhạc đều nhận ra. Tab <em>Nhạc</em> ngay trong app cũng có trình phát riêng kèm danh sách chờ và hẹn giờ tắt.</p>
+    </details>
+
+    <section class="related" aria-labelledby="doc-tiep">
+      <h2 id="doc-tiep">Đọc tiếp</h2>
+      <ul class="post-list">
+        <li><a class="post-card" href="chon-bitrate-128-192-320-kbps.html">
+          <h3>Đổi MP4 sang MP3: nên chọn 128, 192 hay 320 kbps?</h3>
+          <p>Ba mức bitrate khi tách nhạc từ video sang MP3 khác nhau ra sao: dung lượng, chất lượng nghe được và mức nào hợp với từng loại nội dung.</p>
+          <p class="meta"><span>05/09/2026</span><span>Đọc khoảng 6 phút</span></p>
+        </a></li>
+        <li><a class="post-card" href="tach-nhac-hang-loat-tu-nhieu-video.html">
+          <h3>Tách nhạc từ nhiều video một lượt và sắp xếp lại thư viện</h3>
+          <p>Cách xử lý cả một loạt video thành MP3 trên Android: chuẩn bị trước, chọn mức chất lượng chung, và dùng ảnh bìa để thư viện dễ nhìn.</p>
+          <p class="meta"><span>05/09/2026</span><span>Đọc khoảng 6 phút</span></p>
+        </a></li>
+        <li><a class="post-card" href="trinh-phat-nhac-hen-gio-ngu.html">
+          <h3>Hẹn giờ ngủ, đổi tốc độ và danh sách chờ: dùng trình phát nhạc có sẵn</h3>
+          <p>Trình phát nhạc trong ứng dụng có hẹn giờ ngủ, chỉnh tốc độ phát, danh sách chờ và chế độ lặp — cách dùng từng thứ cho podcast, bài giảng và nhạc.</p>
+          <p class="meta"><span>05/09/2026</span><span>Đọc khoảng 6 phút</span></p>
+        </a></li>
+        <li><a class="post-card" href="cat-nhac-chuong-tu-video.html">
+          <h3>Cách cắt nhạc chuông từ video trên Android</h3>
+          <p>Lấy 20–30 giây trong video, lưu MP3 hoặc M4A ở 128–192 kbps rồi đặt làm nhạc chuông, âm thông báo hay báo thức.</p>
+          <p class="meta"><span>12/09/2026</span><span>Đọc khoảng 7 phút</span></p>
+        </a></li>
+      </ul>
+    </section>
+
+    <div class="cta">
+      <h2>Tải Video to MP3</h2>
+      <p>Miễn phí trên Google Play, dùng cho Android 8.0 trở lên.</p>
+      <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Tải trên Google Play</a>
+      <a class="btn btn-dl2" href="../index.html#features">Xem tính năng</a>
+    </div>
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 FightTech — Video to MP3 cho Android</span>
+    <nav>
+      <a href="../index.html#features">Tính năng</a>
+      <a href="index.html">Blog</a>
+      <a href="../privacy.html">Quyền riêng tư</a>
+      <a href="../terms.html">Điều khoản</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Google Play</a>
+      <a href="mailto:fighttech.vn@gmail.com">Hỗ trợ</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://fighttech.vn/#org",
+      "name": "FightTech",
+      "url": "https://fighttech.vn/",
+      "logo": "https://videotoaudio.fighttech.vn/assets/icon.png"
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://videotoaudio.fighttech.vn/#app",
+      "name": "Video to MP3: Audio Converter",
+      "operatingSystem": "Android 8.0+",
+      "applicationCategory": "MultimediaApplication",
+      "url": "https://videotoaudio.fighttech.vn/",
+      "installUrl": "https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio",
+      "publisher": {
+        "@id": "https://fighttech.vn/#org"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html#post",
+      "headline": "Tách nhạc từ video ra MP3 kèm ảnh bìa và thẻ bài hát",
+      "description": "Cách tách nhạc từ video thành MP3 trên Android: lấy khung hình làm ảnh bìa, sửa hoặc tra tên bài và ca sĩ trên mạng, tách tiếng gốc không nén, chạy nền.",
+      "inLanguage": "vi",
+      "datePublished": "2026-09-02",
+      "dateModified": "2026-09-12",
+      "image": "https://videotoaudio.fighttech.vn/blog/img/anh-bia-va-nang-cao.webp",
+      "url": "https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html",
+      "mainEntityOfPage": "https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html",
+      "author": {
+        "@id": "https://fighttech.vn/#org"
+      },
+      "publisher": {
+        "@id": "https://fighttech.vn/#org"
+      },
+      "isPartOf": {
+        "@id": "https://videotoaudio.fighttech.vn/blog/#blog"
+      },
+      "about": {
+        "@id": "https://videotoaudio.fighttech.vn/#app"
+      },
+      "wordCount": 1325
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html#faq",
+      "inLanguage": "vi",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Chuyển đổi có cần mạng không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Không. Việc tách và chuyển âm thanh chạy ngay trên máy, nên video của bạn không bị tải lên mạng. Ứng dụng vẫn dùng mạng cho quảng cáo, mua hàng, thống kê và báo lỗi, và cho Tìm thông tin trên mạng khi bạn dùng tới."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ảnh bìa nằm trong file hay là một ảnh riêng?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nằm ngay trong file nhạc, ở phần thẻ ảnh bìa. Chép file sang máy khác thì bìa vẫn đi theo, không có ảnh rời nào cần quản lý."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tách tiếng gốc không nén khác gì chọn 320 kbps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chọn 320 kbps vẫn là nén lại lần nữa từ bản đã nén trong video. Tách không nén thì chép thẳng luồng âm thanh sẵn có, không mã hoá lại nên không mất thêm chất lượng và chạy nhanh hơn."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Video dài mấy tiếng có chuyển được không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Được. Ứng dụng không giới hạn thời lượng hay dung lượng; bạn chỉ cần đủ chỗ trống cho file xuất ra, khoảng 86 MB cho mỗi giờ MP3 ở 192 kbps. Tích Chạy nền thì không phải mở màn hình chờ."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "File tách ra lưu ở đâu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Trong thư mục Music/Video to Audio, thuộc thư viện Nhạc của máy, nên mọi ứng dụng nghe nhạc đều nhận ra. Tab Nhạc ngay trong app cũng có trình phát riêng kèm danh sách chờ và hẹn giờ tắt."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Trang chủ",
+          "item": "https://videotoaudio.fighttech.vn/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://videotoaudio.fighttech.vn/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Ảnh bìa từ video",
+          "item": "https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

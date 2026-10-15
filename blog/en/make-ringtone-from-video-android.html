@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How to make a ringtone from a video on Android</title>
+<meta name="description" content="Turn a clip from a video on your phone into a ringtone, notification or alarm sound on Android: trim 20–30 seconds, save it as MP3 at 128–192 kbps and set it straight from the result screen.">
+<link rel="canonical" href="https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html">
+<link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html">
+<link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/cat-nhac-chuong-tu-video.html">
+<link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html">
+<link rel="alternate" type="text/plain" title="llms.txt" href="https://videotoaudio.fighttech.vn/llms.txt">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#7c4dff">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Video to MP3">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="vi_VN">
+<meta property="og:title" content="How to make a ringtone from a video on Android">
+<meta property="og:description" content="Trim 20–30 seconds from a video, save it as MP3 and set it as your ringtone, notification or alarm sound — with file sizes, lengths and the settings that matter.">
+<meta property="og:url" content="https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html">
+<meta property="og:image" content="https://videotoaudio.fighttech.vn/assets/icon.png?v=1">
+<meta property="article:published_time" content="2026-09-12">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="../../assets/icon.png?v=1">
+<link rel="apple-touch-icon" href="../../assets/icon.png?v=1">
+<style>
+:root{
+  --bg:#ffffff; --ink:#1b2130; --muted:#5b6472; --line:#ececf2;
+  --brand:#7c4dff; --brand-ink:#5b2ee6; --brand-soft:#f1ecff; --soft:#faf9ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.68 -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--brand-ink)}
+img{max-width:100%}
+
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.nav .logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);text-decoration:none}
+.nav .logo img{width:30px;height:30px;border-radius:8px}
+.nav .links{margin-left:auto;display:flex;gap:20px;font-size:15px}
+.nav .links a{color:var(--muted);text-decoration:none}
+.nav .links a:hover{color:var(--brand-ink)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+.post-wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.post{padding-bottom:64px}
+.post [id]{scroll-margin-top:80px}
+.post-head{padding:40px 0 6px}
+.crumbs{font-size:14px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+.crumbs a{color:var(--muted);text-decoration:none}
+.kicker{display:inline-block;margin:18px 0 10px;padding:5px 12px;border-radius:999px;background:var(--brand-soft);
+  color:var(--brand-ink);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.meta{margin-top:14px;font-size:14.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
+.lede{margin-top:22px;font-size:19px;line-height:1.6}
+h2{font-size:clamp(23px,3.4vw,29px);line-height:1.25;letter-spacing:-.015em;margin:46px 0 14px;text-wrap:balance}
+h3{font-size:19px;margin:30px 0 8px}
+p{margin:14px 0}
+ul,ol{margin:14px 0 14px 22px;padding:0}
+li{margin:7px 0}
+li::marker{color:var(--brand)}
+hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+
+.answer{margin:26px 0;padding:20px 22px;border-radius:18px;border:1px solid #ddd2ff;background:var(--brand-soft)}
+.answer h2{margin:0 0 8px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--brand-ink)}
+.answer p{margin:8px 0 0}
+
+.toc{margin:30px 0 8px;padding:20px 22px;border:1px solid var(--line);border-radius:18px;background:var(--soft)}
+.toc h2{font-size:15px;margin:0 0 10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:0 0 0 20px}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+.figure{margin:26px 0}
+.figure img{display:block;width:100%;max-width:280px;height:auto;margin:0 auto;border:1px solid var(--line);
+  border-radius:22px;background:var(--soft);box-shadow:0 16px 38px rgba(20,30,50,.12)}
+.figure figcaption{margin-top:12px;font-size:14px;color:var(--muted);text-align:center}
+@media(min-width:760px){
+  .side{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start}
+  .side .figure{margin:0}
+  .side figcaption{text-align:left}
+  .side .body>:first-child{margin-top:0}
+  .side-right{grid-template-columns:1fr 280px}
+  .side-right .figure{order:2}
+}
+
+.callout{margin:26px 0;padding:18px 20px;border-radius:16px;background:var(--brand-soft);border:1px solid #ddd2ff}
+.callout p{margin:0}
+.callout strong{color:var(--brand-ink)}
+
+.steps{counter-reset:step;list-style:none;margin-left:0}
+.steps li{position:relative;padding-left:42px;margin:14px 0}
+.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:1px;width:28px;height:28px;
+  border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table-scroll .spec{min-width:520px}
+.spec{width:100%;border-collapse:collapse;margin:20px 0;font-size:15.5px}
+.spec th,.spec td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{font-weight:700;width:38%}
+.spec td{color:var(--muted);font-variant-numeric:tabular-nums}
+.spec thead th{color:var(--muted);font-size:13px;letter-spacing:.04em;text-transform:uppercase;width:auto}
+
+details{border-bottom:1px solid var(--line);padding:14px 0}
+details summary{cursor:pointer;font-weight:600;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";float:right;color:var(--brand);font-weight:700}
+details[open] summary::after{content:"−"}
+details p{margin:10px 0 2px;color:var(--muted)}
+
+.related{margin-top:40px}
+.post-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:16px}
+.post-list li{margin:0}
+.post-card{display:block;padding:22px 24px;border:1px solid var(--line);border-radius:20px;background:var(--soft);
+  color:var(--ink);text-decoration:none;transition:border-color .15s}
+.post-card:hover,.post-card:focus-visible{border-color:var(--brand)}
+.post-card h3{margin:0 0 6px;font-size:20px;line-height:1.3}
+.post-card p{margin:0;color:var(--muted);font-size:15.5px}
+.post-card .meta{margin-top:10px;font-size:13.5px}
+
+.cta{margin:46px 0 0;padding:28px;border-radius:22px;background:var(--soft);border:1px solid var(--line);text-align:center}
+.cta h2{margin:0 0 8px}
+.cta p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:16px;padding:13px 24px;border-radius:999px;
+  text-decoration:none;transition:transform .12s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-play{background:var(--ink);color:#fff}
+.btn-dl2{background:var(--brand-soft);color:var(--brand-ink);border:1px solid #ddd2ff;margin-left:10px}
+
+footer{border-top:1px solid var(--line);padding:34px 0}
+.foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;color:#9aa2b1;font-size:14px}
+.foot nav a{color:var(--muted);margin-left:22px;text-decoration:none}
+.foot nav a:first-child{margin-left:0}
+.langs{display:flex;gap:6px;align-items:center;margin:16px 0 0}
+.lang{font-size:13px;font-weight:600;line-height:1;padding:7px 12px;border-radius:999px;border:1px solid var(--line);
+  color:var(--muted);text-decoration:none;transition:color .15s,border-color .15s}
+.lang.active{background:var(--brand-soft);border-color:transparent;color:var(--brand-ink)}
+a.lang:hover,a.lang:focus-visible{color:var(--brand-ink);border-color:var(--brand)}
+@media(max-width:720px){.nav .links{gap:16px;font-size:14px}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="../../"><img src="../../assets/icon.png?v=1" alt="Video to MP3">Video to MP3</a>
+    <div class="links">
+      <a href="../../index.html#features">Features</a>
+      <a href="../../index.html#faq">FAQ</a>
+      <a href="../index.html">Blog</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Get the app</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<article class="post">
+  <div class="post-wrap post-head">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="../../">Home</a><span aria-hidden="true">&rsaquo;</span><a href="../index.html">Blog</a><span aria-hidden="true">&rsaquo;</span><span>Ringtone from a video</span>
+    </nav>
+    <nav class="langs" aria-label="Article language">
+      <a class="lang" href="../cat-nhac-chuong-tu-video.html" hreflang="vi" lang="vi">Ti&#7871;ng Vi&#7879;t</a>
+      <span class="lang active" aria-current="true">English</span>
+    </nav>
+    <span class="kicker">Guide</span>
+    <h1>How to make a ringtone from a video on Android</h1>
+    <p class="meta"><span>12 September 2026</span><span>FightTech</span><span>7 min read</span></p>
+    <p class="lede">The chorus of a concert clip, a line from a family video, the jingle at the end of a short film: if the sound is in a video on your phone, it can be your ringtone. This guide walks through it in Video to MP3, with the lengths, file sizes and settings that actually matter for a phone speaker.</p>
+  </div>
+
+  <div class="post-wrap">
+    <section class="answer" aria-labelledby="short-answer">
+      <h2 id="short-answer">Short answer</h2>
+      <p>Open Video to MP3, tap <strong>MP3</strong> next to the video, drag the two <strong>Trim</strong> handles around 20&ndash;30 seconds, keep MP3 at 128 or 192 kbps and tap <strong>Start</strong>. On the result screen tap <strong>Ringtone</strong> and choose <strong>Phone ringtone</strong>. Android asks once for the &ldquo;Modify system settings&rdquo; permission. None of these steps cost credits.</p>
+    </section>
+
+    <nav class="toc" aria-label="Table of contents">
+      <h2>In this article</h2>
+      <ol>
+        <li><a href="#before">Before you start</a></li>
+        <li><a href="#length">How long a ringtone should be</a></li>
+        <li><a href="#how-to">Make the ringtone in 8 steps</a></li>
+        <li><a href="#format">Format and bitrate: what a phone speaker needs</a></li>
+        <li><a href="#clean">A clean start and a clean loop</a></li>
+        <li><a href="#set-as">Ringtone, notification or alarm</a></li>
+        <li><a href="#restore">Changing it back</a></li>
+        <li><a href="#faq">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="before">1. Before you start</h2>
+    <ul>
+      <li><strong>An Android phone on Android 8.0 or newer</strong> with Video to MP3 installed from Google Play.</li>
+      <li><strong>The video saved on the phone.</strong> The Convert tab lists the videos in your phone's storage; the app works with files you already have and does not download anything.</li>
+      <li><strong>A clip you have the right to use.</strong> A ringtone for your own phone is personal use, but the sound still belongs to whoever made it.</li>
+    </ul>
+    <p>The conversion runs on your device, so the video is never uploaded and it stays exactly as it was. The ringtone is a new audio file saved next to your other music.</p>
+
+    <h2 id="length">2. How long a ringtone should be</h2>
+    <p>Android loops a ringtone for as long as the phone rings. Many carriers send an unanswered call to voicemail after roughly 20 to 30 seconds, so a clip of that length plays once, start to finish, without restarting mid-phrase. Notifications are different: you hear them for a moment, so a short sound works best. Alarms loop until you dismiss them, so they can run longer.</p>
+    <div class="table-scroll">
+      <table class="spec">
+        <thead><tr><th>Use</th><th>Good length</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><th>Phone ringtone</th><td>20&ndash;30 s</td><td>Covers a typical ring before voicemail without looping</td></tr>
+          <tr><th>Notification sound</th><td>1&ndash;3 s</td><td>A long notification cuts into whatever you are listening to</td></tr>
+          <tr><th>Alarm sound</th><td>30&ndash;60 s</td><td>Loops until dismissed; a longer clip repeats less often</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="side">
+      <figure class="figure">
+        <img src="../img/danh-sach-video.webp" width="540" height="1200" loading="lazy" decoding="async"
+             alt="Video to MP3 Convert tab listing videos on the phone, each row with an MP3 button">
+        <figcaption>The Convert tab: every video has an <em>MP3</em> button. Shown in Vietnamese, from an earlier version.</figcaption>
+      </figure>
+      <div class="body">
+        <h2 id="how-to">3. Make the ringtone in 8 steps</h2>
+        <p>Everything happens on one screen, <em>Extract audio</em>, which opens when you tap <strong>MP3</strong> next to a video. The labels below are the ones you will see in the app.</p>
+        <p>Plan on a couple of minutes the first time, most of it spent finding the exact moment you want.</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li>Open Video to MP3. On the <strong>Convert</strong> tab, find the video and tap <strong>MP3</strong> on its row.</li>
+      <li>Under <strong>Trim</strong>, drag the two handles around the part you want. The waveform shows loud and quiet passages, so you can see where a chorus starts.</li>
+      <li>For exact times, tap the time range and type the start and end in <em>mm:ss</em>, for example 1:05 to 1:32. Decimals such as 1:05.5 work too.</li>
+      <li>Tap <strong>Play the selected part</strong> and listen. Nudge the handles until the clip starts on a beat or on the first word.</li>
+      <li>Optionally tap <strong>Trim silence</strong> to drop quiet air at the start and end of the selection, so the ring starts the moment a call arrives.</li>
+      <li>In <strong>Output name</strong>, type a name you will recognise in Android's sound list, such as &ldquo;Chorus ringtone&rdquo;.</li>
+      <li>Leave <strong>Format</strong> on MP3 and pick <strong>Bitrate</strong> 128 or 192 kbps, then tap <strong>Start</strong>. The app confirms &ldquo;Done &mdash; saved to Music/Video to Audio&rdquo;.</li>
+      <li>Tap <strong>Ringtone</strong>, then <strong>Phone ringtone</strong>. The first time, Android opens the <em>Modify system settings</em> page: switch it on for the app, go back, and the ringtone is set.</li>
+    </ol>
+    <p>The file stays in the app afterwards: the <strong>Music</strong> tab lists every file the app has made, so you can set it again later or use it as a notification instead.</p>
+
+    <h2 id="format">4. Format and bitrate: what a phone speaker needs</h2>
+    <p>A ringtone plays through a small speaker, often in a pocket. The difference between 192 and 320 kbps that you might hear on good headphones disappears there, and even 128 kbps sounds clean. File size hardly matters either: every lossy option below stays under about a megabyte and a quarter for 30 seconds.</p>
+    <div class="table-scroll">
+      <table class="spec">
+        <thead><tr><th>Setting</th><th>30-second file</th><th>On the free plan</th></tr></thead>
+        <tbody>
+          <tr><th>MP3 64 kbps</th><td>&asymp; 240 KB</td><td>Free &mdash; fine for spoken words</td></tr>
+          <tr><th>MP3 128 kbps</th><td>&asymp; 480 KB</td><td>Free &mdash; plenty for a ringtone</td></tr>
+          <tr><th>MP3 192 kbps (default)</th><td>&asymp; 720 KB</td><td>Free</td></tr>
+          <tr><th>MP3 320 kbps</th><td>&asymp; 1.2 MB</td><td>1 credit per file, or Premium</td></tr>
+          <tr><th>WAV 16-bit, 44.1 kHz stereo</th><td>&asymp; 5.3 MB</td><td>Free, but far larger for no audible gain</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The sums are simple: bitrate &times; seconds &divide; 8. At 128 kbps that is 128,000 &times; 30 &divide; 8 = 480,000 bytes.</p>
+    <div class="callout">
+      <p><strong>MP3, M4A or M4R?</strong> Android accepts MP3 and M4A (AAC) as ringtones, and MP3 is the safest choice across phones. M4R is the same AAC audio as M4A with a different file extension, which some other phones expect for ringtones; on Android you do not need it.</p>
+    </div>
+
+    <h2 id="clean">5. A clean start and a clean loop</h2>
+    <p>The most common complaint about a homemade ringtone is the loop: the clip ends mid-note, then jumps straight back to the start. Three settings on the same screen fix that.</p>
+    <ul>
+      <li><strong>Cut at a pause.</strong> Flat parts of the waveform are quiet. Ending the selection there, or on the last beat of a bar, makes the restart sound deliberate.</li>
+      <li><strong>Fade in and Fade out</strong> under <em>Effects</em> offer 1, 2, 3 or 5 seconds. A 1&ndash;2 second fade-out softens the loop. Skip the fade-in on a ringtone, since you want to hear it at once; for an alarm, a 3&ndash;5 second fade-in wakes you more gently.</li>
+      <li><strong>Volume</strong> runs from 25% to 300%, with quick picks at 100, 150, 200 and 300%. Speech from a phone video is often quiet, so 150% helps. Above 200% the app warns that the sound may clip and distort, so preview before you save.</li>
+    </ul>
+    <p>Trim, Trim silence and Volume are free. On the free plan, effects such as fades, <em>Normalize loudness</em> or <em>Reduce noise</em> cost 1 credit per output file. You start with 5 credits and can earn 1 for each rewarded ad, up to 5 a day; Premium removes credit costs and ads.</p>
+
+    <div class="side side-right">
+      <figure class="figure">
+        <img src="../../assets/shots/music.png?v=1" width="1080" height="1920" loading="lazy" decoding="async"
+             alt="Music tab in Video to MP3 listing converted audio files">
+        <figcaption>The <em>Music</em> tab keeps every file the app has made (Vietnamese interface).</figcaption>
+      </figure>
+      <div class="body">
+        <h2 id="set-as">6. Ringtone, notification or alarm</h2>
+        <p>The <strong>Ringtone</strong> button on the result screen opens <em>Set as&hellip;</em> with four choices:</p>
+        <ul>
+          <li><strong>Phone ringtone</strong> &mdash; incoming calls.</li>
+          <li><strong>Notification sound</strong> &mdash; messages and app alerts.</li>
+          <li><strong>Alarm sound</strong> &mdash; the default alarm.</li>
+          <li><strong>Ringtone for a contact</strong> &mdash; one person gets their own ring. This one is Premium and asks for access to your contacts.</li>
+        </ul>
+        <p>Made the file earlier? Open the <strong>Music</strong> tab, long-press the file and choose <strong>Set as ringtone</strong>. The same option is in <em>Recent files</em>.</p>
+      </div>
+    </div>
+
+    <h2 id="restore">7. Changing it back</h2>
+    <p>Tired of it, or set the wrong clip as your alarm? Open the app's <strong>Settings</strong> and tap <strong>Restore original ringtone</strong>. It puts back the ringtone, notification and alarm sounds the app replaced. You can also pick any other sound in Android's own sound settings; the audio file stays in <code>Music/Video to Audio</code> until you delete it.</p>
+
+    <hr>
+
+    <h2 id="faq">Frequently asked questions</h2>
+    <details>
+      <summary>Is making a ringtone free?</summary>
+      <p>Yes. Trimming, saving as MP3 or M4A at up to 192 kbps, and setting a phone ringtone, notification or alarm sound cost nothing. On the free plan, fades and other effects, and 256 or 320 kbps, cost 1 credit per file. A ringtone for a single contact is Premium.</p>
+    </details>
+    <details>
+      <summary>Why does Android ask to &ldquo;Modify system settings&rdquo;?</summary>
+      <p>Android only lets an app change the default ringtone, notification or alarm sound after you allow that permission. You grant it once. Settings &rarr; Restore original ringtone puts the previous sounds back.</p>
+    </details>
+    <details>
+      <summary>How long should a ringtone be?</summary>
+      <p>About 20 to 30 seconds for calls, 1 to 3 seconds for notifications and 30 to 60 seconds for an alarm.</p>
+    </details>
+    <details>
+      <summary>Should I use MP3 or M4A?</summary>
+      <p>Both work on Android. MP3 at 128 or 192 kbps is the safe choice; 320 kbps adds nothing you can hear through a phone speaker.</p>
+    </details>
+    <details>
+      <summary>Is my video uploaded or changed?</summary>
+      <p>No. The conversion runs on your device, and the original video stays exactly as it was.</p>
+    </details>
+
+    <section class="related" aria-labelledby="read-next">
+      <h2 id="read-next">Read next</h2>
+      <ul class="post-list">
+        <li><a class="post-card" href="extract-mp3-with-cover-art.html">
+          <h3>Extract MP3 from video with cover art and song tags</h3>
+          <p>Embed a video frame as cover art, fix the title and artist, and copy the original audio without re-encoding.</p>
+          <p class="meta"><span>2 Sep 2026</span><span>6 min read</span></p>
+        </a></li>
+      </ul>
+    </section>
+
+    <div class="cta">
+      <h2>Make your first ringtone</h2>
+      <p>Video to MP3 is free on Google Play for Android 8.0 and newer.</p>
+      <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Get it on Google Play</a>
+      <a class="btn btn-dl2" href="../../index.html#features">See the features</a>
+    </div>
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 FightTech &mdash; Video to MP3 for Android</span>
+    <nav>
+      <a href="../../index.html#features">Features</a>
+      <a href="../index.html">Blog</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Google Play</a>
+      <a href="mailto:fighttech.vn@gmail.com">Support</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://fighttech.vn/#org",
+      "name": "FightTech",
+      "url": "https://fighttech.vn/",
+      "logo": "https://videotoaudio.fighttech.vn/assets/icon.png"
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://videotoaudio.fighttech.vn/#app",
+      "name": "Video to MP3: Audio Converter",
+      "operatingSystem": "Android 8.0+",
+      "applicationCategory": "MultimediaApplication",
+      "url": "https://videotoaudio.fighttech.vn/",
+      "installUrl": "https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio",
+      "publisher": {
+        "@id": "https://fighttech.vn/#org"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html#post",
+      "headline": "How to make a ringtone from a video on Android",
+      "description": "Turn a clip from a video on your phone into a ringtone, notification or alarm sound on Android: trim 20–30 seconds, save it as MP3 at 128–192 kbps and set it straight from the result screen.",
+      "inLanguage": "en",
+      "datePublished": "2026-09-12",
+      "dateModified": "2026-09-12",
+      "image": "https://videotoaudio.fighttech.vn/assets/shots/music.png",
+      "url": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html",
+      "mainEntityOfPage": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html",
+      "author": {
+        "@id": "https://fighttech.vn/#org"
+      },
+      "publisher": {
+        "@id": "https://fighttech.vn/#org"
+      },
+      "isPartOf": {
+        "@id": "https://videotoaudio.fighttech.vn/blog/#blog"
+      },
+      "about": {
+        "@id": "https://videotoaudio.fighttech.vn/#app"
+      },
+      "wordCount": 1463
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html#howto",
+      "name": "Make the ringtone in 8 steps",
+      "inLanguage": "en",
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "Video to MP3 (Android)"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Open Video to MP3. On the Convert tab, find the video and tap MP3 on its row.",
+          "url": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html#how-to"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Under Trim, drag the two handles around the part you want. The waveform shows loud and quiet passages, so you can see where a chorus starts.",
+          "url": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html#how-to"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "For exact times, tap the time range and type the start and end in mm:ss, for example 1:05 to 1:32. Decimals such as 1:05.5 work too.",
+          "url": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html#how-to"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "Tap Play the selected part and listen. Nudge the handles until the clip starts on a beat or on the first word.",
+          "url": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html#how-to"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "text": "Optionally tap Trim silence to drop quiet air at the start and end of the selection, so the ring starts the moment a call arrives.",
+          "url": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html#how-to"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "text": "In Output name, type a name you will recognise in Android's sound list, such as “Chorus ringtone”.",
+          "url": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html#how-to"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 7,
+          "text": "Leave Format on MP3 and pick Bitrate 128 or 192 kbps, then tap Start. The app confirms “Done — saved to Music/Video to Audio”.",
+          "url": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html#how-to"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 8,
+          "text": "Tap Ringtone, then Phone ringtone. The first time, Android opens the Modify system settings page: switch it on for the app, go back, and the ringtone is set.",
+          "url": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html#how-to"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html#faq",
+      "inLanguage": "en",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is making a ringtone free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Trimming, saving as MP3 or M4A at up to 192 kbps, and setting a phone ringtone, notification or alarm sound cost nothing. On the free plan, fades and other effects, and 256 or 320 kbps, cost 1 credit per file. A ringtone for a single contact is Premium."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does Android ask to “Modify system settings”?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Android only lets an app change the default ringtone, notification or alarm sound after you allow that permission. You grant it once. Settings → Restore original ringtone puts the previous sounds back."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long should a ringtone be?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "About 20 to 30 seconds for calls, 1 to 3 seconds for notifications and 30 to 60 seconds for an alarm."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I use MP3 or M4A?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both work on Android. MP3 at 128 or 192 kbps is the safe choice; 320 kbps adds nothing you can hear through a phone speaker."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my video uploaded or changed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The conversion runs on your device, and the original video stays exactly as it was."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://videotoaudio.fighttech.vn/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://videotoaudio.fighttech.vn/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Ringtone from a video",
+          "item": "https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

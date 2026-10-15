@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đổi MP4 sang MP3: nên chọn 128, 192 hay 320 kbps?</title>
+<meta name="description" content="Ba mức bitrate khi tách nhạc từ video sang MP3 khác nhau ra sao: dung lượng, chất lượng nghe được và mức nào hợp với từng loại nội dung.">
+<link rel="canonical" href="https://videotoaudio.fighttech.vn/blog/chon-bitrate-128-192-320-kbps.html">
+<link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/chon-bitrate-128-192-320-kbps.html">
+<link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html">
+<link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#7c4dff">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Video to MP3">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Đổi MP4 sang MP3: nên chọn 128, 192 hay 320 kbps?">
+<meta property="og:description" content="128, 192 hay 320 kbps — khác biệt nằm ở đâu, khi nào tai nghe được, và vì sao chọn cao nhất không phải lúc nào cũng đúng.">
+<meta property="og:url" content="https://videotoaudio.fighttech.vn/blog/chon-bitrate-128-192-320-kbps.html">
+<meta property="og:image" content="https://videotoaudio.fighttech.vn/blog/img/vt-quality.webp">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="../assets/icon.png?v=1">
+<link rel="apple-touch-icon" href="../assets/icon.png?v=1">
+<style>
+:root{
+  --bg:#ffffff; --ink:#1b2130; --muted:#5b6472; --line:#ececf2;
+  --brand:#7c4dff; --brand-ink:#5b2ee6; --brand-soft:#f1ecff; --soft:#faf9ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.68 -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--brand-ink)}
+img{max-width:100%}
+
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.nav .logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);text-decoration:none}
+.nav .logo img{width:30px;height:30px;border-radius:8px}
+.nav .links{margin-left:auto;display:flex;gap:20px;font-size:15px}
+.nav .links a{color:var(--muted);text-decoration:none}
+.nav .links a:hover{color:var(--brand-ink)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+.post-wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.post{padding-bottom:64px}
+.post [id]{scroll-margin-top:80px}
+.post-head{padding:40px 0 6px}
+.crumbs{font-size:14px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+.crumbs a{color:var(--muted);text-decoration:none}
+.kicker{display:inline-block;margin:18px 0 10px;padding:5px 12px;border-radius:999px;background:var(--brand-soft);
+  color:var(--brand-ink);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.meta{margin-top:14px;font-size:14.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
+.lede{margin-top:22px;font-size:19px;line-height:1.6}
+h2{font-size:clamp(23px,3.4vw,29px);line-height:1.25;letter-spacing:-.015em;margin:46px 0 14px;text-wrap:balance}
+h3{font-size:19px;margin:30px 0 8px}
+p{margin:14px 0}
+ul,ol{margin:14px 0 14px 22px;padding:0}
+li{margin:7px 0}
+li::marker{color:var(--brand)}
+hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+
+.toc{margin:30px 0 8px;padding:20px 22px;border:1px solid var(--line);border-radius:18px;background:var(--soft)}
+.toc h2{font-size:15px;margin:0 0 10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:0 0 0 20px}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+.figure{margin:26px 0}
+.figure img{display:block;width:100%;max-width:280px;height:auto;margin:0 auto;border:1px solid var(--line);
+  border-radius:22px;background:var(--soft);box-shadow:0 16px 38px rgba(20,30,50,.12)}
+.figure figcaption{margin-top:12px;font-size:14px;color:var(--muted);text-align:center}
+@media(min-width:760px){
+  .side{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start}
+  .side .figure{margin:0}
+  .side figcaption{text-align:left}
+  .side .body>:first-child{margin-top:0}
+  .side-right{grid-template-columns:1fr 280px}
+  .side-right .figure{order:2}
+}
+
+.callout{margin:26px 0;padding:18px 20px;border-radius:16px;background:var(--brand-soft);border:1px solid #ddd2ff}
+.callout p{margin:0}
+.callout strong{color:var(--brand-ink)}
+
+.steps{counter-reset:step;list-style:none;margin-left:0}
+.steps li{position:relative;padding-left:42px;margin:14px 0}
+.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:1px;width:28px;height:28px;
+  border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+
+.spec{width:100%;border-collapse:collapse;margin:20px 0;font-size:15.5px}
+.spec th,.spec td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{font-weight:700;width:38%}
+.spec td{color:var(--muted);font-variant-numeric:tabular-nums}
+
+details{border-bottom:1px solid var(--line);padding:14px 0}
+details summary{cursor:pointer;font-weight:600;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";float:right;color:var(--brand);font-weight:700}
+details[open] summary::after{content:"−"}
+details p{margin:10px 0 2px;color:var(--muted)}
+
+.cta{margin:46px 0 0;padding:28px;border-radius:22px;background:var(--soft);border:1px solid var(--line);text-align:center}
+.cta h2{margin:0 0 8px}
+.cta p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:16px;padding:13px 24px;border-radius:999px;
+  text-decoration:none;transition:transform .12s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-play{background:var(--ink);color:#fff}
+.btn-dl2{background:var(--brand-soft);color:var(--brand-ink);border:1px solid #ddd2ff;margin-left:10px}
+
+footer{border-top:1px solid var(--line);padding:34px 0}
+.foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;color:#9aa2b1;font-size:14px}
+.foot nav a{color:var(--muted);margin-left:22px;text-decoration:none}
+.foot nav a:first-child{margin-left:0}
+.langs{display:flex;gap:6px;align-items:center;margin:16px 0 0}
+.lang{font-size:13px;font-weight:600;line-height:1;padding:7px 12px;border-radius:999px;border:1px solid var(--line);
+  color:var(--muted);text-decoration:none;transition:color .15s,border-color .15s}
+.lang.active{background:var(--brand-soft);border-color:transparent;color:var(--brand-ink)}
+a.lang:hover,a.lang:focus-visible{color:var(--brand-ink);border-color:var(--brand)}
+@media(max-width:720px){.nav .links{gap:16px;font-size:14px}}
+
+  .related{margin-top:40px}
+.post-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:16px}
+.post-list li{margin:0}
+.post-card{display:block;padding:22px 24px;border:1px solid var(--line);border-radius:20px;background:var(--soft);
+  color:var(--ink);text-decoration:none;transition:border-color .15s}
+.post-card:hover,.post-card:focus-visible{border-color:var(--brand)}
+.post-card h3{margin:0 0 6px;font-size:20px;line-height:1.3}
+.post-card p{margin:0;color:var(--muted);font-size:15.5px}
+.post-card .meta{margin-top:10px;font-size:13.5px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="../"><img src="../assets/icon.png?v=1" alt="Video to MP3">Video to MP3</a>
+    <div class="links">
+      <a href="../index.html#features">Tính năng</a>
+      <a href="../index.html#faq">Hỏi đáp</a>
+      <a href="../privacy.html">Quyền riêng tư</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Tải ứng dụng</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<article class="post">
+  <div class="post-wrap post-head">
+    <nav class="crumbs" aria-label="Đường dẫn">
+      <a href="../">Trang chủ</a><span aria-hidden="true">&rsaquo;</span><span>Blog</span>
+    </nav>
+    <nav class="langs" aria-label="Ngôn ngữ bài viết">
+      <span class="lang active" aria-current="true">Tiếng Việt</span>
+      <a class="lang" href="en/mp4-to-mp3-128-192-320-kbps.html" hreflang="en" lang="en">English</a>
+    </nav>
+    <span class="kicker">Hướng dẫn · Chất lượng âm thanh</span>
+    <h1>Đổi MP4 sang MP3: nên chọn 128, 192 hay 320 kbps?</h1>
+    <p class="meta"><span>05/09/2026</span><span>FightTech</span><span>Đọc khoảng 7 phút</span></p>
+    <p class="lede">Khi bạn tách nhạc từ một video, ứng dụng hỏi đúng một câu trước khi bắt đầu: chất lượng bao nhiêu? Ba con số hiện ra — 128, 192 và 320 kbps — và phản xạ tự nhiên là chọn số lớn nhất. Đôi khi đó là lựa chọn đúng, nhưng thường thì không. Bài này giải thích mỗi con số nghĩa là gì và khi nào bạn thật sự nghe được sự khác biệt.</p>
+  </div>
+
+  <div class="post-wrap">
+
+    <nav class="toc" aria-label="Nội dung bài viết">
+      <h2>Trong bài này</h2>
+      <ol>
+        <li><a href="#bitrate-la-gi">Bitrate là gì</a></li>
+        <li><a href="#ba-muc">Ba mức, ba mục đích</a></li>
+        <li><a href="#nghe-duoc-khong">Tai người nghe được khác biệt tới đâu</a></li>
+        <li><a href="#gioi-han-nguon">Chất lượng không vượt được bản gốc</a></li>
+        <li><a href="#dung-luong">Dung lượng thay đổi thế nào</a></li>
+        <li><a href="#huong-dan">Tách nhạc trong 4 bước</a></li>
+        <li><a href="#faq">Câu hỏi thường gặp</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="bitrate-la-gi">1. Bitrate là gì</h2>
+    <p>Bitrate là lượng dữ liệu mà file dùng cho mỗi giây âm thanh, tính bằng kilobit trên giây (kbps). Con số càng lớn thì bộ mã hoá càng giữ lại được nhiều chi tiết của bản gốc — và file càng nặng.</p>
+    <p>MP3 là định dạng nén <em>có mất dữ liệu</em>: nó loại bỏ những phần âm thanh mà tai người khó nhận ra, rồi mô tả phần còn lại gọn nhất có thể. Bitrate quyết định bộ mã hoá được phép rộng rãi tới đâu. Ở 320 kbps nó giữ gần như mọi thứ; ở 128 kbps nó phải cắt bỏ nhiều hơn, và những thứ bị cắt đầu tiên thường là các tần số cao — tiếng cymbal, tiếng gió, đuôi vang của một nốt đàn.</p>
+
+    <h2 id="ba-muc">2. Ba mức, ba mục đích</h2>
+    <div class="side">
+      <figure class="figure">
+        <img src="img/vt-quality.webp" width="540" height="960" loading="lazy" decoding="async"
+             alt="Hộp thoại chọn chất lượng với ba mức 128 kbps, 192 kbps và 320 kbps">
+        <figcaption>Ba mức chất lượng hiện ra trước khi quá trình tách bắt đầu.</figcaption>
+      </figure>
+      <div class="body">
+        <p><strong>128 kbps</strong> dành cho lời nói: podcast, bài giảng, phỏng vấn, hướng dẫn. Giọng người chiếm một dải tần hẹp, nên 128 kbps đã thừa sức tái tạo rõ ràng. Một giờ ghi âm chỉ chiếm khoảng 55 MB.</p>
+        <p><strong>192 kbps</strong> là mức cân bằng và cũng là lựa chọn hợp lý cho phần lớn trường hợp. Với nhạc nghe trên tai nghe thường hay loa Bluetooth, rất khó phân biệt nó với bản 320 kbps, trong khi file nhẹ hơn khoảng 40%.</p>
+        <p><strong>320 kbps</strong> là mức cao nhất mà MP3 cho phép. Chọn nó khi bạn nghe bằng tai nghe tốt, khi bản gốc là video nhạc chất lượng cao, hoặc khi bạn định giữ file này lâu dài và không muốn tiếc về sau.</p>
+      </div>
+    </div>
+
+    <h2 id="nghe-duoc-khong">3. Tai người nghe được khác biệt tới đâu</h2>
+    <p>Điều này phụ thuộc vào ba thứ, theo đúng thứ tự quan trọng: thiết bị nghe, loại nội dung, và môi trường xung quanh.</p>
+    <table class="spec">
+      <tr><th>Loa điện thoại</th><td>Gần như không phân biệt được 128 và 320</td></tr>
+      <tr><th>Tai nghe Bluetooth thường</th><td>128 hơi mỏng ở dải cao; 192 và 320 rất giống nhau</td></tr>
+      <tr><th>Tai nghe có dây tốt, phòng yên tĩnh</th><td>Khác biệt nghe được rõ nhất ở cymbal và đuôi vang</td></tr>
+      <tr><th>Nghe trên xe, ngoài đường</th><td>Tiếng ồn nền che mất phần lớn khác biệt</td></tr>
+    </table>
+    <p>Nói cách khác: nếu bạn nghe nhạc lúc đi đường bằng tai nghe Bluetooth, 192 kbps là điểm dừng hợp lý. Nếu bạn ngồi yên với một cặp tai nghe tử tế, hãy chọn 320.</p>
+
+    <h2 id="gioi-han-nguon">4. Chất lượng không vượt được bản gốc</h2>
+    <div class="side side-right">
+      <figure class="figure">
+        <img src="img/vt-home.webp" width="540" height="960" loading="lazy" decoding="async"
+             alt="Màn hình chính của ứng dụng với nút chọn video để chuyển sang MP3">
+        <figcaption>Chọn video từ thư viện trên máy, phần còn lại chạy tự động.</figcaption>
+      </figure>
+      <div class="body">
+        <p>Đây là điểm hay bị hiểu nhầm nhất. Chọn 320 kbps không làm âm thanh <em>tốt hơn</em> bản gốc — nó chỉ đảm bảo quá trình chuyển đổi không làm mất thêm gì.</p>
+        <p>Nếu video bạn tách ra vốn có phần tiếng ở mức 96 kbps — chuyện rất bình thường với video quay bằng điện thoại hay tải về từ mạng — thì xuất ra 320 kbps chỉ tạo ra một file to hơn chứa đúng lượng thông tin cũ.</p>
+        <p>Vì vậy quy tắc thực dụng là: 192 kbps cho gần như mọi thứ, 320 kbps khi bạn biết chắc bản gốc xứng đáng, 128 kbps khi nội dung chỉ là giọng nói.</p>
+      </div>
+    </div>
+
+    <h2 id="dung-luong">5. Dung lượng thay đổi thế nào</h2>
+    <p>Một cách nhẩm nhanh: mỗi phút âm thanh chiếm khoảng bằng bitrate chia cho 133, tính theo megabyte.</p>
+    <table class="spec">
+      <tr><th>128 kbps</th><td>≈ 0,9 MB mỗi phút — 55 MB cho một giờ</td></tr>
+      <tr><th>192 kbps</th><td>≈ 1,4 MB mỗi phút — 82 MB cho một giờ</td></tr>
+      <tr><th>320 kbps</th><td>≈ 2,4 MB mỗi phút — 137 MB cho một giờ</td></tr>
+    </table>
+    <p>Với một bài hát bốn phút, khác biệt giữa 192 và 320 chỉ khoảng 4 MB — không đáng để cân nhắc. Với một bộ podcast bốn mươi tập, mỗi tập một tiếng, khác biệt là hơn 3 GB.</p>
+
+    <div class="callout">
+      <p><strong>Chọn nhanh:</strong> lời nói → 128. Không chắc → 192. Nhạc chất lượng cao mà bạn sẽ nghe bằng tai nghe tốt → 320.</p>
+    </div>
+
+    <hr>
+
+    <h2 id="huong-dan">Tách nhạc từ video trong 4 bước</h2>
+    <ol class="steps">
+      <li>Mở ứng dụng và chọn video từ thư viện trên máy.</li>
+      <li>Chọn mức chất lượng: 128, 192 hoặc 320 kbps.</li>
+      <li>Chờ vài giây — quá trình chạy trên máy, không cần mạng.</li>
+      <li>Phát thử, chia sẻ hoặc đặt làm nhạc chuông ngay trên màn hình kết quả.</li>
+    </ol>
+
+    <div class="side">
+      <figure class="figure">
+        <img src="img/vt-result.webp" width="540" height="960" loading="lazy" decoding="async"
+             alt="Màn hình kết quả sau khi chuyển đổi xong, với các nút phát, chia sẻ và lưu">
+        <figcaption>Xong sau vài giây, kèm các thao tác tiếp theo ngay tại chỗ.</figcaption>
+      </figure>
+      <div class="body">
+        <p>Video gốc không bị thay đổi hay xoá đi — file MP3 được ghi ra bên cạnh. Nếu chọn nhầm mức chất lượng, bạn chỉ cần chạy lại với mức khác.</p>
+        <p>Toàn bộ xử lý diễn ra trên thiết bị. Video của bạn không được tải lên đâu cả, không cần kết nối mạng, và file xuất ra không có watermark.</p>
+      </div>
+    </div>
+
+    <h2 id="faq">Câu hỏi thường gặp</h2>
+    <details>
+      <summary>Nên chọn mức nào nếu tôi không chắc?</summary>
+      <p>192 kbps. Đây là điểm cân bằng giữa chất lượng và dung lượng, và với hầu hết thiết bị nghe thông thường bạn sẽ không phân biệt được nó với 320 kbps.</p>
+    </details>
+    <details>
+      <summary>Chọn 320 kbps có làm âm thanh hay hơn bản gốc không?</summary>
+      <p>Không. Bitrate cao chỉ đảm bảo quá trình chuyển đổi không làm mất thêm chi tiết; nó không thể khôi phục thứ vốn không có trong video gốc.</p>
+    </details>
+    <details>
+      <summary>File MP3 sẽ nặng bao nhiêu?</summary>
+      <p>Khoảng 0,9 MB mỗi phút ở 128 kbps, 1,4 MB ở 192 kbps và 2,4 MB ở 320 kbps. Một bài hát bốn phút ở 320 kbps chiếm chừng 9–10 MB.</p>
+    </details>
+    <details>
+      <summary>Video gốc có bị xoá sau khi tách không?</summary>
+      <p>Không. File MP3 được tạo ra bên cạnh, video ban đầu vẫn nằm nguyên trong thư viện của bạn.</p>
+    </details>
+    <details>
+      <summary>Có cần kết nối mạng không?</summary>
+      <p>Không. Toàn bộ quá trình chuyển đổi chạy trên thiết bị, kể cả khi ở chế độ máy bay.</p>
+    </details>
+    <details>
+      <summary>Lỡ chọn sai mức chất lượng thì sao?</summary>
+      <p>Chỉ cần chạy lại từ video gốc với mức khác. Vì bản gốc không bị đụng tới, bạn có thể tạo lại bao nhiêu lần tuỳ ý.</p>
+    </details>
+
+    <section class="related" aria-labelledby="doc-tiep">
+      <h2 id="doc-tiep">Đọc tiếp</h2>
+      <ul class="post-list">
+        <li><a class="post-card" href="tach-nhac-hang-loat-tu-nhieu-video.html">
+          <h3>Tách nhạc từ nhiều video một lượt và sắp xếp lại thư viện</h3>
+          <p>Cách xử lý cả một loạt video thành MP3 trên Android: chuẩn bị trước, chọn mức chất lượng chung, và dùng ảnh bìa để thư viện dễ nhìn.</p>
+          <p class="meta"><span>05/09/2026</span><span>Đọc khoảng 6 phút</span></p>
+        </a></li>
+        <li><a class="post-card" href="tach-nhac-tu-video-kem-anh-bia.html">
+          <h3>Tách nhạc từ video ra MP3 kèm ảnh bìa và thẻ bài hát</h3>
+          <p>Cách tách nhạc từ video thành MP3 trên Android: lấy khung hình làm ảnh bìa, sửa hoặc tra tên bài và ca sĩ trên mạng, tách tiếng gốc không nén, chạy nền.</p>
+          <p class="meta"><span>02/09/2026</span><span>Đọc khoảng 7 phút</span></p>
+        </a></li>
+        <li><a class="post-card" href="trinh-phat-nhac-hen-gio-ngu.html">
+          <h3>Hẹn giờ ngủ, đổi tốc độ và danh sách chờ: dùng trình phát nhạc có sẵn</h3>
+          <p>Trình phát nhạc trong ứng dụng có hẹn giờ ngủ, chỉnh tốc độ phát, danh sách chờ và chế độ lặp — cách dùng từng thứ cho podcast, bài giảng và nhạc.</p>
+          <p class="meta"><span>05/09/2026</span><span>Đọc khoảng 6 phút</span></p>
+        </a></li>
+      </ul>
+    </section>
+
+    <div class="cta">
+      <h2>Tách thử một video</h2>
+      <p>Chuyển video sang MP3 ngay trên máy, không cần mạng, không watermark.</p>
+      <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Tải trên Google Play</a>
+      <a class="btn btn-dl2" href="../index.html#features">Tính năng</a>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 FightTech — Video to MP3 cho Android</span>
+    <nav>
+      <a href="../index.html#features">Tính năng</a>
+      <a href="../privacy.html">Quyền riêng tư</a>
+      <a href="../terms.html">Điều khoản</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Google Play</a>
+      <a href="mailto:fighttech.vn@gmail.com">Hỗ trợ</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Đổi MP4 sang MP3: nên chọn 128, 192 hay 320 kbps?",
+      "description": "Giải thích ba mức bitrate 128, 192 và 320 kbps khi chuyển video sang MP3 trên Android, kèm gợi ý chọn theo loại nội dung.",
+      "inLanguage": "vi-VN",
+      "datePublished": "2026-09-05",
+      "dateModified": "2026-09-05",
+      "image": "https://videotoaudio.fighttech.vn/blog/img/vt-quality.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "FightTech",
+        "url": "https://fighttech.vn"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FightTech",
+        "url": "https://fighttech.vn"
+      },
+      "mainEntityOfPage": "https://videotoaudio.fighttech.vn/blog/chon-bitrate-128-192-320-kbps.html",
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "Video to MP3",
+        "operatingSystem": "Android",
+        "applicationCategory": "MultimediaApplication"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Nên chọn mức nào nếu tôi không chắc?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "192 kbps. Đây là điểm cân bằng giữa chất lượng và dung lượng, và với hầu hết thiết bị nghe thông thường bạn sẽ không phân biệt được nó với 320 kbps."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Chọn 320 kbps có làm âm thanh hay hơn bản gốc không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Không. Bitrate cao chỉ đảm bảo quá trình chuyển đổi không làm mất thêm chi tiết; nó không thể khôi phục thứ vốn không có trong video gốc."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "File MP3 sẽ nặng bao nhiêu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Khoảng 0,9 MB mỗi phút ở 128 kbps, 1,4 MB ở 192 kbps và 2,4 MB ở 320 kbps. Một bài hát bốn phút ở 320 kbps chiếm chừng 9–10 MB."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Video gốc có bị xoá sau khi tách không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Không. File MP3 được tạo ra bên cạnh, video ban đầu vẫn nằm nguyên trong thư viện của bạn."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Có cần kết nối mạng không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Không. Toàn bộ quá trình chuyển đổi chạy trên thiết bị, kể cả khi ở chế độ máy bay."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Lỡ chọn sai mức chất lượng thì sao?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chỉ cần chạy lại từ video gốc với mức khác. Vì bản gốc không bị đụng tới, bạn có thể tạo lại bao nhiêu lần tuỳ ý."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Trang chủ",
+          "item": "https://videotoaudio.fighttech.vn/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Chọn bitrate 128, 192 hay 320",
+          "item": "https://videotoaudio.fighttech.vn/blog/chon-bitrate-128-192-320-kbps.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

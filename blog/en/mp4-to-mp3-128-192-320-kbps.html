@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MP4 to MP3: should you pick 128, 192 or 320 kbps?</title>
+<meta name="description" content="How the three bitrate options differ when you pull MP3 out of a video: file size, audible quality, and which one suits each kind of material.">
+<link rel="canonical" href="https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html">
+<link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/chon-bitrate-128-192-320-kbps.html">
+<link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html">
+<link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#7c4dff">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Video to MP3">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="vi_VN">
+<meta property="og:title" content="MP4 to MP3: should you pick 128, 192 or 320 kbps?">
+<meta property="og:description" content="128, 192 or 320 kbps — where the difference actually lies, when you can hear it, and why the highest setting isn't always the right one.">
+<meta property="og:url" content="https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html">
+<meta property="og:image" content="https://videotoaudio.fighttech.vn/blog/img/en/vt-quality.webp">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="../../assets/icon.png?v=1">
+<link rel="apple-touch-icon" href="../../assets/icon.png?v=1">
+<style>
+:root{
+  --bg:#ffffff; --ink:#1b2130; --muted:#5b6472; --line:#ececf2;
+  --brand:#7c4dff; --brand-ink:#5b2ee6; --brand-soft:#f1ecff; --soft:#faf9ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.68 -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--brand-ink)}
+img{max-width:100%}
+
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.nav .logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);text-decoration:none}
+.nav .logo img{width:30px;height:30px;border-radius:8px}
+.nav .links{margin-left:auto;display:flex;gap:20px;font-size:15px}
+.nav .links a{color:var(--muted);text-decoration:none}
+.nav .links a:hover{color:var(--brand-ink)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+.post-wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.post{padding-bottom:64px}
+.post [id]{scroll-margin-top:80px}
+.post-head{padding:40px 0 6px}
+.crumbs{font-size:14px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+.crumbs a{color:var(--muted);text-decoration:none}
+.kicker{display:inline-block;margin:18px 0 10px;padding:5px 12px;border-radius:999px;background:var(--brand-soft);
+  color:var(--brand-ink);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.meta{margin-top:14px;font-size:14.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
+.lede{margin-top:22px;font-size:19px;line-height:1.6}
+h2{font-size:clamp(23px,3.4vw,29px);line-height:1.25;letter-spacing:-.015em;margin:46px 0 14px;text-wrap:balance}
+h3{font-size:19px;margin:30px 0 8px}
+p{margin:14px 0}
+ul,ol{margin:14px 0 14px 22px;padding:0}
+li{margin:7px 0}
+li::marker{color:var(--brand)}
+hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+
+.toc{margin:30px 0 8px;padding:20px 22px;border:1px solid var(--line);border-radius:18px;background:var(--soft)}
+.toc h2{font-size:15px;margin:0 0 10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:0 0 0 20px}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+.figure{margin:26px 0}
+.figure img{display:block;width:100%;max-width:280px;height:auto;margin:0 auto;border:1px solid var(--line);
+  border-radius:22px;background:var(--soft);box-shadow:0 16px 38px rgba(20,30,50,.12)}
+.figure figcaption{margin-top:12px;font-size:14px;color:var(--muted);text-align:center}
+@media(min-width:760px){
+  .side{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start}
+  .side .figure{margin:0}
+  .side figcaption{text-align:left}
+  .side .body>:first-child{margin-top:0}
+  .side-right{grid-template-columns:1fr 280px}
+  .side-right .figure{order:2}
+}
+
+.callout{margin:26px 0;padding:18px 20px;border-radius:16px;background:var(--brand-soft);border:1px solid #ddd2ff}
+.callout p{margin:0}
+.callout strong{color:var(--brand-ink)}
+
+.steps{counter-reset:step;list-style:none;margin-left:0}
+.steps li{position:relative;padding-left:42px;margin:14px 0}
+.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:1px;width:28px;height:28px;
+  border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+
+.spec{width:100%;border-collapse:collapse;margin:20px 0;font-size:15.5px}
+.spec th,.spec td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{font-weight:700;width:38%}
+.spec td{color:var(--muted);font-variant-numeric:tabular-nums}
+
+details{border-bottom:1px solid var(--line);padding:14px 0}
+details summary{cursor:pointer;font-weight:600;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";float:right;color:var(--brand);font-weight:700}
+details[open] summary::after{content:"−"}
+details p{margin:10px 0 2px;color:var(--muted)}
+
+.cta{margin:46px 0 0;padding:28px;border-radius:22px;background:var(--soft);border:1px solid var(--line);text-align:center}
+.cta h2{margin:0 0 8px}
+.cta p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:16px;padding:13px 24px;border-radius:999px;
+  text-decoration:none;transition:transform .12s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-play{background:var(--ink);color:#fff}
+.btn-dl2{background:var(--brand-soft);color:var(--brand-ink);border:1px solid #ddd2ff;margin-left:10px}
+
+footer{border-top:1px solid var(--line);padding:34px 0}
+.foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;color:#9aa2b1;font-size:14px}
+.foot nav a{color:var(--muted);margin-left:22px;text-decoration:none}
+.foot nav a:first-child{margin-left:0}
+.langs{display:flex;gap:6px;align-items:center;margin:16px 0 0}
+.lang{font-size:13px;font-weight:600;line-height:1;padding:7px 12px;border-radius:999px;border:1px solid var(--line);
+  color:var(--muted);text-decoration:none;transition:color .15s,border-color .15s}
+.lang.active{background:var(--brand-soft);border-color:transparent;color:var(--brand-ink)}
+a.lang:hover,a.lang:focus-visible{color:var(--brand-ink);border-color:var(--brand)}
+@media(max-width:720px){.nav .links{gap:16px;font-size:14px}}
+
+  .related{margin-top:40px}
+.post-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:16px}
+.post-list li{margin:0}
+.post-card{display:block;padding:22px 24px;border:1px solid var(--line);border-radius:20px;background:var(--soft);
+  color:var(--ink);text-decoration:none;transition:border-color .15s}
+.post-card:hover,.post-card:focus-visible{border-color:var(--brand)}
+.post-card h3{margin:0 0 6px;font-size:20px;line-height:1.3}
+.post-card p{margin:0;color:var(--muted);font-size:15.5px}
+.post-card .meta{margin-top:10px;font-size:13.5px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="../../"><img src="../../assets/icon.png?v=1" alt="Video to MP3">Video to MP3</a>
+    <div class="links">
+      <a href="../../index.html#features">Features</a>
+      <a href="../../index.html#faq">FAQ</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Get the app</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<article class="post">
+  <div class="post-wrap post-head">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="../../">Home</a><span aria-hidden="true">&rsaquo;</span><span>Blog</span>
+    </nav>
+    <nav class="langs" aria-label="Article language">
+      <a class="lang" href="../chon-bitrate-128-192-320-kbps.html" hreflang="vi" lang="vi">Tiếng Việt</a>
+      <span class="lang active" aria-current="true">English</span>
+    </nav>
+    <span class="kicker">Guide · Audio quality</span>
+    <h1>MP4 to MP3: should you pick 128, 192 or 320 kbps?</h1>
+    <p class="meta"><span>5 September 2026</span><span>FightTech</span><span>7 min read</span></p>
+    <p class="lede">When you pull the audio out of a video, the app asks one question before it starts: what quality? Three numbers appear — 128, 192 and 320 kbps — and the reflex is to take the biggest. Sometimes that's right; more often it isn't. Here's what each number means and when you can actually hear the difference.</p>
+  </div>
+
+  <div class="post-wrap">
+
+    <nav class="toc" aria-label="Table of contents">
+      <h2>In this article</h2>
+      <ol>
+        <li><a href="#what">What bitrate actually is</a></li>
+        <li><a href="#three">Three settings, three jobs</a></li>
+        <li><a href="#audible">How much of the difference you can hear</a></li>
+        <li><a href="#source">Quality can't exceed the source</a></li>
+        <li><a href="#size">What it does to file size</a></li>
+        <li><a href="#how-to">Extract an MP3 in 4 steps</a></li>
+        <li><a href="#faq">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="what">1. What bitrate actually is</h2>
+    <p>Bitrate is how much data the file spends on each second of audio, measured in kilobits per second (kbps). The higher the number, the more of the original detail the encoder keeps — and the larger the file.</p>
+    <p>MP3 is a <em>lossy</em> format: it throws away the parts of the sound the ear is least likely to notice, then describes what's left as compactly as it can. Bitrate decides how generous the encoder is allowed to be. At 320 kbps it keeps nearly everything; at 128 kbps it has to discard more, and the first things to go are usually high frequencies — cymbals, breath, the tail of a decaying note.</p>
+
+    <h2 id="three">2. Three settings, three jobs</h2>
+    <div class="side">
+      <figure class="figure">
+        <img src="../img/en/vt-quality.webp" width="540" height="960" loading="lazy" decoding="async"
+             alt="The quality dialog offering 128 kbps, 192 kbps and 320 kbps">
+        <figcaption>The three quality options appear before extraction starts.</figcaption>
+      </figure>
+      <div class="body">
+        <p><strong>128 kbps</strong> is for speech: podcasts, lectures, interviews, tutorials. The human voice occupies a narrow band, so 128 kbps reproduces it comfortably. An hour of it takes about 55 MB.</p>
+        <p><strong>192 kbps</strong> is the balanced choice and the right answer most of the time. For music heard on ordinary earbuds or a Bluetooth speaker, it's very hard to tell from 320 kbps, while the file is around 40% smaller.</p>
+        <p><strong>320 kbps</strong> is the highest MP3 allows. Choose it when you listen on good headphones, when the source is a high-quality music video, or when you plan to keep the file for years and don't want to regret the setting.</p>
+      </div>
+    </div>
+
+    <h2 id="audible">3. How much of the difference you can hear</h2>
+    <p>That depends on three things, in this order of importance: what you listen on, what kind of material it is, and where you are.</p>
+    <table class="spec">
+      <tr><th>Phone speaker</th><td>128 and 320 are essentially indistinguishable</td></tr>
+      <tr><th>Ordinary Bluetooth earbuds</th><td>128 sounds slightly thin up top; 192 and 320 are very close</td></tr>
+      <tr><th>Good wired headphones, quiet room</th><td>Where the difference is clearest — cymbals and decay tails</td></tr>
+      <tr><th>In a car or on the street</th><td>Background noise masks most of it</td></tr>
+    </table>
+    <p>Put another way: if you listen while commuting on Bluetooth earbuds, 192 kbps is a sensible stopping point. If you sit still with a decent pair of headphones, take 320.</p>
+
+    <h2 id="source">4. Quality can't exceed the source</h2>
+    <div class="side side-right">
+      <figure class="figure">
+        <img src="../img/en/vt-home.webp" width="540" height="960" loading="lazy" decoding="async"
+             alt="The app's home screen with the control for picking a video to convert to MP3">
+        <figcaption>Pick a video from the device library; the rest runs on its own.</figcaption>
+      </figure>
+      <div class="body">
+        <p>This is the most commonly misunderstood point. Choosing 320 kbps does not make the audio <em>better</em> than the original — it only guarantees the conversion doesn't lose anything further.</p>
+        <p>If the video's own audio track was encoded at 96 kbps — entirely normal for footage shot on a phone or downloaded from the web — then exporting at 320 kbps just makes a bigger file holding exactly the same information.</p>
+        <p>So the practical rule is: 192 kbps for almost everything, 320 kbps when you know the source deserves it, 128 kbps when the content is only speech.</p>
+      </div>
+    </div>
+
+    <h2 id="size">5. What it does to file size</h2>
+    <p>A quick way to estimate: each minute of audio takes roughly the bitrate divided by 133, in megabytes.</p>
+    <table class="spec">
+      <tr><th>128 kbps</th><td>≈ 0.9 MB per minute — 55 MB per hour</td></tr>
+      <tr><th>192 kbps</th><td>≈ 1.4 MB per minute — 82 MB per hour</td></tr>
+      <tr><th>320 kbps</th><td>≈ 2.4 MB per minute — 137 MB per hour</td></tr>
+    </table>
+    <p>On a four-minute song, the gap between 192 and 320 is about 4 MB — not worth a moment's thought. Across forty hour-long podcast episodes, it's over 3 GB.</p>
+
+    <div class="callout">
+      <p><strong>The short version:</strong> speech → 128. Not sure → 192. Good music you'll hear on good headphones → 320.</p>
+    </div>
+
+    <hr>
+
+    <h2 id="how-to">Extract an MP3 in 4 steps</h2>
+    <ol class="steps">
+      <li>Open the app and pick a video from your device library.</li>
+      <li>Choose the quality: 128, 192 or 320 kbps.</li>
+      <li>Wait a few seconds — it runs on the device, with no network.</li>
+      <li>Play, share or set it as a ringtone straight from the result screen.</li>
+    </ol>
+
+    <div class="side">
+      <figure class="figure">
+        <img src="../img/en/vt-result.webp" width="540" height="960" loading="lazy" decoding="async"
+             alt="The result screen after conversion, with play, share and save actions">
+        <figcaption>Done in seconds, with the next actions right there.</figcaption>
+      </figure>
+      <div class="body">
+        <p>The source video is neither changed nor removed — the MP3 is written alongside it. If you picked the wrong quality, just run it again at another setting.</p>
+        <p>Everything happens on the device. Your video is never uploaded, no connection is required, and the exported file carries no watermark.</p>
+      </div>
+    </div>
+
+    <h2 id="faq">Frequently asked questions</h2>
+    <details>
+      <summary>Which should I choose if I'm not sure?</summary>
+      <p>192 kbps. It's the balance point between quality and size, and on most ordinary listening gear you won't distinguish it from 320 kbps.</p>
+    </details>
+    <details>
+      <summary>Does 320 kbps make the audio better than the original?</summary>
+      <p>No. A high bitrate only ensures the conversion loses nothing extra; it cannot restore detail that wasn't in the video to begin with.</p>
+    </details>
+    <details>
+      <summary>How large will the MP3 be?</summary>
+      <p>About 0.9 MB per minute at 128 kbps, 1.4 MB at 192 kbps and 2.4 MB at 320 kbps. A four-minute song at 320 kbps comes out around 9–10 MB.</p>
+    </details>
+    <details>
+      <summary>Is the source video deleted afterwards?</summary>
+      <p>No. The MP3 is created alongside it and the video stays in your library exactly as it was.</p>
+    </details>
+    <details>
+      <summary>Does it need an internet connection?</summary>
+      <p>No. The whole conversion runs on the device, including in airplane mode.</p>
+    </details>
+    <details>
+      <summary>What if I picked the wrong quality?</summary>
+      <p>Just run it again from the same video at a different setting. The original is untouched, so you can redo it as often as you like.</p>
+    </details>
+
+    <section class="related" aria-labelledby="read-next">
+      <h2 id="read-next">Read next</h2>
+      <ul class="post-list">
+        <li><a class="post-card" href="batch-convert-videos-to-mp3.html" hreflang="en">
+          <h3>Convert several videos to MP3 in one go, then tidy the library</h3>
+          <p>How to turn a whole set of videos into MP3 on Android: preparing first, picking one quality setting, and using cover art to keep the library readable.</p>
+          <p class="meta"><span>5 Sep 2026</span><span>5 min read</span></p>
+        </a></li>
+        <li><a class="post-card" href="extract-mp3-with-cover-art.html" hreflang="en">
+          <h3>Extract MP3 from video with cover art and song tags</h3>
+          <p>Pull the audio out of a video as MP3 on Android: a video frame as embedded cover art, song info you can type or look up online, and a lossless copy of the original audio.</p>
+          <p class="meta"><span>2 Sep 2026</span><span>6 min read</span></p>
+        </a></li>
+        <li><a class="post-card" href="music-player-sleep-timer-speed.html" hreflang="en">
+          <h3>Sleep timer, playback speed and the queue: using the built-in player</h3>
+          <p>The in-app player has a sleep timer, playback speed, a queue and repeat modes — how to use each of them for podcasts, lectures and music.</p>
+          <p class="meta"><span>5 Sep 2026</span><span>5 min read</span></p>
+        </a></li>
+      </ul>
+    </section>
+
+    <div class="cta">
+      <h2>Try it on a video</h2>
+      <p>Convert video to MP3 on the device — no network, no watermark.</p>
+      <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Get it on Google Play</a>
+      <a class="btn btn-dl2" href="../../index.html#features">Features</a>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 FightTech — Video to MP3 for Android</span>
+    <nav>
+      <a href="../../index.html#features">Features</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Google Play</a>
+      <a href="mailto:fighttech.vn@gmail.com">Support</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "MP4 to MP3: should you pick 128, 192 or 320 kbps?",
+      "description": "An explanation of the 128, 192 and 320 kbps options when converting video to MP3 on Android, with recommendations by type of material.",
+      "inLanguage": "en-US",
+      "datePublished": "2026-09-05",
+      "dateModified": "2026-09-05",
+      "image": "https://videotoaudio.fighttech.vn/blog/img/en/vt-quality.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "FightTech",
+        "url": "https://fighttech.vn"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FightTech",
+        "url": "https://fighttech.vn"
+      },
+      "mainEntityOfPage": "https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html",
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "Video to MP3",
+        "operatingSystem": "Android",
+        "applicationCategory": "MultimediaApplication"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which should I choose if I'm not sure?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "192 kbps. It's the balance point between quality and size, and on most ordinary listening gear you won't distinguish it from 320 kbps."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does 320 kbps make the audio better than the original?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. A high bitrate only ensures the conversion loses nothing extra; it cannot restore detail that wasn't in the video to begin with."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How large will the MP3 be?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "About 0.9 MB per minute at 128 kbps, 1.4 MB at 192 kbps and 2.4 MB at 320 kbps. A four-minute song at 320 kbps comes out around 9–10 MB."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the source video deleted afterwards?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The MP3 is created alongside it and the video stays in your library exactly as it was."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it need an internet connection?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The whole conversion runs on the device, including in airplane mode."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I picked the wrong quality?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Just run it again from the same video at a different setting. The original is untouched, so you can redo it as often as you like."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://videotoaudio.fighttech.vn/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Choosing 128, 192 or 320 kbps",
+          "item": "https://videotoaudio.fighttech.vn/blog/en/mp4-to-mp3-128-192-320-kbps.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

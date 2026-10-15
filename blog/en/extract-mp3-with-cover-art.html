@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Extract MP3 from video with cover art and song tags</title>
+<meta name="description" content="Pull the audio out of a video as MP3 on Android: a video frame as embedded cover art, song info you can type or look up online, and a lossless copy of the original audio.">
+<link rel="canonical" href="https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html">
+<link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html">
+<link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html">
+<link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html">
+<link rel="alternate" type="text/plain" title="llms.txt" href="https://videotoaudio.fighttech.vn/llms.txt">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#7c4dff">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Video to MP3">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="vi_VN">
+<meta property="og:title" content="Extract MP3 from video with cover art and song tags">
+<meta property="og:description" content="Embed a video frame as cover art straight into the MP3, fill in the title and artist from an online lookup, copy the original audio without re-encoding, and run the queue in the background.">
+<meta property="og:url" content="https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html">
+<meta property="og:image" content="https://videotoaudio.fighttech.vn/assets/icon.png?v=1">
+<meta property="article:published_time" content="2026-09-02">
+<meta property="article:modified_time" content="2026-09-12">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="../../assets/icon.png?v=1">
+<link rel="apple-touch-icon" href="../../assets/icon.png?v=1">
+<style>
+:root{
+  --bg:#ffffff; --ink:#1b2130; --muted:#5b6472; --line:#ececf2;
+  --brand:#7c4dff; --brand-ink:#5b2ee6; --brand-soft:#f1ecff; --soft:#faf9ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.68 -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--brand-ink)}
+img{max-width:100%}
+
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.nav .logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);text-decoration:none}
+.nav .logo img{width:30px;height:30px;border-radius:8px}
+.nav .links{margin-left:auto;display:flex;gap:20px;font-size:15px}
+.nav .links a{color:var(--muted);text-decoration:none}
+.nav .links a:hover{color:var(--brand-ink)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+.post-wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.post{padding-bottom:64px}
+.post [id]{scroll-margin-top:80px}
+.post-head{padding:40px 0 6px}
+.crumbs{font-size:14px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+.crumbs a{color:var(--muted);text-decoration:none}
+.kicker{display:inline-block;margin:18px 0 10px;padding:5px 12px;border-radius:999px;background:var(--brand-soft);
+  color:var(--brand-ink);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.meta{margin-top:14px;font-size:14.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
+.lede{margin-top:22px;font-size:19px;line-height:1.6}
+h2{font-size:clamp(23px,3.4vw,29px);line-height:1.25;letter-spacing:-.015em;margin:46px 0 14px;text-wrap:balance}
+h3{font-size:19px;margin:30px 0 8px}
+p{margin:14px 0}
+ul,ol{margin:14px 0 14px 22px;padding:0}
+li{margin:7px 0}
+li::marker{color:var(--brand)}
+hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+
+.toc{margin:30px 0 8px;padding:20px 22px;border:1px solid var(--line);border-radius:18px;background:var(--soft)}
+.toc h2{font-size:15px;margin:0 0 10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:0 0 0 20px}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+.figure{margin:26px 0}
+.figure img{display:block;width:100%;max-width:280px;height:auto;margin:0 auto;border:1px solid var(--line);
+  border-radius:22px;background:var(--soft);box-shadow:0 16px 38px rgba(20,30,50,.12)}
+.figure figcaption{margin-top:12px;font-size:14px;color:var(--muted);text-align:center}
+@media(min-width:760px){
+  .side{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start}
+  .side .figure{margin:0}
+  .side figcaption{text-align:left}
+  .side .body>:first-child{margin-top:0}
+  .side-right{grid-template-columns:1fr 280px}
+  .side-right .figure{order:2}
+}
+
+.callout{margin:26px 0;padding:18px 20px;border-radius:16px;background:var(--brand-soft);border:1px solid #ddd2ff}
+.callout p{margin:0}
+.callout strong{color:var(--brand-ink)}
+
+.steps{counter-reset:step;list-style:none;margin-left:0}
+.steps li{position:relative;padding-left:42px;margin:14px 0}
+.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:1px;width:28px;height:28px;
+  border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+
+.spec{width:100%;border-collapse:collapse;margin:20px 0;font-size:15.5px}
+.spec th,.spec td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{font-weight:700;width:38%}
+.spec td{color:var(--muted);font-variant-numeric:tabular-nums}
+
+details{border-bottom:1px solid var(--line);padding:14px 0}
+details summary{cursor:pointer;font-weight:600;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";float:right;color:var(--brand);font-weight:700}
+details[open] summary::after{content:"−"}
+details p{margin:10px 0 2px;color:var(--muted)}
+
+.related{margin-top:40px}
+.post-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:16px}
+.post-list li{margin:0}
+.post-card{display:block;padding:22px 24px;border:1px solid var(--line);border-radius:20px;background:var(--soft);
+  color:var(--ink);text-decoration:none;transition:border-color .15s}
+.post-card:hover,.post-card:focus-visible{border-color:var(--brand)}
+.post-card h3{margin:0 0 6px;font-size:20px;line-height:1.3}
+.post-card p{margin:0;color:var(--muted);font-size:15.5px}
+.post-card .meta{margin-top:10px;font-size:13.5px}
+
+.cta{margin:46px 0 0;padding:28px;border-radius:22px;background:var(--soft);border:1px solid var(--line);text-align:center}
+.cta h2{margin:0 0 8px}
+.cta p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:16px;padding:13px 24px;border-radius:999px;
+  text-decoration:none;transition:transform .12s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-play{background:var(--ink);color:#fff}
+.btn-dl2{background:var(--brand-soft);color:var(--brand-ink);border:1px solid #ddd2ff;margin-left:10px}
+
+footer{border-top:1px solid var(--line);padding:34px 0}
+.foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;color:#9aa2b1;font-size:14px}
+.foot nav a{color:var(--muted);margin-left:22px;text-decoration:none}
+.foot nav a:first-child{margin-left:0}
+.langs{display:flex;gap:6px;align-items:center;margin:16px 0 0}
+.lang{font-size:13px;font-weight:600;line-height:1;padding:7px 12px;border-radius:999px;border:1px solid var(--line);
+  color:var(--muted);text-decoration:none;transition:color .15s,border-color .15s}
+.lang.active{background:var(--brand-soft);border-color:transparent;color:var(--brand-ink)}
+a.lang:hover,a.lang:focus-visible{color:var(--brand-ink);border-color:var(--brand)}
+@media(max-width:720px){.nav .links{gap:16px;font-size:14px}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="../../"><img src="../../assets/icon.png?v=1" alt="Video to MP3">Video to MP3</a>
+    <div class="links">
+      <a href="../../index.html#features">Features</a>
+      <a href="../../index.html#faq">FAQ</a>
+      <a href="../index.html">Blog</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Get the app</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<article class="post">
+  <div class="post-wrap post-head">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="../../">Home</a><span aria-hidden="true">&rsaquo;</span><a href="../index.html">Blog</a><span aria-hidden="true">&rsaquo;</span><span>Cover art from a video</span>
+    </nav>
+    <nav class="langs" aria-label="Article language">
+      <a class="lang" href="../tach-nhac-tu-video-kem-anh-bia.html" hreflang="vi" lang="vi">Ti&#7871;ng Vi&#7879;t</a>
+      <span class="lang active" aria-current="true">English</span>
+    </nav>
+    <span class="kicker">Guide</span>
+    <h1>Extract MP3 from video with cover art and song tags</h1>
+    <p class="meta"><span>2 September 2026</span><span>Updated 12 September 2026</span><span>FightTech</span><span>6 min read</span></p>
+    <p class="lede">An MP3 pulled out of a video has always arrived empty: open your music player and all you get is a grey square and an unwieldy file name. Since version 1.6.0, Video to MP3 fixes exactly that. The app takes a frame from the video and embeds it as cover art, can look up the title and artist online, and can extract the original audio without encoding it a second time.</p>
+  </div>
+
+  <div class="post-wrap">
+    <nav class="toc" aria-label="Table of contents">
+      <h2>In this article</h2>
+      <ol>
+        <li><a href="#cover-art">Cover art taken from a video frame</a></li>
+        <li><a href="#lookup">Title, artist and album art from an online lookup</a></li>
+        <li><a href="#stream-copy">Copy the original audio, pick the track</a></li>
+        <li><a href="#effects">Fades, volume levelling, speed and pitch</a></li>
+        <li><a href="#queue">A background queue that survives a locked screen</a></li>
+        <li><a href="#how-to">Extract audio from a video in 5 steps</a></li>
+        <li><a href="#faq">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="side">
+      <figure class="figure">
+        <img src="../img/anh-bia-va-nang-cao.webp" width="540" height="1200" loading="lazy" decoding="async"
+             alt="Conversion dialog with the Advanced section open and the option to use a video frame as cover art ticked">
+        <figcaption>The cover-art option in the 1.6.0 dialog (Vietnamese interface). Today it sits in the <em>Video</em> section of the Extract audio screen.</figcaption>
+      </figure>
+      <div class="body">
+        <h2 id="cover-art">1. Cover art taken from a video frame</h2>
+        <p>Tick <strong>Use a video frame as cover art</strong> and the app grabs a frame from the middle of the video and writes it into the cover-art tag of the MP3 or M4A.</p>
+        <p>The image lives inside the audio file itself, so copying the file to another device or opening it in a different player keeps the artwork. There is no loose .jpg alongside it for you to keep track of.</p>
+        <p>The middle frame is free. With Premium you can tap <strong>Pick the frame</strong> and choose the exact moment instead. For a music video or a live recording, the captured frame is usually a shot of the stage &mdash; enough to recognise the track in a playlist.</p>
+      </div>
+    </div>
+
+    <h2 id="lookup">2. Title, artist and album art from an online lookup</h2>
+    <p>After converting, long-press the MP3 in the <strong>Music</strong> tab and choose <strong>Edit info</strong>. You can type the title, artist and album yourself for free. When the video is a commercially released song, <strong>Find info online</strong> (Premium) saves the typing: enter the song or artist name, pick a match, and the app fills in the title, artist and album along with 600&times;600 album art. Tap Save to write it into the MP3.</p>
+    <p>The lookup only runs when you tap Search, and it sends only the words you typed &mdash; never your audio or your file names. Tag editing works on MP3 files.</p>
+    <div class="callout">
+      <p><strong>Which cover wins:</strong> embed the video frame while extracting, then try the lookup. If it finds the track, the official album art replaces the frame and will be sharper than a still pulled from compressed video. If it finds nothing, the frame stays.</p>
+    </div>
+
+    <div class="side side-right">
+      <figure class="figure">
+        <img src="../img/tuy-chon-chuyen-doi.webp" width="540" height="1200" loading="lazy" decoding="async"
+             alt="Conversion dialog showing MP3, M4A and OPUS formats, a 192 kbps quality setting and a trim slider">
+        <figcaption>Format, quality and trim in the 1.6.0 dialog (Vietnamese interface). The current Extract audio screen has the same choices.</figcaption>
+      </figure>
+      <div class="body">
+        <h2 id="stream-copy">3. Copy the original audio, pick the track</h2>
+        <p>A video already contains an audio stream that has been compressed once. Converting it to MP3 means compressing it again, and what the second pass discards is gone for good.</p>
+        <p><strong>Extract the original audio without re-encoding</strong> (Premium) copies that stream straight into a file instead. The result is bit-identical to what was in the video, and it finishes far quicker because the phone has nothing to compute.</p>
+        <p>If the video carries more than one audio track &mdash; a dual-language film, say &mdash; you can also <strong>choose which track</strong> to extract instead of always taking the first (Premium, under <em>Audio track</em>).</p>
+      </div>
+    </div>
+
+    <h2 id="effects">4. Fades, volume levelling, speed and pitch</h2>
+    <table class="spec">
+      <tr><th>Fade in / fade out</th><td>1, 2, 3 or 5 seconds, so a clip cut from the middle of a song no longer starts abruptly or stops dead</td></tr>
+      <tr><th>Normalize loudness</th><td>Brings files to a comparable loudness, so you stop reaching for the volume keys</td></tr>
+      <tr><th>Speed</th><td>Replay a lecture or podcast faster without the voice turning into a chipmunk</td></tr>
+      <tr><th>Pitch</th><td>Raise or lower the key of a song while keeping its original length</td></tr>
+      <tr><th>Channels and sample rate</th><td>Keep the source settings, or force mono or stereo as needed</td></tr>
+    </table>
+    <p>Channels, sample rate and volume are free. On the free plan each effect in the <em>Effects</em> section &mdash; fades, normalize, reduce noise, speed, pitch &mdash; costs 1 credit per output file; Premium includes them.</p>
+
+    <div class="side">
+      <figure class="figure">
+        <img src="../img/danh-sach-video.webp" width="540" height="1200" loading="lazy" decoding="async"
+             alt="Video to Audio home screen listing videos on the device with an MP3 button on each row">
+        <figcaption>Every video has an <em>MP3</em> button for a one-tap conversion (Vietnamese interface, earlier version).</figcaption>
+      </figure>
+      <div class="body">
+        <h2 id="queue">5. A background queue that survives a locked screen</h2>
+        <p>Long-press to select several videos and the app queues them and converts them in turn inside a background service. You can <strong>lock the screen or switch to another app and the job keeps running</strong>, with progress in the notification shade.</p>
+        <p>The free plan converts 3 files per batch, charges 1 credit for each extra file and runs one background job per session; Premium lifts both limits. Premium can also save the options you use most as a named preset. Out of credits? A <strong>rewarded ad earns 1 credit</strong>, up to 5 a day.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2 id="how-to">Extract audio from a video in 5 steps</h2>
+    <ol class="steps">
+      <li>On the <strong>Convert</strong> tab, tap the <strong>MP3</strong> button next to a video. The <em>Extract audio</em> screen opens.</li>
+      <li>Under <strong>Trim</strong>, drag the two handles if you only want a section, then tap <em>Play the selected part</em> to check it.</li>
+      <li>Set the <strong>Output name</strong>, choose MP3 or M4A under <strong>Format</strong>, and a <strong>Bitrate</strong> &mdash; 192 kbps is free and usually plenty.</li>
+      <li>In the <em>Video</em> section, tick <strong>Use a video frame as cover art</strong>. Under <strong>Effects</strong>, add a fade or <em>Normalize loudness</em> if you want them.</li>
+      <li>Tap <strong>Start</strong>. The file lands in <code>Music/Video to Audio</code>, where every other player can see it.</li>
+    </ol>
+
+    <h2 id="faq">Frequently asked questions</h2>
+    <details>
+      <summary>Does converting need an internet connection?</summary>
+      <p>No. Extracting and converting audio run on the device, so your videos are not uploaded. The app does go online for ads, purchases, analytics and crash reports, and for Find info online when you use it.</p>
+    </details>
+    <details>
+      <summary>Is the cover art inside the file or a separate image?</summary>
+      <p>Inside the audio file, in its cover-art tag. Copy the file to another device and the artwork travels with it &mdash; there is no loose image to manage.</p>
+    </details>
+    <details>
+      <summary>How is copying the original audio different from choosing 320 kbps?</summary>
+      <p>Choosing 320 kbps still re-encodes what was already compressed inside the video. Copying the stream takes the existing audio as-is, with no second encode, so nothing further is lost and it finishes much faster.</p>
+    </details>
+    <details>
+      <summary>Can it handle videos that are hours long?</summary>
+      <p>Yes. The app sets no length or size cap; you only need free storage for the output, about 86 MB per hour of MP3 at 192 kbps. With Run in background ticked, you do not have to keep the screen on.</p>
+    </details>
+    <details>
+      <summary>Where are the extracted files saved?</summary>
+      <p>In <code>Music/Video to Audio</code>, part of your device's Music library, so every music app picks them up. The <em>Music</em> tab inside the app also has its own player with a queue and a sleep timer.</p>
+    </details>
+
+    <section class="related" aria-labelledby="read-next">
+      <h2 id="read-next">Read next</h2>
+      <ul class="post-list">
+        <li><a class="post-card" href="batch-convert-videos-to-mp3.html" hreflang="en">
+          <h3>Convert several videos to MP3 in one go, then tidy the library</h3>
+          <p>How to turn a whole set of videos into MP3 on Android: preparing first, picking one quality setting, and using cover art to keep the library readable.</p>
+          <p class="meta"><span>5 Sep 2026</span><span>5 min read</span></p>
+        </a></li>
+        <li><a class="post-card" href="mp4-to-mp3-128-192-320-kbps.html" hreflang="en">
+          <h3>MP4 to MP3: should you pick 128, 192 or 320 kbps?</h3>
+          <p>How the three bitrate options differ when you pull MP3 out of a video: file size, audible quality, and which one suits each kind of material.</p>
+          <p class="meta"><span>5 Sep 2026</span><span>5 min read</span></p>
+        </a></li>
+        <li><a class="post-card" href="music-player-sleep-timer-speed.html" hreflang="en">
+          <h3>Sleep timer, playback speed and the queue: using the built-in player</h3>
+          <p>The in-app player has a sleep timer, playback speed, a queue and repeat modes — how to use each of them for podcasts, lectures and music.</p>
+          <p class="meta"><span>5 Sep 2026</span><span>5 min read</span></p>
+        </a></li>
+        <li><a class="post-card" href="make-ringtone-from-video-android.html">
+          <h3>How to make a ringtone from a video on Android</h3>
+          <p>Trim a 20&ndash;30 second clip, pick MP3 or M4A at 128&ndash;192 kbps, and set it as your ringtone, notification or alarm sound.</p>
+          <p class="meta"><span>12 Sep 2026</span><span>7 min read</span></p>
+        </a></li>
+      </ul>
+    </section>
+
+    <div class="cta">
+      <h2>Get Video to MP3</h2>
+      <p>Free on Google Play for Android 8.0 and newer.</p>
+      <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Get it on Google Play</a>
+      <a class="btn btn-dl2" href="../../index.html#features">See the features</a>
+    </div>
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; 2026 FightTech &mdash; Video to MP3 for Android</span>
+    <nav>
+      <a href="../../index.html#features">Features</a>
+      <a href="../index.html">Blog</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Google Play</a>
+      <a href="mailto:fighttech.vn@gmail.com">Support</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://fighttech.vn/#org",
+      "name": "FightTech",
+      "url": "https://fighttech.vn/",
+      "logo": "https://videotoaudio.fighttech.vn/assets/icon.png"
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://videotoaudio.fighttech.vn/#app",
+      "name": "Video to MP3: Audio Converter",
+      "operatingSystem": "Android 8.0+",
+      "applicationCategory": "MultimediaApplication",
+      "url": "https://videotoaudio.fighttech.vn/",
+      "installUrl": "https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio",
+      "publisher": {
+        "@id": "https://fighttech.vn/#org"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html#post",
+      "headline": "Extract MP3 from video with cover art and song tags",
+      "description": "Pull the audio out of a video as MP3 on Android: a video frame as embedded cover art, song info you can type or look up online, and a lossless copy of the original audio.",
+      "inLanguage": "en",
+      "datePublished": "2026-09-02",
+      "dateModified": "2026-09-12",
+      "image": "https://videotoaudio.fighttech.vn/blog/img/anh-bia-va-nang-cao.webp",
+      "url": "https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html",
+      "mainEntityOfPage": "https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html",
+      "author": {
+        "@id": "https://fighttech.vn/#org"
+      },
+      "publisher": {
+        "@id": "https://fighttech.vn/#org"
+      },
+      "isPartOf": {
+        "@id": "https://videotoaudio.fighttech.vn/blog/#blog"
+      },
+      "about": {
+        "@id": "https://videotoaudio.fighttech.vn/#app"
+      },
+      "wordCount": 1200
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html#faq",
+      "inLanguage": "en",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does converting need an internet connection?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Extracting and converting audio run on the device, so your videos are not uploaded. The app does go online for ads, purchases, analytics and crash reports, and for Find info online when you use it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the cover art inside the file or a separate image?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inside the audio file, in its cover-art tag. Copy the file to another device and the artwork travels with it — there is no loose image to manage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is copying the original audio different from choosing 320 kbps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Choosing 320 kbps still re-encodes what was already compressed inside the video. Copying the stream takes the existing audio as-is, with no second encode, so nothing further is lost and it finishes much faster."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it handle videos that are hours long?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The app sets no length or size cap; you only need free storage for the output, about 86 MB per hour of MP3 at 192 kbps. With Run in background ticked, you do not have to keep the screen on."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where are the extracted files saved?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In Music/Video to Audio, part of your device's Music library, so every music app picks them up. The Music tab inside the app also has its own player with a queue and a sleep timer."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://videotoaudio.fighttech.vn/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://videotoaudio.fighttech.vn/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Cover art from a video",
+          "item": "https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

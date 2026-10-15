@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tách nhạc từ nhiều video một lượt và sắp xếp lại thư viện</title>
+<meta name="description" content="Cách xử lý cả một loạt video thành MP3 trên Android: chuẩn bị trước, chọn mức chất lượng chung, và dùng ảnh bìa để thư viện dễ nhìn.">
+<link rel="canonical" href="https://videotoaudio.fighttech.vn/blog/tach-nhac-hang-loat-tu-nhieu-video.html">
+<link rel="alternate" hreflang="vi" href="https://videotoaudio.fighttech.vn/blog/tach-nhac-hang-loat-tu-nhieu-video.html">
+<link rel="alternate" hreflang="en" href="https://videotoaudio.fighttech.vn/blog/en/batch-convert-videos-to-mp3.html">
+<link rel="alternate" hreflang="x-default" href="https://videotoaudio.fighttech.vn/blog/en/batch-convert-videos-to-mp3.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#7c4dff">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Video to MP3">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Tách nhạc từ nhiều video một lượt và sắp xếp lại thư viện">
+<meta property="og:description" content="Một loạt video quay buổi hội thảo, một khoá học, một playlist đã tải về — cách biến chúng thành thư viện nhạc gọn gàng.">
+<meta property="og:url" content="https://videotoaudio.fighttech.vn/blog/tach-nhac-hang-loat-tu-nhieu-video.html">
+<meta property="og:image" content="https://videotoaudio.fighttech.vn/blog/img/vt-home.webp">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="../assets/icon.png?v=1">
+<link rel="apple-touch-icon" href="../assets/icon.png?v=1">
+<style>
+:root{
+  --bg:#ffffff; --ink:#1b2130; --muted:#5b6472; --line:#ececf2;
+  --brand:#7c4dff; --brand-ink:#5b2ee6; --brand-soft:#f1ecff; --soft:#faf9ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.68 -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--brand-ink)}
+img{max-width:100%}
+
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.nav .logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);text-decoration:none}
+.nav .logo img{width:30px;height:30px;border-radius:8px}
+.nav .links{margin-left:auto;display:flex;gap:20px;font-size:15px}
+.nav .links a{color:var(--muted);text-decoration:none}
+.nav .links a:hover{color:var(--brand-ink)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+.post-wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.post{padding-bottom:64px}
+.post [id]{scroll-margin-top:80px}
+.post-head{padding:40px 0 6px}
+.crumbs{font-size:14px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+.crumbs a{color:var(--muted);text-decoration:none}
+.kicker{display:inline-block;margin:18px 0 10px;padding:5px 12px;border-radius:999px;background:var(--brand-soft);
+  color:var(--brand-ink);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.meta{margin-top:14px;font-size:14.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
+.lede{margin-top:22px;font-size:19px;line-height:1.6}
+h2{font-size:clamp(23px,3.4vw,29px);line-height:1.25;letter-spacing:-.015em;margin:46px 0 14px;text-wrap:balance}
+h3{font-size:19px;margin:30px 0 8px}
+p{margin:14px 0}
+ul,ol{margin:14px 0 14px 22px;padding:0}
+li{margin:7px 0}
+li::marker{color:var(--brand)}
+hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+
+.toc{margin:30px 0 8px;padding:20px 22px;border:1px solid var(--line);border-radius:18px;background:var(--soft)}
+.toc h2{font-size:15px;margin:0 0 10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:0 0 0 20px}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+.figure{margin:26px 0}
+.figure img{display:block;width:100%;max-width:280px;height:auto;margin:0 auto;border:1px solid var(--line);
+  border-radius:22px;background:var(--soft);box-shadow:0 16px 38px rgba(20,30,50,.12)}
+.figure figcaption{margin-top:12px;font-size:14px;color:var(--muted);text-align:center}
+@media(min-width:760px){
+  .side{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start}
+  .side .figure{margin:0}
+  .side figcaption{text-align:left}
+  .side .body>:first-child{margin-top:0}
+  .side-right{grid-template-columns:1fr 280px}
+  .side-right .figure{order:2}
+}
+
+.callout{margin:26px 0;padding:18px 20px;border-radius:16px;background:var(--brand-soft);border:1px solid #ddd2ff}
+.callout p{margin:0}
+.callout strong{color:var(--brand-ink)}
+
+.steps{counter-reset:step;list-style:none;margin-left:0}
+.steps li{position:relative;padding-left:42px;margin:14px 0}
+.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:1px;width:28px;height:28px;
+  border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+
+.spec{width:100%;border-collapse:collapse;margin:20px 0;font-size:15.5px}
+.spec th,.spec td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{font-weight:700;width:38%}
+.spec td{color:var(--muted);font-variant-numeric:tabular-nums}
+
+details{border-bottom:1px solid var(--line);padding:14px 0}
+details summary{cursor:pointer;font-weight:600;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";float:right;color:var(--brand);font-weight:700}
+details[open] summary::after{content:"−"}
+details p{margin:10px 0 2px;color:var(--muted)}
+
+.cta{margin:46px 0 0;padding:28px;border-radius:22px;background:var(--soft);border:1px solid var(--line);text-align:center}
+.cta h2{margin:0 0 8px}
+.cta p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:16px;padding:13px 24px;border-radius:999px;
+  text-decoration:none;transition:transform .12s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-play{background:var(--ink);color:#fff}
+.btn-dl2{background:var(--brand-soft);color:var(--brand-ink);border:1px solid #ddd2ff;margin-left:10px}
+
+footer{border-top:1px solid var(--line);padding:34px 0}
+.foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;color:#9aa2b1;font-size:14px}
+.foot nav a{color:var(--muted);margin-left:22px;text-decoration:none}
+.foot nav a:first-child{margin-left:0}
+.langs{display:flex;gap:6px;align-items:center;margin:16px 0 0}
+.lang{font-size:13px;font-weight:600;line-height:1;padding:7px 12px;border-radius:999px;border:1px solid var(--line);
+  color:var(--muted);text-decoration:none;transition:color .15s,border-color .15s}
+.lang.active{background:var(--brand-soft);border-color:transparent;color:var(--brand-ink)}
+a.lang:hover,a.lang:focus-visible{color:var(--brand-ink);border-color:var(--brand)}
+@media(max-width:720px){.nav .links{gap:16px;font-size:14px}}
+
+  .related{margin-top:40px}
+.post-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:16px}
+.post-list li{margin:0}
+.post-card{display:block;padding:22px 24px;border:1px solid var(--line);border-radius:20px;background:var(--soft);
+  color:var(--ink);text-decoration:none;transition:border-color .15s}
+.post-card:hover,.post-card:focus-visible{border-color:var(--brand)}
+.post-card h3{margin:0 0 6px;font-size:20px;line-height:1.3}
+.post-card p{margin:0;color:var(--muted);font-size:15.5px}
+.post-card .meta{margin-top:10px;font-size:13.5px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="../"><img src="../assets/icon.png?v=1" alt="Video to MP3">Video to MP3</a>
+    <div class="links">
+      <a href="../index.html#features">Tính năng</a>
+      <a href="../index.html#faq">Hỏi đáp</a>
+      <a href="../privacy.html">Quyền riêng tư</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Tải ứng dụng</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<article class="post">
+  <div class="post-wrap post-head">
+    <nav class="crumbs" aria-label="Đường dẫn">
+      <a href="../">Trang chủ</a><span aria-hidden="true">&rsaquo;</span><span>Blog</span>
+    </nav>
+    <nav class="langs" aria-label="Ngôn ngữ bài viết">
+      <span class="lang active" aria-current="true">Tiếng Việt</span>
+      <a class="lang" href="en/batch-convert-videos-to-mp3.html" hreflang="en" lang="en">English</a>
+    </nav>
+    <span class="kicker">Hướng dẫn · Xử lý nhiều tệp</span>
+    <h1>Tách nhạc từ nhiều video một lượt và sắp xếp lại thư viện</h1>
+    <p class="meta"><span>05/09/2026</span><span>FightTech</span><span>Đọc khoảng 6 phút</span></p>
+    <p class="lede">Chuyển một video sang MP3 mất vài giây. Chuyển bốn mươi video — cả một khoá học đã tải về, một loạt bản ghi hội thảo, hay thư mục video bạn lưu suốt hai năm — là chuyện khác: không khó, nhưng cần một chút thứ tự để cuối cùng bạn có một thư viện dùng được chứ không phải bốn mươi file tên giống nhau.</p>
+  </div>
+
+  <div class="post-wrap">
+
+    <nav class="toc" aria-label="Nội dung bài viết">
+      <h2>Trong bài này</h2>
+      <ol>
+        <li><a href="#chuan-bi">Chuẩn bị trước khi bắt đầu</a></li>
+        <li><a href="#chat-luong">Chọn một mức chất lượng cho cả loạt</a></li>
+        <li><a href="#anh-bia">Ảnh bìa làm thư viện dễ nhìn</a></li>
+        <li><a href="#kiem-tra">Kiểm tra lại sau khi xong</a></li>
+        <li><a href="#huong-dan">Quy trình 5 bước</a></li>
+        <li><a href="#faq">Câu hỏi thường gặp</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="chuan-bi">1. Chuẩn bị trước khi bắt đầu</h2>
+    <div class="side">
+      <figure class="figure">
+        <img src="img/vt-home.webp" width="540" height="960" loading="lazy" decoding="async"
+             alt="Màn hình chính của ứng dụng với nút chọn video để chuyển sang MP3">
+        <figcaption>Chọn video từ thư viện trên máy để bắt đầu.</figcaption>
+      </figure>
+      <div class="body">
+        <p>Ba việc nên làm trước, mỗi việc mất chưa tới một phút nhưng tiết kiệm rất nhiều thời gian về sau.</p>
+        <p><strong>Xoá bớt.</strong> Trong bất kỳ thư mục video nào cũng có những thứ bạn sẽ không bao giờ nghe lại. Bỏ chúng đi trước khi tách còn dễ hơn là lọc lại giữa bốn mươi file MP3.</p>
+        <p><strong>Kiểm tra dung lượng trống.</strong> File MP3 nằm cạnh video chứ không thay thế nó. Bốn mươi video mỗi cái một tiếng, xuất ở 192 kbps, chiếm thêm khoảng 3,3 GB.</p>
+        <p><strong>Cắm sạc.</strong> Mã hoá âm thanh dùng nhiều CPU. Một loạt dài sẽ ăn pin đáng kể, và máy cắm sạc thì cũng không bị hệ thống hạ hiệu năng giữa chừng.</p>
+      </div>
+    </div>
+
+    <h2 id="chat-luong">2. Chọn một mức chất lượng cho cả loạt</h2>
+    <div class="side side-right">
+      <figure class="figure">
+        <img src="img/vt-result.webp" width="540" height="960" loading="lazy" decoding="async"
+             alt="Màn hình kết quả sau khi chuyển đổi xong, với các nút phát, chia sẻ và lưu">
+        <figcaption>Mỗi lần chuyển xong, kết quả hiện ngay cùng các thao tác tiếp theo.</figcaption>
+      </figure>
+      <div class="body">
+        <p>Khi xử lý một loạt, hãy quyết định mức chất lượng một lần rồi giữ nguyên. Một thư viện mà file thì 128, file thì 320 sẽ có âm lượng và độ sáng không đều nhau khi nghe liên tục.</p>
+        <p>Với nội dung nói — bài giảng, hội thảo, phỏng vấn — <strong>128 kbps</strong> là đủ và giữ tổng dung lượng ở mức thấp nhất.</p>
+        <p>Với hỗn hợp nhạc và lời, hoặc khi bạn không chắc, hãy chọn <strong>192 kbps</strong>.</p>
+        <p>Chỉ dùng <strong>320 kbps</strong> khi cả loạt đều là video nhạc chất lượng cao. Với bản ghi hội thảo, mức này chỉ làm file to gấp đôi mà không thêm được gì nghe thấy.</p>
+      </div>
+    </div>
+
+    <h2 id="anh-bia">3. Ảnh bìa làm thư viện dễ nhìn</h2>
+    <div class="side">
+      <figure class="figure">
+        <img src="img/vt-music.webp" width="540" height="960" loading="lazy" decoding="async"
+             alt="Thư viện nhạc trong ứng dụng với danh sách bài hát kèm ảnh bìa và thời lượng">
+        <figcaption>Ảnh bìa lấy từ video gốc giúp phân biệt các file trong danh sách dài.</figcaption>
+      </figure>
+      <div class="body">
+        <p>Đây là chỗ mà việc xử lý hàng loạt dễ hỏng nhất. Bốn mươi file có tên kiểu <em>VID_20260412_101533</em> thì về mặt kỹ thuật là thành công, còn về mặt sử dụng thì vô dụng.</p>
+        <p>Ứng dụng lấy một khung hình từ video gốc làm ảnh bìa cho file âm thanh. Trong một danh sách dài, hình ảnh là thứ mắt bắt được trước cả chữ, nên bạn nhận ra bài mình cần nhanh hơn nhiều.</p>
+        <p>Ảnh bìa được ghi vào thẻ metadata của chính file MP3, nên nó vẫn hiển thị khi bạn mở bằng trình phát khác hoặc chép sang máy tính.</p>
+      </div>
+    </div>
+
+    <h2 id="kiem-tra">4. Kiểm tra lại sau khi xong</h2>
+    <p>Sau khi tách xong cả loạt, hãy dành hai phút mở từng file một và bấm phát vài giây. Bạn đang tìm ba thứ:</p>
+    <ul>
+      <li><strong>File không có tiếng.</strong> Một số video vốn không có âm thanh; kết quả sẽ là một file im lặng.</li>
+      <li><strong>Bản ghi quá nhỏ tiếng.</strong> Video quay xa nguồn âm cho ra file rất khẽ, dễ nhận ra ngay khi nghe thử.</li>
+      <li><strong>File trùng.</strong> Nếu bạn từng tách cùng một video hai lần, bây giờ là lúc bỏ bớt một bản.</li>
+    </ul>
+    <p>Video gốc không bị thay đổi hay xoá, nên bất cứ file nào có vấn đề bạn đều tách lại được từ nguồn.</p>
+
+    <div class="callout">
+      <p><strong>Sau khi chắc chắn mọi file đều ổn</strong>, bạn có thể xoá những video mà bạn chỉ cần phần tiếng. Đó thường là phần tiết kiệm dung lượng lớn nhất của cả quy trình — video nặng gấp nhiều lần file âm thanh tách ra từ nó.</p>
+    </div>
+
+    <hr>
+
+    <h2 id="huong-dan">Quy trình 5 bước</h2>
+    <ol class="steps">
+      <li>Dọn thư mục video, bỏ những thứ bạn sẽ không nghe lại.</li>
+      <li>Chọn một mức chất lượng cho cả loạt: 128 cho lời nói, 192 cho hỗn hợp.</li>
+      <li>Cắm sạc và tách lần lượt từng video.</li>
+      <li>Mở thư viện, nghe thử vài giây mỗi file để loại bỏ file lỗi.</li>
+      <li>Xoá những video bạn chỉ cần phần âm thanh.</li>
+    </ol>
+    <p>Mọi bước đều chạy trên máy: không cần mạng, không tải video của bạn lên đâu cả, và file xuất ra không có watermark.</p>
+
+    <h2 id="faq">Câu hỏi thường gặp</h2>
+    <details>
+      <summary>Nên chọn mức chất lượng nào cho một loạt bài giảng?</summary>
+      <p>128 kbps. Giọng nói chiếm dải tần hẹp nên mức này đã rõ ràng, và với hàng chục file thì khoản tiết kiệm dung lượng là rất đáng kể.</p>
+    </details>
+    <details>
+      <summary>Video gốc có bị xoá sau khi tách không?</summary>
+      <p>Không. File MP3 được ghi ra bên cạnh và video vẫn nằm nguyên trong thư viện. Bạn tự quyết định có xoá video hay không sau khi kiểm tra.</p>
+    </details>
+    <details>
+      <summary>Cần bao nhiêu dung lượng trống?</summary>
+      <p>Khoảng 0,9 MB mỗi phút ở 128 kbps và 1,4 MB ở 192 kbps. Bốn mươi video mỗi cái một tiếng ở 192 kbps cần thêm chừng 3,3 GB.</p>
+    </details>
+    <details>
+      <summary>Ảnh bìa lấy từ đâu?</summary>
+      <p>Từ một khung hình của chính video gốc, và được ghi vào thẻ metadata của file MP3 nên vẫn hiện đúng ở các trình phát khác.</p>
+    </details>
+    <details>
+      <summary>Có cần kết nối mạng không?</summary>
+      <p>Không. Toàn bộ quá trình chạy trên thiết bị, kể cả ở chế độ máy bay.</p>
+    </details>
+    <details>
+      <summary>Vì sao nên cắm sạc khi xử lý nhiều file?</summary>
+      <p>Vì mã hoá âm thanh dùng nhiều CPU. Một loạt dài tiêu tốn pin đáng kể, và máy cắm sạc cũng ít bị hệ thống giảm hiệu năng giữa chừng hơn.</p>
+    </details>
+
+    <section class="related" aria-labelledby="doc-tiep">
+      <h2 id="doc-tiep">Đọc tiếp</h2>
+      <ul class="post-list">
+        <li><a class="post-card" href="chon-bitrate-128-192-320-kbps.html">
+          <h3>Đổi MP4 sang MP3: nên chọn 128, 192 hay 320 kbps?</h3>
+          <p>Ba mức bitrate khi tách nhạc từ video sang MP3 khác nhau ra sao: dung lượng, chất lượng nghe được và mức nào hợp với từng loại nội dung.</p>
+          <p class="meta"><span>05/09/2026</span><span>Đọc khoảng 6 phút</span></p>
+        </a></li>
+        <li><a class="post-card" href="tach-nhac-tu-video-kem-anh-bia.html">
+          <h3>Tách nhạc từ video ra MP3 kèm ảnh bìa và thẻ bài hát</h3>
+          <p>Cách tách nhạc từ video thành MP3 trên Android: lấy khung hình làm ảnh bìa, sửa hoặc tra tên bài và ca sĩ trên mạng, tách tiếng gốc không nén, chạy nền.</p>
+          <p class="meta"><span>02/09/2026</span><span>Đọc khoảng 7 phút</span></p>
+        </a></li>
+        <li><a class="post-card" href="trinh-phat-nhac-hen-gio-ngu.html">
+          <h3>Hẹn giờ ngủ, đổi tốc độ và danh sách chờ: dùng trình phát nhạc có sẵn</h3>
+          <p>Trình phát nhạc trong ứng dụng có hẹn giờ ngủ, chỉnh tốc độ phát, danh sách chờ và chế độ lặp — cách dùng từng thứ cho podcast, bài giảng và nhạc.</p>
+          <p class="meta"><span>05/09/2026</span><span>Đọc khoảng 6 phút</span></p>
+        </a></li>
+      </ul>
+    </section>
+
+    <div class="cta">
+      <h2>Bắt đầu với thư mục video của bạn</h2>
+      <p>Chuyển video sang MP3 ngay trên máy, có ảnh bìa và trình phát tích hợp.</p>
+      <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Tải trên Google Play</a>
+      <a class="btn btn-dl2" href="../index.html#features">Tính năng</a>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 FightTech — Video to MP3 cho Android</span>
+    <nav>
+      <a href="../index.html#features">Tính năng</a>
+      <a href="../privacy.html">Quyền riêng tư</a>
+      <a href="../terms.html">Điều khoản</a>
+      <a href="https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio">Google Play</a>
+      <a href="mailto:fighttech.vn@gmail.com">Hỗ trợ</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Tách nhạc từ nhiều video một lượt và sắp xếp lại thư viện",
+      "description": "Hướng dẫn chuyển nhiều video sang MP3 trên Android và tổ chức thư viện âm thanh sau khi tách.",
+      "inLanguage": "vi-VN",
+      "datePublished": "2026-09-05",
+      "dateModified": "2026-09-05",
+      "image": "https://videotoaudio.fighttech.vn/blog/img/vt-home.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "FightTech",
+        "url": "https://fighttech.vn"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FightTech",
+        "url": "https://fighttech.vn"
+      },
+      "mainEntityOfPage": "https://videotoaudio.fighttech.vn/blog/tach-nhac-hang-loat-tu-nhieu-video.html",
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "Video to MP3",
+        "operatingSystem": "Android",
+        "applicationCategory": "MultimediaApplication"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Nên chọn mức chất lượng nào cho một loạt bài giảng?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "128 kbps. Giọng nói chiếm dải tần hẹp nên mức này đã rõ ràng, và với hàng chục file thì khoản tiết kiệm dung lượng là rất đáng kể."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Video gốc có bị xoá sau khi tách không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Không. File MP3 được ghi ra bên cạnh và video vẫn nằm nguyên trong thư viện. Bạn tự quyết định có xoá video hay không sau khi kiểm tra."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Cần bao nhiêu dung lượng trống?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Khoảng 0,9 MB mỗi phút ở 128 kbps và 1,4 MB ở 192 kbps. Bốn mươi video mỗi cái một tiếng ở 192 kbps cần thêm chừng 3,3 GB."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ảnh bìa lấy từ đâu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Từ một khung hình của chính video gốc, và được ghi vào thẻ metadata của file MP3 nên vẫn hiện đúng ở các trình phát khác."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Có cần kết nối mạng không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Không. Toàn bộ quá trình chạy trên thiết bị, kể cả ở chế độ máy bay."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vì sao nên cắm sạc khi xử lý nhiều file?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vì mã hoá âm thanh dùng nhiều CPU. Một loạt dài tiêu tốn pin đáng kể, và máy cắm sạc cũng ít bị hệ thống giảm hiệu năng giữa chừng hơn."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Trang chủ",
+          "item": "https://videotoaudio.fighttech.vn/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tách nhạc từ nhiều video",
+          "item": "https://videotoaudio.fighttech.vn/blog/tach-nhac-hang-loat-tu-nhieu-video.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

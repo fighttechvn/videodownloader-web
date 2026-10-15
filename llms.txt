@@ -1,0 +1,74 @@
+# Video to MP3: Audio Converter
+
+> Android app by FightTech that extracts the audio from videos stored on the phone and saves it as MP3, M4A (AAC), OPUS, WAV, M4R or FLAC, with an audio cutter, a ringtone setter, a tag editor, audio and video tools and a built-in music player. Free on Google Play for Android 8.0 and newer; 256/320 kbps, effects and larger batches use credits or Premium.
+
+Key facts, stated as the app actually behaves:
+
+- Package: vn.fighttech.videotoaudio — https://play.google.com/store/apps/details?id=vn.fighttech.videotoaudio
+- Conversion runs on the device; videos and audio are not uploaded to convert them. Ads, analytics, crash reports, Google Play purchases, the feedback form and the optional online song lookup use the internet, so the app as a whole is not offline.
+- The Convert tab lists the videos on the phone. Tapping a video or its MP3 button opens the Extract audio screen: Trim, Output name, Format, Bitrate, Sample rate, Channels, Volume, Effects, then Start.
+- Output formats: MP3 (LAME encoder), M4A (AAC), OPUS (Android 10 and newer), WAV (16-bit PCM), M4R (AAC with a ringtone file extension) and FLAC (Premium, on devices with a FLAC encoder).
+- Bitrates: 64, 96, 128, 160 and 192 kbps (default) are free. 256 and 320 kbps cost 1 credit per file on the free plan and are included with Premium.
+- Effects on the export screen: fade in and fade out (1, 2, 3 or 5 seconds), normalize loudness, reduce noise, speed (0.5x to 2x) and pitch. On the free plan any effect costs 1 credit per output file. Trim, Trim silence and Volume are free.
+- Cover art: "Use a video frame as cover art" embeds the middle frame of the video into an MP3 or M4A for free; picking a specific frame is Premium.
+- Premium-only: "Extract original audio (no re-encoding)", choosing the audio track, saving named presets, multi-segment cuts, splitting into more than 2 parts, FLAC, setting a ringtone for one contact, and the online song lookup in the tag editor.
+- Batch: long-press to select several videos. The free plan converts 3 files per batch; each extra file costs 1 credit. Premium has no batch limit. The free plan runs one background job per session.
+- Credits: 5 welcome credits once, 1 credit per rewarded ad (up to 5 a day), or credit packs in the app.
+- Files are saved to Music/Video to Audio (audio), Movies/Video to Audio (video tools) and Pictures (GIF). The original video is not changed.
+- Ringtones: the result screen and the Music tab can set a file as the phone ringtone, notification sound or alarm sound. Android asks once for the "Modify system settings" permission. Settings has "Restore original ringtone".
+- Audio tools: Cut audio, Convert audio, Join audio, Audio mixer, Split file, Multi-cut, Karaoke (vocal reduction, 2 credits), Voice changer, Audio speed, Volume boost (up to 300%), Voice recorder and Song info (MP3 tag editor: title, artist, album, cover).
+- Video tools: Trim video, Convert video, Compress video, Mute video, Video speed, Merge videos and Video to GIF.
+- Music player: queue, shuffle, repeat one/all, 10-second skip, playback speed, sleep timer, background playback with notification controls, and an equalizer with bass boost on devices that support it.
+- Interface languages include English and Vietnamese.
+- Users are responsible for only converting media they have the right to use.
+
+## Guides
+
+- [How to make a ringtone from a video on Android](https://videotoaudio.fighttech.vn/blog/en/make-ringtone-from-video-android.html): trim a 20–30 second clip from a video, pick MP3 or M4A at 128–192 kbps, set it as ringtone, notification or alarm, and restore the original sound.
+- [Extract MP3 from video with cover art and song tags](https://videotoaudio.fighttech.vn/blog/en/extract-mp3-with-cover-art.html): a video frame as embedded cover art, editing song info, copying the original audio without re-encoding, effects and the background queue.
+- [Cách cắt nhạc chuông từ video trên Android (tiếng Việt)](https://videotoaudio.fighttech.vn/blog/cat-nhac-chuong-tu-video.html)
+- [Tách nhạc từ video ra MP3 kèm ảnh bìa và thẻ bài hát (tiếng Việt)](https://videotoaudio.fighttech.vn/blog/tach-nhac-tu-video-kem-anh-bia.html)
+
+## App pages
+
+- [Home](https://videotoaudio.fighttech.vn/): features, formats and FAQ
+- [Privacy policy](https://videotoaudio.fighttech.vn/privacy.html)
+- [Terms of use](https://videotoaudio.fighttech.vn/terms.html)
+
+## Optional
+
+- [Blog index](https://videotoaudio.fighttech.vn/blog/)
+- [Direct APK](https://storage.fighttech.vn/videotoaudio/VideoToAudio.apk): the same app outside Google Play
+- [FightTech](https://fighttech.vn): the developer, contact fighttech.vn@gmail.com
+
+## Feature guides (Vietnamese, September 2026)
+[12 practical guides with app screenshots](https://videotoaudio.fighttech.vn/blog/).
+
+- [Tách tiếng bài giảng để nghe khi tắt màn hình](https://videotoaudio.fighttech.vn/blog/nghe-bai-giang-tu-video-khi-tat-man-hinh.html): Tách tiếng bài giảng từ video bằng Video to Audio, lưu MP3 và nghe bằng trình phát tích hợp khi tắt màn hình điện thoại.
+- [Xem thử video trước khi tách tiếng trên Android](https://videotoaudio.fighttech.vn/blog/kiem-tra-video-truoc-khi-tach-tieng.html): Dùng thumbnail video trong Video to Audio để xem thử, nhận diện đúng clip và chọn đoạn cần tách trước khi xuất file âm thanh.
+- [Tách một đoạn phỏng vấn thành MP3 trên điện thoại](https://videotoaudio.fighttech.vn/blog/tach-mot-doan-phong-van-thanh-mp3.html): Chọn điểm đầu và cuối để tách riêng một câu trả lời trong video phỏng vấn thành MP3 bằng Video to Audio trên Android.
+- [Đặt tên file MP3 trước khi chuyển đổi video](https://videotoaudio.fighttech.vn/blog/doi-ten-file-mp3-truoc-khi-luu.html): Đặt tên MP3 có chủ đề và số thứ tự ngay trong hộp chuyển đổi Video to Audio để dễ tìm, nghe và chia sẻ sau khi xuất.
+- [Tìm file âm thanh sau khi chuyển video sang MP3](https://videotoaudio.fighttech.vn/blog/tim-file-am-thanh-sau-khi-chuyen-doi.html): Tìm bản MP3 vừa xuất trong tab Nhạc và thư mục Music/Video to Audio, rồi phát thử hoặc chia sẻ đúng file trên Android.
+- [Chia sẻ âm thanh vừa tách từ video trên Android](https://videotoaudio.fighttech.vn/blog/chia-se-am-thanh-tu-video-sau-khi-tach.html): Phát kiểm tra và chia sẻ tệp audio vừa xuất từ Video to Audio bằng bảng chia sẻ Android, kèm mẹo chọn đúng bản và dung lượng.
+- [Điều khiển nhạc bằng widget trên màn hình Android](https://videotoaudio.fighttech.vn/blog/widget-dieu-khien-nhac-tren-man-hinh-chinh.html): Thêm widget Mini hoặc Standard của Video to Audio để xem tên bài và điều khiển phát nhạc ngay trên màn hình chính Android.
+- [Nghe nhiều file âm thanh bằng hàng đợi phát nhạc](https://videotoaudio.fighttech.vn/blog/sap-xep-hang-doi-nghe-audio.html): Dùng thư viện và hàng đợi trong trình phát Video to Audio để nghe các file bài giảng, bản ghi hoặc bài hát theo danh sách.
+- [Cấp quyền để app tìm thấy video và âm thanh](https://videotoaudio.fighttech.vn/blog/kiem-tra-quyen-doc-video-va-am-thanh.html): Kiểm tra quyền đọc video và âm thanh khi thư viện Video to Audio không hiện đủ tệp trên điện thoại Android.
+- [Vì sao tách audio từ video lại không có tiếng?](https://videotoaudio.fighttech.vn/blog/tach-audio-video-khong-co-tieng.html): Kiểm tra track âm thanh, đoạn cắt và khả năng giải mã khi Video to Audio xuất file im lặng hoặc không đọc được tiếng của video.
+- [Tách âm thanh khi không có Internet: cần chuẩn bị gì?](https://videotoaudio.fighttech.vn/blog/tach-am-thanh-khi-khong-co-internet.html): Chuẩn bị video lưu trên máy và dung lượng trống để tách âm thanh bằng Video to Audio khi không có kết nối Internet.
+- [Tách audio từ video dài khi điện thoại ít bộ nhớ](https://videotoaudio.fighttech.vn/blog/tach-audio-cho-video-dai-it-bo-nho.html): Chọn đoạn cần nghe, bitrate phù hợp và kiểm tra dung lượng trống trước khi tách audio từ video dài bằng Video to Audio.
+
+## Feature guides (English, September 2026)
+[12 English guides with app screenshots](https://videotoaudio.fighttech.vn/blog/en/).
+
+- [Separate the lecture audio to listen when the screen is turned off](https://videotoaudio.fighttech.vn/blog/en/separate-the-lecture-audio-to-listen-when-the-screen-is-turned-off.html): Extract lecture audio from video using Video to Audio, save MP3 and listen to it with the built-in player when the phone screen is turned off.
+- [Preview the video before separating the sound on Android](https://videotoaudio.fighttech.vn/blog/en/preview-the-video-before-separating-the-sound-on-android.html): Use the video thumbnail in Video to Audio to preview, identify the correct clip and select the segment to separate before exporting the audio file.
+- [Split an interview into MP3 on your phone](https://videotoaudio.fighttech.vn/blog/en/split-an-interview-into-mp3-on-your-phone.html): Select the start and end points to separate an answer in an interview video into MP3 using Video to Audio on Android.
+- [Name the MP3 file before converting the video](https://videotoaudio.fighttech.vn/blog/en/name-the-mp3-file-before-converting-the-video.html): Name the MP3 with subject and serial number right in the Video to Audio conversion box for easy finding, listening and sharing after export.
+- [Find audio files after converting video to MP3](https://videotoaudio.fighttech.vn/blog/en/find-audio-files-after-converting-video-to-mp3.html): Find the exported MP3 in the Music tab and Music/Video to Audio folder, then try playing or sharing the correct file on Android.
+- [Share audio just extracted from video on Android](https://videotoaudio.fighttech.vn/blog/en/share-audio-just-extracted-from-video-on-android.html): Test play and share the audio file just exported from Video to Audio using the Android share panel, with tips on choosing the right version and capacity.
+- [Control music with widgets on the Android screen](https://videotoaudio.fighttech.vn/blog/en/control-music-with-widgets-on-the-android-screen.html): Add Video to Audio Mini or Standard widget to view song titles and control music playback right on the Android home screen.
+- [Listen to multiple audio files using the music queue](https://videotoaudio.fighttech.vn/blog/en/listen-to-multiple-audio-files-using-the-music-queue.html): Use the library and queue in the Video to Audio player to listen to lecture files, recordings, or songs by list.
+- [Grant permission for the app to find video and audio](https://videotoaudio.fighttech.vn/blog/en/grant-permission-for-the-app-to-find-video-and-audio.html): Check permissions to read video and audio when Video to Audio library does not show enough files on Android phone.
+- [Why is there no sound when separating audio from video?](https://videotoaudio.fighttech.vn/blog/en/why-is-there-no-sound-when-separating-audio-from-video.html): Check the audio track, cuts and decoding capabilities when Video to Audio outputs the file silently or the video audio is unreadable.
+- [Extract sound without Internet: what to prepare?](https://videotoaudio.fighttech.vn/blog/en/extract-sound-without-internet-what-to-prepare.html): Prepare videos saved on your device and free space to extract audio using Video to Audio when there is no Internet connection.
+- [Extract audio from long videos when your phone is low on memory](https://videotoaudio.fighttech.vn/blog/en/extract-audio-from-long-videos-when-your-phone-is-low-on-memory.html): Select the segment to listen to, the appropriate bitrate and check the free space before extracting audio from a long video using Video to Audio.
